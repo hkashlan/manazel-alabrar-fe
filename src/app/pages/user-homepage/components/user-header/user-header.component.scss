@@ -1,3 +1,5 @@
+@import "/src/scss/_layout-bp.scss";
+
 a {
   text-decoration: none;
   color: white;
@@ -18,8 +20,29 @@ mat-toolbar {
   border-radius: 3px;
 }
 
-@media (max-width: 959px) {
+.toolbar-menu {
+  display: none;
+}
+
+img {
+  height: 40px;
+}
+
+@include layout-bp(gt-xs) {
   mat-toolbar {
     border-radius: 0px;
+    justify-content: space-between;
+  }
+
+  .toolbar-menu {
+    display: flex;
+
+    ul {
+      display: flex;
+      gap: 15px;
+    }
+  }
+  .side-menu {
+    display: none;
   }
 }

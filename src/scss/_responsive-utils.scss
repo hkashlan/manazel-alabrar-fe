@@ -1,0 +1,13 @@
+@import "./layout-bp";
+
+@include layout-bp(xs) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+.show-on-mobile {
+  @include layout-bp(gt-xs) {
+    display: none;
+  }
+}

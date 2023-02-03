@@ -1,6 +1,12 @@
+@import "/src/scss/_layout-bp.scss";
+
 .layout-wrapper {
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .flex-wrapper {
   height: 100%;
+  width: 100%;
 }
