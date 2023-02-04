@@ -1,4 +1,5 @@
 @import "/src/scss/_layout-bp.scss";
+@import "/src/scss/variables";
 
 a {
   text-decoration: none;
@@ -31,11 +32,11 @@ img {
 @include layout-bp(gt-xs) {
   mat-toolbar {
     border-radius: 0px;
-    justify-content: space-between;
   }
 
   .toolbar-menu {
     display: flex;
+    margin-inline-start: $large;
 
     ul {
       display: flex;
