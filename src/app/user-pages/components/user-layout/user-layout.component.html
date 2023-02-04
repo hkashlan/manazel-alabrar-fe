@@ -1,0 +1,15 @@
+<div class="layout-wrapper">
+  <div class="flex-wrapper">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav role="navigation">
+        <app-user-sidenav-list (sidenavClose)="sidenav.close()"></app-user-sidenav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <app-user-header (sidenavToggle)="sidenav.toggle()"></app-user-header>
+        <main>
+          <router-outlet></router-outlet>
+        </main>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>

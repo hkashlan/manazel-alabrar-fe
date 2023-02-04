@@ -11,11 +11,8 @@
   </div>
   <div class="toolbar-menu">
     <ul class="navigation-items">
-      <li>
-        <a routerLink="/owner">Owner Actions</a>
-      </li>
-      <li>
-        <a routerLink="/account">Account Actions</a>
+      <li *ngFor="let menu of menus">
+        <a [routerLink]="menu.path">{{menu.title}}</a>
       </li>
     </ul>
   </div>

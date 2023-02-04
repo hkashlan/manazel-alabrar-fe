@@ -5,7 +5,9 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () =>
-      import('./pages/pages-routing.module').then((m) => m.PagesRoutingModule),
+      import('./user-pages/user-pages-routing.module').then(
+        (m) => m.UserPagesRoutingModule
+      ),
   },
   {
     path: 'public',
@@ -17,7 +19,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'public',
+    redirectTo: 'user',
   },
 ];
 
