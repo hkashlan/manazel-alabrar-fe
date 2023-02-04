@@ -16,4 +16,20 @@
       </li>
     </ul>
   </div>
+  <div class="profile">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <span>رزان</span>
+      <img mat-card-avatar src="../../../../../assets/muslim-female.png" />
+    </button>
+    <mat-menu #menu="matMenu" backdropClass="customize" [classList]="'customize'">
+      <button mat-menu-item>
+        <mat-icon>profile</mat-icon>
+        Profile
+      </button>
+      <button mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+    </mat-menu>
+  </div>
 </mat-toolbar>

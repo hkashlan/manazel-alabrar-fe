@@ -1,6 +1,6 @@
 import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserService } from '../core/services/user.service';
+import { StudentService } from '../user-pages/services/student.service';
 import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: 'callback',
     pathMatch: 'full',
-    canMatch: [() => inject(UserService).saveToken()],
+    canMatch: [() => inject(StudentService).saveToken()],
     redirectTo: '/user/user-home',
   },
   {

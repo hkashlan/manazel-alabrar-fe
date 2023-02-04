@@ -47,3 +47,17 @@ img {
     display: none;
   }
 }
+
+.profile {
+  margin-inline-start: auto;
+  color: white;
+
+  img {
+    vertical-align: middle;
+  }
+}
+
+.customize {
+  color: var(--mdc-theme-on-secondary) !important;
+  background-color: red;
+}

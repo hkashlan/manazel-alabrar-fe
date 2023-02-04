@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Course, Student } from '../models/student';
+import { courses, student } from './user-mock';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class StudentService {
+  student = student;
+
   constructor() {}
 
   saveToken(): Promise<boolean> {
@@ -21,5 +26,13 @@ export class UserService {
     //     localStorage.setItem('username', res.user.username);
     //   })
     //   .then(() => true);
+  }
+
+  loadProfile(): Observable<Student> {
+    return of(student);
+  }
+
+  loadCourses(): Observable<Course[]> {
+    return of(courses);
   }
 }

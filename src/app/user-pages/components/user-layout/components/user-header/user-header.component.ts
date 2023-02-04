@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedMaterialModule } from '../../../../../shared-material/shared-material.module';
+import { StudentService } from '../../../../services/student.service';
 import { menus } from '../../../../user-pages-routing';
 
 @Component({
@@ -13,8 +14,9 @@ import { menus } from '../../../../user-pages-routing';
 })
 export class UserHeaderComponent {
   @Output() public sidenavToggle = new EventEmitter();
-
   menus = menus;
+
+  constructor(public studentService: StudentService) {}
 
   public onToggleSidenav = () => {
     this.sidenavToggle.emit();
