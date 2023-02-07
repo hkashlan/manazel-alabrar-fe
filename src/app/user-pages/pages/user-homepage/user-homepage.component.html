@@ -1,1 +1,20 @@
-dfsdf
+<div class="header">
+  <button mat-icon-button (click)="nextDate()">
+    <mat-icon>navigate_next</mat-icon>
+  </button>
+  <span>
+    مقررات يوم {{ currentDate | date }}
+  </span>
+  <button mat-icon-button (click)="previousDate()">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+</div>
+
+
+<div *ngFor="let lesson of lessons" class="lesson-item"
+  [routerLink]="['../' +lessonRouter, lesson.lessonParams.courseId, lesson.lessonParams.lessonId ]">
+  {{lesson.courseName}}:
+  {{lesson.lessonName}}</div>
+<div *ngIf="!lessons.length" class="empty-message">
+  لا يوجد مقرارات
+</div>

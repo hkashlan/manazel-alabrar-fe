@@ -27,6 +27,7 @@ export const student: Student = {
           lessons: [
             {
               lessonId: 1,
+              name: 'lesson one',
               description: 'lesson one',
               present: true,
               mark: 40,
@@ -62,11 +63,58 @@ export const student: Student = {
             },
             {
               lessonId: 2,
+              name: 'lesson 2',
               description: 'lesson 2',
               present: false,
               mark: 40,
               date: tomorrowDate(),
               questions: [
+                {
+                  text: 'question 2',
+                  answers: [
+                    {
+                      text: 'answer 2',
+                      correct: true,
+                    },
+                    {
+                      text: 'answer 2',
+                      correct: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 3,
+          name: 'level 3',
+          description: 'Level 3 description',
+          from: new Date(),
+          to: new Date(),
+          progress: 70,
+          lessons: [
+            {
+              lessonId: 13,
+              name: 'lesson 3',
+              description: 'lesson one',
+              present: true,
+              mark: 40,
+              date: new Date(),
+              questions: [
+                {
+                  text: 'question 1',
+                  answers: [
+                    {
+                      text: 'answer 1',
+                      correct: true,
+                    },
+                    {
+                      text: 'answer 2',
+                      correct: false,
+                    },
+                  ],
+                },
                 {
                   text: 'question 2',
                   answers: [
@@ -109,6 +157,7 @@ export const courses: Course[] = [
     lessons: [
       {
         lessonId: 1,
+        name: 'lesson one',
         description: 'lesson one',
         present: true,
         mark: 40,
@@ -144,6 +193,7 @@ export const courses: Course[] = [
       },
       {
         lessonId: 2,
+        name: 'lesson 2',
         description: 'lesson 2',
         present: false,
         mark: 40,

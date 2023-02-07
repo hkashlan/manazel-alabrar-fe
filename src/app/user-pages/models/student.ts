@@ -10,6 +10,7 @@ export interface Question {
 
 export interface Lesson {
   lessonId: number;
+  name: string;
   description: string;
   present: boolean;
   date: Date;
