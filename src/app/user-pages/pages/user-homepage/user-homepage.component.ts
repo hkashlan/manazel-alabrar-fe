@@ -1,7 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { SharedMaterialModule } from '../../../shared-material/shared-material.module';
+import { SharedModule } from '../../../core/modules/shared/shared.module';
 import { Course, Lesson } from '../../models/student';
 import { StudentService } from '../../services/student.service';
 import { LessonParams, userPageRouting } from '../../user-pages-routing';
@@ -23,7 +21,7 @@ interface LessonItem {
 @Component({
   selector: 'app-user-homepage',
   standalone: true,
-  imports: [CommonModule, RouterModule, SharedMaterialModule],
+  imports: [SharedModule],
   templateUrl: './user-homepage.component.html',
   styleUrls: ['./user-homepage.component.scss'],
 })
@@ -68,6 +66,7 @@ export class UserHomepageComponent implements OnInit {
       lessonParams: {
         courseId: course.id,
         lessonId: lesson.lessonId,
+        facultyId: course.facultyId,
       },
     };
   }

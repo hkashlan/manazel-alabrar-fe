@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SharedMaterialModule } from '../../shared-material/shared-material.module';
+import { SharedModule } from '../../core/modules/shared/shared.module';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SharedMaterialModule],
+  imports: [SharedModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })

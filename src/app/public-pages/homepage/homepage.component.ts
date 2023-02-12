@@ -1,11 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { SharedMaterialModule } from '../../shared-material/shared-material.module';
+import { SharedModule } from '../../core/modules/shared/shared.module';
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [CommonModule, SharedMaterialModule],
+  imports: [SharedModule],
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
 })

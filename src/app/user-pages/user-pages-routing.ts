@@ -7,6 +7,7 @@ export interface CourseDetailParams {
 export interface LessonParams {
   [UserParameters.courseId]: number;
   [UserParameters.lessonId]: number;
+  [UserParameters.facultyId]: number;
 }
 
 export interface QuizParams extends LessonParams {}
@@ -16,24 +17,33 @@ export interface MenuInfo {
   title: string;
 }
 
-enum UserParameters {
+export enum UserParameters {
   courseId = 'courseId',
   lessonId = 'lessonId',
+  facultyId = 'facultyId',
 }
 
 const home: RouteInfo = { path: 'home' };
 const course: RouteInfo = { path: 'course' };
 const courseDetail: RouteInfo = {
   path: 'course',
-  parameters: [UserParameters.courseId],
+  parameters: [UserParameters.facultyId, UserParameters.courseId],
 };
 const lesson: RouteInfo = {
   path: 'lesson',
-  parameters: [UserParameters.courseId, UserParameters.lessonId],
+  parameters: [
+    UserParameters.facultyId,
+    UserParameters.courseId,
+    UserParameters.lessonId,
+  ],
 };
 const quiz: RouteInfo = {
   path: 'quiz',
-  parameters: [UserParameters.courseId, UserParameters.courseId],
+  parameters: [
+    UserParameters.facultyId,
+    UserParameters.courseId,
+    UserParameters.courseId,
+  ],
 };
 
 const quizzes: RouteInfo = {

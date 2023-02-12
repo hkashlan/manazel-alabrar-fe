@@ -1,13 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { SharedMaterialModule } from '../../../../../shared-material/shared-material.module';
+import { SharedModule } from '../../../../../core/modules/shared/shared.module';
 import { menus } from '../../../../user-pages-routing';
 
 @Component({
   selector: 'app-user-sidenav-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, SharedMaterialModule],
+  imports: [SharedModule],
   templateUrl: './user-sidenav-list.component.html',
   styleUrls: ['./user-sidenav-list.component.scss'],
 })

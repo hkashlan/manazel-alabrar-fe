@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { translationKeys } from './core/models/translations';
 import { IconService } from './core/services/icon.service';
 
 @Component({
@@ -9,7 +11,11 @@ import { IconService } from './core/services/icon.service';
 export class AppComponent {
   title = 'manazel-alabrar-fe';
 
-  constructor(iconService: IconService) {
+  constructor(iconService: IconService, translateService: TranslateService) {
+    translateService.addLangs(['ar', 'en']);
     iconService.init();
+    translateService
+      .get(translationKeys.alsalam_3alaikom)
+      .subscribe((tt) => console.log(tt));
   }
 }

@@ -12,7 +12,7 @@
 
 
 <div *ngFor="let lesson of lessons" class="lesson-item"
-  [routerLink]="['../' +lessonRouter, lesson.lessonParams.courseId, lesson.lessonParams.lessonId ]">
+  [routerLink]="['../' +lessonRouter, lesson.lessonParams.facultyId, lesson.lessonParams.courseId, lesson.lessonParams.lessonId ]">
   {{lesson.courseName}}:
   {{lesson.lessonName}}</div>
 <div *ngIf="!lessons.length" class="empty-message">

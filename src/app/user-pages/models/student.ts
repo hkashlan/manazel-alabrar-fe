@@ -20,6 +20,7 @@ export interface Lesson {
 
 export interface Course {
   id: number;
+  facultyId: number;
   name: string;
   description: string;
   from: Date;
