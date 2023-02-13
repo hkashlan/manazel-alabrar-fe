@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../../core/modules/shared/shared.module';
+import { SharedModule } from '../../../core/modules/shared.module';
 import { UserHeaderComponent } from './components/user-header/user-header.component';
 import { UserSidenavListComponent } from './components/user-sidenav-list/user-sidenav-list.component';
 

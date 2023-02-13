@@ -1,4 +1,5 @@
 export const translationKeys = {
-alsalam_3alaikom: "alsalam_3alaikom",
-test2: "test2",
+course: "course",
+lesson: "lesson",
+quizes: "quizes",
 };

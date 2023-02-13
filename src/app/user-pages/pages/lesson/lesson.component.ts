@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { translationKeys } from '../../../core/models/translations';
-import { SharedModule } from '../../../core/modules/shared/shared.module';
+import { SharedModule } from '../../../core/modules/shared.module';
 import { getRouteNumberParam } from '../../../core/utils/params';
 import { StudentService } from '../../services/student.service';
 import { UserParameters } from '../../user-pages-routing';
@@ -23,5 +23,6 @@ export class LessonComponent {
   lesson = this.course?.lessons.find((l) => l.lessonId === this.lessonId);
 
   translationKeys = translationKeys;
+
   constructor(private studentService: StudentService) {}
 }

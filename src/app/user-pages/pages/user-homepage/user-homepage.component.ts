@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedModule } from '../../../core/modules/shared/shared.module';
+import { SharedModule } from '../../../core/modules/shared.module';
 import { Course, Lesson } from '../../models/student';
 import { StudentService } from '../../services/student.service';
 import { LessonParams, userPageRouting } from '../../user-pages-routing';

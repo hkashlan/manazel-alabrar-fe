@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { SharedModule } from '../../../../../core/modules/shared/shared.module';
+import { SharedModule } from '../../../../../core/modules/shared.module';
 import { StudentService } from '../../../../services/student.service';
 import { menus } from '../../../../user-pages-routing';
 

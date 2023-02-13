@@ -1,3 +1,5 @@
 <h1 class="header">
-  {{translationKeys.alsalam_3alaikom| translate }}
+  {{ translationKeys.course | translate }}: {{ course?.name }},
+  {{ translationKeys.lesson | translate }}: {{ lesson?.name }}
 </h1>
+<div [innerHTML]="lesson?.description"></div>
