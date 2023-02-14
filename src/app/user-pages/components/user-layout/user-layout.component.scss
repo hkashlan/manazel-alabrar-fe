@@ -1,10 +1,10 @@
-@import "/src/scss/_layout-bp.scss";
-@import "/src/scss/variables";
+@use "/src/scss/layout-bp" as *;
+@use "/src/scss/variables" as variables;
 
 main {
   width: 100%;
   margin: auto;
-  margin-top: $large;
+  margin-top: variables.$large;
 
   @include layout-bp(gt-sm) {
     width: 80%;

@@ -1,18 +1,3 @@
-@use "sass:map";
-@use "@angular/material" as mat;
-@import "./material";
-// sizes
 $small: 8px;
 $medium: 16px;
 $large: 24px;
-
-// color
-//default palette forground/background:
-$color-config: mat.get-color-config($manazel-alabrar-fe-theme);
-
-// Get the primary color palette from the color-config.
-$primary-palette: map.get($color-config, "primary");
-$primary: mat.get-color-from-palette($primary-palette, 500);
-// //dark palette forground/background:
-// $dark-foreground-palette: map-get($dark-t, foreground);
-// $dark-background-palette: map-get($dark-t, background);

@@ -1,5 +1,5 @@
-@import "/src/scss/_layout-bp.scss";
-@import "/src/scss/variables";
+@use "/src/scss/layout-bp" as layout;
+@use "/src/scss/variables" as variables;
 
 a {
   text-decoration: none;
@@ -29,14 +29,14 @@ img {
   height: 40px;
 }
 
-@include layout-bp(gt-xs) {
+@include layout.layout-bp(gt-xs) {
   mat-toolbar {
     border-radius: 0px;
   }
 
   .toolbar-menu {
     display: flex;
-    margin-inline-start: $large;
+    margin-inline-start: variables.$large;
 
     ul {
       display: flex;
@@ -55,9 +55,4 @@ img {
   img {
     vertical-align: middle;
   }
-}
-
-.customize {
-  color: var(--mdc-theme-on-secondary) !important;
-  background-color: red;
 }

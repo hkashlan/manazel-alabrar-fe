@@ -1,5 +1,5 @@
-@import "./scss/variables";
-@import "./scss/responsive-utils";
+@use "./scss/colors" as colors;
+@import "./scss/material";
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -13,7 +13,7 @@ body {
 }
 
 .header {
-  background-color: $primary;
+  background-color: colors.$primary;
   display: flex;
   justify-content: space-evenly;
 

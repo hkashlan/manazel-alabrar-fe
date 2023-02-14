@@ -1,4 +1,4 @@
-@import "./material";
+@use "./material" as mat;
 
 @mixin colorMixin($variant) {
   // Get the color config from the theme.
