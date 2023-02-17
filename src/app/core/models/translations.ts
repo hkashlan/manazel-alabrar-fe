@@ -1,7 +1,8 @@
 export const translationKeys = {
 course: "course",
 lesson: "lesson",
-quizes: "quizes",
+quizzes: "quizzes",
 questions: "questions",
 lesson_finished: "lesson_finished",
+check_exam: "check_exam",
 };

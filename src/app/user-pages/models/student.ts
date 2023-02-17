@@ -3,9 +3,15 @@ export interface Answer {
   correct: boolean;
 }
 
+export enum QuestionType {
+  SingleChoice = 'SingleChoice',
+  MultiChoice = 'MultiChoice',
+}
+
 export interface Question {
   text: string;
   answers: Answer[];
+  questionType: QuestionType;
 }
 
 export interface Lesson {

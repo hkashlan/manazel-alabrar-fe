@@ -22,8 +22,8 @@ export interface Order {
 @Component({
   standalone: true,
   imports: [CoreModule],
-  templateUrl: './quiz.component.html',
-  styleUrls: ['./quiz.component.scss'],
+  templateUrl: './quizes.component.html',
+  styleUrls: ['./quizes.component.scss'],
 })
 export class QuizComponent {
   translationKeys = translationKeys;

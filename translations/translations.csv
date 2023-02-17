@@ -1,6 +1,7 @@
 key,en,ar
 course,course,مقرر
 lesson,lesson,درس
-quizes,quizes,الإختبارات
+quizzes,quizzes,الإختبارات
 questions,questions,اسئلة
 lesson_finished,I finished the lesson,انهيت الدرس
+check_exam,check result,تحقق

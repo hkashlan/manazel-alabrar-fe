@@ -1,0 +1,9 @@
+@use "@angular/material" as mat;
+
+.correct {
+  background-color: mat.get-color-from-palette(mat.$green-palette, 100);
+}
+
+.wrong {
+  background-color: mat.get-color-from-palette(mat.$red-palette, 100);
+}

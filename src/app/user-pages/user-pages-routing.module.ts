@@ -4,7 +4,7 @@ import { getRouteUrl } from '../core/models/route-info';
 import { UserLayoutComponent } from './components/user-layout/user-layout.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { LessonComponent } from './pages/lesson/lesson.component';
-import { QuizComponent } from './pages/quiz/quiz.component';
+import { QuizComponent } from './pages/quizes/quizes.component';
 import { UserHomepageComponent } from './pages/user-homepage/user-homepage.component';
 import { userPageRouting } from './user-pages-routing';
 

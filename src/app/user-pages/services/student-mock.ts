@@ -1,4 +1,4 @@
-import { Course, Student } from '../models/student';
+import { Course, QuestionType, Student } from '../models/student';
 
 const tomorrowDate = () => {
   const tomorrow = new Date();
@@ -35,27 +35,33 @@ export const student: Student = {
               date: new Date(),
               questions: [
                 {
-                  text: 'question 1',
+                  text: 'السؤال الاول',
+                  questionType: QuestionType.SingleChoice,
                   answers: [
                     {
                       text: 'answer 1',
                       correct: true,
                     },
                     {
-                      text: 'answer 2',
+                      text: 'answer 2 23',
                       correct: false,
                     },
                   ],
                 },
                 {
-                  text: 'question 2',
+                  text: 'السؤال الثاني sdf',
+                  questionType: QuestionType.MultiChoice,
                   answers: [
                     {
                       text: 'answer 2',
                       correct: true,
                     },
                     {
-                      text: 'answer 2',
+                      text: 'answer 1 324',
+                      correct: true,
+                    },
+                    {
+                      text: 'answer 1 324',
                       correct: false,
                     },
                   ],
@@ -71,7 +77,8 @@ export const student: Student = {
               date: tomorrowDate(),
               questions: [
                 {
-                  text: 'question 2',
+                  text: 'السؤال الثاني',
+                  questionType: QuestionType.SingleChoice,
                   answers: [
                     {
                       text: 'answer 2',
@@ -79,7 +86,7 @@ export const student: Student = {
                     },
                     {
                       text: 'answer 2',
-                      correct: false,
+                      correct: true,
                     },
                   ],
                 },
@@ -106,7 +113,9 @@ export const student: Student = {
               date: new Date(),
               questions: [
                 {
-                  text: 'question 1',
+                  text: 'السؤال الاول',
+                  questionType: QuestionType.SingleChoice,
+
                   answers: [
                     {
                       text: 'answer 1',
@@ -119,7 +128,9 @@ export const student: Student = {
                   ],
                 },
                 {
-                  text: 'question 2',
+                  text: 'السؤال الثاني',
+                  questionType: QuestionType.SingleChoice,
+
                   answers: [
                     {
                       text: 'answer 2',
@@ -127,7 +138,7 @@ export const student: Student = {
                     },
                     {
                       text: 'answer 2',
-                      correct: false,
+                      correct: true,
                     },
                   ],
                 },
@@ -170,7 +181,8 @@ export const courses: Course[] = [
         date: new Date(),
         questions: [
           {
-            text: 'question 1',
+            text: 'السؤال الاول',
+            questionType: QuestionType.SingleChoice,
             answers: [
               {
                 text: 'answer 1',
@@ -183,7 +195,9 @@ export const courses: Course[] = [
             ],
           },
           {
-            text: 'question 2',
+            text: 'السؤال الثاني',
+            questionType: QuestionType.SingleChoice,
+
             answers: [
               {
                 text: 'answer 2',
@@ -191,7 +205,7 @@ export const courses: Course[] = [
               },
               {
                 text: 'answer 2',
-                correct: false,
+                correct: true,
               },
             ],
           },
@@ -206,7 +220,9 @@ export const courses: Course[] = [
         date: tomorrowDate(),
         questions: [
           {
-            text: 'question 2',
+            text: 'السؤال الثاني',
+            questionType: QuestionType.SingleChoice,
+
             answers: [
               {
                 text: 'answer 2',
@@ -214,7 +230,7 @@ export const courses: Course[] = [
               },
               {
                 text: 'answer 2',
-                correct: false,
+                correct: true,
               },
             ],
           },

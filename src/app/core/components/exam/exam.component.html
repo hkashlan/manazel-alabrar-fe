@@ -1,0 +1,9 @@
+<div class="question" *ngFor="let q of questions; let i = index">
+  <h3>{{ q.text }}</h3>
+  <ng-container [ngSwitch]="q.questionType">
+    <app-single-choice *ngSwitchCase="qt.SingleChoice" [qIndex]="i"></app-single-choice>
+    <app-multi-choice *ngSwitchCase="qt.MultiChoice" [qIndex]="i"></app-multi-choice>
+  </ng-container>
+</div>
+
+<button mat-raised-button color="primary" (click)="toggleCheck()">{{ translationKeys.check_exam | translate }}</button>

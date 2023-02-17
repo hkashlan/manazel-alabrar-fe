@@ -1,7 +1,7 @@
-@use "/src/scss/variables" as variables;
+@use "/src/scss/sizes" as sizes;
 
 .lesson-item {
-  padding: variables.$medium;
+  padding: sizes.$medium;
   box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
   cursor: pointer;
 
@@ -20,6 +20,6 @@
   }
 
   & + .lesson-item {
-    margin-top: variables.$medium;
+    margin-top: sizes.$medium;
   }
 }

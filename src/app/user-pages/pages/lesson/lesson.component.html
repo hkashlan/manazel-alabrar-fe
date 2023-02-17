@@ -2,12 +2,15 @@
   {{ translationKeys.course | translate }}: {{ course?.name }},
   {{ translationKeys.lesson | translate }}: {{ lesson?.name }}
 </h1>
-<mat-tab-group class="panel">
+<mat-tab-group class="panel" [selectedIndex]="2">
   <mat-tab label="{{ translationKeys.lesson | translate }}">
     <div [innerHTML]="lesson?.description"></div>
   </mat-tab>
-  <mat-tab label="{{ translationKeys.questions | translate }}">
-    <div>Content 2</div>
+  <mat-tab
+    label="{{ translationKeys.questions | translate }}"
+    *ngIf="lesson?.questions as questions"
+  >
+    <app-exam [questions]="questions"></app-exam>
   </mat-tab>
 </mat-tab-group>
 <div class="panel">

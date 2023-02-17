@@ -1,10 +1,10 @@
 @use "/src/scss/layout-bp" as *;
-@use "/src/scss/variables" as variables;
+@use "/src/scss/sizes" as sizes;
 
 main {
   width: 100%;
   margin: auto;
-  margin-top: variables.$large;
+  margin-top: sizes.$large;
   width: 95%;
 
   @include layout-bp(gt-sm) {
@@ -13,5 +13,5 @@ main {
 }
 
 mat-sidenav-content {
-  background-color: lightgray;
+  // background-color: lightgray;
 }

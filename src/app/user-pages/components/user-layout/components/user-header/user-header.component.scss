@@ -1,5 +1,5 @@
 @use "/src/scss/layout-bp" as layout;
-@use "/src/scss/variables" as variables;
+@use "/src/scss/sizes" as sizes;
 
 a {
   text-decoration: none;
@@ -36,7 +36,7 @@ img {
 
   .toolbar-menu {
     display: flex;
-    margin-inline-start: variables.$large;
+    margin-inline-start: sizes.$large;
 
     ul {
       display: flex;
