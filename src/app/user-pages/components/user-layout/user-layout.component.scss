@@ -5,8 +5,13 @@ main {
   width: 100%;
   margin: auto;
   margin-top: variables.$large;
+  width: 95%;
 
   @include layout-bp(gt-sm) {
     width: 80%;
   }
+}
+
+mat-sidenav-content {
+  background-color: lightgray;
 }

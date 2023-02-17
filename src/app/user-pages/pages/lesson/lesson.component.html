@@ -2,4 +2,14 @@
   {{ translationKeys.course | translate }}: {{ course?.name }},
   {{ translationKeys.lesson | translate }}: {{ lesson?.name }}
 </h1>
-<div [innerHTML]="lesson?.description"></div>
+<mat-tab-group class="panel">
+  <mat-tab label="{{ translationKeys.lesson | translate }}">
+    <div [innerHTML]="lesson?.description"></div>
+  </mat-tab>
+  <mat-tab label="{{ translationKeys.questions | translate }}">
+    <div>Content 2</div>
+  </mat-tab>
+</mat-tab-group>
+<div class="panel">
+  <mat-checkbox>{{ translationKeys.lesson_finished | translate }}</mat-checkbox>
+</div>

@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "translate": "cd translations && node generate.js "
+    "translate": "cd translations && node generate.js ",
+    "analyzer": "ng build --stats-json && webpack-bundle-analyzer dist/manazel-alabrar-fe/stats.json"
   },
   "private": true,
   "dependencies": {
@@ -41,6 +42,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~4.9.4"
+    "typescript": "~4.9.4",
+    "webpack-bundle-analyzer": "^4.8.0"
   }
 }
