@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "translate": "cd translations && node generate.js ",
-    "deploy": "ng build  --configuration production",
+    "deploy": "ng build  --configuration production --base-href /manazel-alabrar-fe/",
     "analyzer": "ng build  --configuration production --build-optimizer --stats-json && webpack-bundle-analyzer dist/manazel-alabrar-fe/stats.json"
   },
   "private": true,
