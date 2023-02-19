@@ -6,20 +6,20 @@
   </div>
   <div>
     <a routerLink="/home">
-      <img src="../../../../../assets/logo.svg" />
+      <img src="/assets/logo.svg" />
     </a>
   </div>
   <div class="toolbar-menu">
     <ul class="navigation-items">
       <li *ngFor="let menu of menus">
-        <a [routerLink]="menu.path">{{menu.title}}</a>
+        <a [routerLink]="menu.path">{{ menu.title }}</a>
       </li>
     </ul>
   </div>
   <div class="profile">
     <button mat-button [matMenuTriggerFor]="menu">
       <span>رزان</span>
-      <img mat-card-avatar src="../../../../../assets/muslim-female.png" />
+      <img mat-card-avatar src="/assets/muslim-female.png" />
     </button>
     <mat-menu #menu="matMenu" backdropClass="customize" [classList]="'customize'">
       <button mat-menu-item>

@@ -7,8 +7,6 @@ import { courses, student } from './student-mock';
   providedIn: 'root',
 })
 export class StudentService {
-  student = student;
-
   constructor() {}
 
   saveToken(): Promise<boolean> {
@@ -34,5 +32,9 @@ export class StudentService {
 
   loadCourses(): Observable<Course[]> {
     return of(courses);
+  }
+
+  loadStudent(): Observable<Student> {
+    return of(student);
   }
 }

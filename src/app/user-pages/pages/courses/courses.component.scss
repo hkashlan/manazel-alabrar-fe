@@ -1,0 +1,16 @@
+@use "/src/scss/sizes" as sizes;
+
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  mat-card {
+    width: 45%;
+    margin-bottom: sizes.$medium;
+
+    img {
+      padding: sizes.$medium;
+    }
+  }
+}

@@ -86,7 +86,7 @@ export const student: Student = {
                     },
                     {
                       text: 'answer 2',
-                      correct: true,
+                      correct: false,
                     },
                   ],
                 },
@@ -138,7 +138,7 @@ export const student: Student = {
                     },
                     {
                       text: 'answer 2',
-                      correct: true,
+                      correct: false,
                     },
                   ],
                 },

@@ -4,11 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --configuration production --build-optimizer",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "translate": "cd translations && node generate.js ",
-    "analyzer": "ng build --stats-json && webpack-bundle-analyzer dist/manazel-alabrar-fe/stats.json"
+    "deploy": "ng build  --configuration production",
+    "analyzer": "ng build  --configuration production --build-optimizer --stats-json && webpack-bundle-analyzer dist/manazel-alabrar-fe/stats.json"
   },
   "private": true,
   "dependencies": {

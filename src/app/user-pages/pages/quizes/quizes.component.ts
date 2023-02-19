@@ -4,7 +4,7 @@ import { TableColumn } from '../../../core/components/table/table';
 import { translationKeys } from '../../../core/models/translations';
 import { CoreModule } from '../../../core/modules/core.module';
 import { Course } from '../../models/student';
-import { StudentService } from '../../services/student.service';
+import { UserStore } from '../../user-state';
 
 interface Quizes {
   courseName: string;
@@ -33,9 +33,10 @@ export class QuizComponent {
   orders: Order[] = this.getOrders();
   ordersTableColumns: TableColumn<Order>[] = this.initializeColumns();
 
-  constructor(public studentService: StudentService) {
-    this.courses = this.studentService.student.faculties
-      .map((f) => f.courses)
+  constructor(userStore: UserStore) {
+    this.courses = userStore
+      .get()
+      .student.faculties.map((f) => f.courses)
       .flat();
   }
 

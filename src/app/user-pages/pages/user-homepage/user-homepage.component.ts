@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../../core/modules/shared.module';
 import { Course, Lesson } from '../../models/student';
-import { StudentService } from '../../services/student.service';
 import { LessonParams, userPageRouting } from '../../user-pages-routing';
+import { UserStore } from '../../user-state';
 
 function sameDay(d1: Date, d2: Date) {
-  return (
-    d1.getFullYear() === d2.getFullYear() &&
-    d1.getMonth() === d2.getMonth() &&
-    d1.getDate() === d2.getDate()
-  );
+  return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
 }
 
 interface LessonItem {
@@ -30,7 +26,7 @@ export class UserHomepageComponent implements OnInit {
   lessons: LessonItem[] = [];
   lessonRouter = userPageRouting.lesson.path;
 
-  constructor(private studentService: StudentService) {}
+  constructor(private userStore: UserStore) {}
 
   ngOnInit(): void {
     this.changeDate(0);
@@ -46,8 +42,9 @@ export class UserHomepageComponent implements OnInit {
 
   private filterCourses() {
     this.lessons = [];
-    var courses = this.studentService.student.faculties
-      .map((faculty) => faculty.courses)
+    var courses = this.userStore
+      .get()
+      .student.faculties.map((faculty) => faculty.courses)
       .flat();
 
     for (const course of courses) {
@@ -72,9 +69,7 @@ export class UserHomepageComponent implements OnInit {
   }
 
   private changeDate(add: number): void {
-    this.currentDate = new Date(
-      this.currentDate.setDate(this.currentDate.getDate() + add)
-    );
+    this.currentDate = new Date(this.currentDate.setDate(this.currentDate.getDate() + add));
     this.filterCourses();
   }
 }

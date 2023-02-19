@@ -1,1 +1,17 @@
-<p>courses works!</p>
+<ng-container *ngFor="let faculty of faculties">
+  <mat-card *ngFor="let course of faculty.courses">
+    <mat-card-header>
+      <div mat-card-avatar></div>
+      <mat-card-title>{{ faculty.name }}</mat-card-title>
+      <mat-card-subtitle>{{ course.name }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="/assets/logo.svg" />
+    <mat-card-content>
+      <p></p>
+    </mat-card-content>
+    <!-- <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions> -->
+  </mat-card>
+</ng-container>
