@@ -4,11 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production --build-optimizer",
+    "build": "ng build --configuration production ",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "translate": "cd translations && node generate.js ",
-    "deploy": "ng build  --configuration production --base-href /manazel-alabrar-fe/",
+    "deploy": "npm run translate && ng build  --configuration production  --base-href /manazel-alabrar-fe/ && cp dist/manazel-alabrar-fe/index.html dist/manazel-alabrar-fe/404.html",
     "analyzer": "ng build  --configuration production --build-optimizer --stats-json && webpack-bundle-analyzer dist/manazel-alabrar-fe/stats.json"
   },
   "private": true,

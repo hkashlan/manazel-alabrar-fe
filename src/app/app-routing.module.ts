@@ -20,17 +20,12 @@ const routes: Routes = [
     children: [
       {
         path: 'user',
-        loadChildren: () =>
-          import('./user-pages/user-pages-routing.module').then(
-            (m) => m.UserPagesRoutingModule
-          ),
+        loadChildren: () => import('./user-pages/user-pages-routing.module').then((m) => m.UserPagesRoutingModule),
       },
       {
         path: 'public',
         loadChildren: () =>
-          import('./public-pages/public-pages-routing.module').then(
-            (m) => m.PublicPagesRoutingModule
-          ),
+          import('./public-pages/public-pages-routing.module').then((m) => m.PublicPagesRoutingModule),
       },
       {
         path: '',

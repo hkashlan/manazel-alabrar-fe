@@ -40,15 +40,15 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build the app
-        run: npm run build
-        
+        run: npm run deploy
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: './dist/manazel-alabrar-fe'
+          path: "./dist/manazel-alabrar-fe"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
