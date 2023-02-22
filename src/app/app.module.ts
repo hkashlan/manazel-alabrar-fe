@@ -9,13 +9,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './core/modules/shared.module';
+import { YesNoTranslatePipe } from './core/yes-no-translate.pipe';
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/');
 }
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, YesNoTranslatePipe],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

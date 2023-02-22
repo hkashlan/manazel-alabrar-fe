@@ -1,10 +1,15 @@
 import {
+  AfterContentChecked,
   AfterViewInit,
   Component,
+  ContentChildren,
+  Directive,
   EventEmitter,
   Input,
   OnInit,
   Output,
+  QueryList,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,6 +18,16 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SharedModule } from '../../modules/shared.module';
 import { TableColumn } from './table';
 
+@Directive({
+  selector: '[appColDef]',
+  standalone: true,
+})
+export class ColumnDefinition {
+  @Input() appColDef: string = '';
+
+  constructor(public templateRef: TemplateRef<any>) {}
+}
+
 @Component({
   selector: 'app-table',
   standalone: true,
@@ -20,7 +35,7 @@ import { TableColumn } from './table';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit, AfterViewInit, AfterContentChecked {
   public tableDataSource = new MatTableDataSource([]);
   public displayedColumns: string[] = [];
   @ViewChild(MatPaginator, { static: false }) matPaginator!: MatPaginator;
@@ -37,20 +52,27 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Output() sort: EventEmitter<Sort> = new EventEmitter();
   @Output() rowAction: EventEmitter<any> = new EventEmitter<any>();
 
+  @ContentChildren(ColumnDefinition, { descendants: true }) _contentRowDefs?: QueryList<ColumnDefinition>;
+
+  templates: Map<any, TemplateRef<any>> = new Map();
   // this property needs to have a setter, to dynamically get changes from parent component
   @Input() set tableData(data: any[]) {
     this.setTableDataSource(data);
   }
 
   ngOnInit(): void {
-    const columnNames = this.tableColumns.map(
-      (tableColumn: TableColumn) => tableColumn.name
-    );
+    const columnNames = this.tableColumns.map((tableColumn: TableColumn) => tableColumn.name);
     if (this.rowActionIcon) {
       this.displayedColumns = [this.rowActionIcon, ...columnNames];
     } else {
       this.displayedColumns = columnNames;
     }
+  }
+
+  ngAfterContentChecked(): void {
+    this._contentRowDefs?.forEach((t) => {
+      this.templates.set(t.appColDef, t.templateRef);
+    });
   }
 
   // we need this, in order to make pagination work with *ngIf
@@ -71,9 +93,8 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   sortTable(sortParameters: Sort) {
     // defining name of data property, to sort by, instead of column name
-    sortParameters.active = this.tableColumns.find(
-      (column) => column.name === sortParameters.active
-    )!.dataKey as string;
+    sortParameters.active = this.tableColumns.find((column) => column.name === sortParameters.active)!
+      .dataKey as string;
     this.sort.emit(sortParameters);
   }
 

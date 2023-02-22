@@ -19,6 +19,7 @@ export interface Lesson {
   name: string;
   description: string;
   present: boolean;
+  done: boolean;
   date: Date;
   mark: number;
   questions: Question[];

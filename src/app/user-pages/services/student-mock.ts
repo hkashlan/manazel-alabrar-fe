@@ -28,6 +28,7 @@ export const student: Student = {
           lessons: [
             {
               lessonId: 1,
+              done: true,
               name: 'lesson one',
               description: 'lesson one',
               present: true,
@@ -70,6 +71,7 @@ export const student: Student = {
             },
             {
               lessonId: 2,
+              done: false,
               name: 'lesson 2',
               description: 'lesson 2',
               present: false,
@@ -106,6 +108,7 @@ export const student: Student = {
           lessons: [
             {
               lessonId: 13,
+              done: true,
               name: 'lesson 3',
               description: 'lesson one',
               present: true,
@@ -174,6 +177,7 @@ export const courses: Course[] = [
     lessons: [
       {
         lessonId: 1,
+        done: true,
         name: 'lesson one',
         description: 'lesson one',
         present: true,
@@ -213,6 +217,7 @@ export const courses: Course[] = [
       },
       {
         lessonId: 2,
+        done: false,
         name: 'lesson 2',
         description: 'lesson 2',
         present: false,

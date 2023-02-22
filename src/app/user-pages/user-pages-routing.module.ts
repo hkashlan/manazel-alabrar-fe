@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { getRouteUrl } from '../core/models/route-info';
 import { UserLayoutComponent } from './components/user-layout/user-layout.component';
+import { CourseDetailComponent } from './pages/course-detail/course-detail.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { LessonComponent } from './pages/lesson/lesson.component';
 import { QuizComponent } from './pages/quizes/quizes.component';
@@ -28,7 +29,7 @@ const routes: Routes = [
       },
       {
         path: getRouteUrl(userPageRouting.courseDetail),
-        component: CoursesComponent,
+        component: CourseDetailComponent,
       },
       {
         path: getRouteUrl(userPageRouting.lesson),
