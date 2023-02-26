@@ -9,4 +9,7 @@ lesson_present,present,حضور
 lesson_mark,mark,علامة
 yes,yes,نعم
 no,no,لا
-
+homepage.exams,exams,امتحانات
+homepage.courses,today lessons,دروس يوم
+homepage.exam,exam {{name}} from {{from}} to {{to}},امتحان {{name}} من {{from}} إلى {{to}}
+quizzesPage.from_to,from {{from}} to {{to}},من {{from}} إلى {{to}}

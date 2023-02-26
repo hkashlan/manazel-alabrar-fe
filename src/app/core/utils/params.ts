@@ -5,6 +5,6 @@ export function getRouteParam(name: string): string {
   return inject(ActivatedRoute).snapshot.paramMap.get(name)!;
 }
 
-export function getRouteNumberParam(name: string): Number {
+export function getRouteNumberParam(name: string): number {
   return Number(getRouteParam(name));
 }

@@ -1,1 +1,1 @@
-{"course":"مقرر","quizzes":"الإختبارات","questions":"اسئلة","check_exam":"تحقق","lesson":"درس","lesson_finished":"انهيت الدرس","lesson_present":"حضور","lesson_mark":"علامة","yes":"نعم","no":"لا"}
+{"course":"مقرر","quizzes":"الإختبارات","questions":"اسئلة","check_exam":"تحقق","lesson":"درس","lesson_finished":"انهيت الدرس","lesson_present":"حضور","lesson_mark":"علامة","yes":"نعم","no":"لا","homepage.exams":"امتحانات","homepage.courses":"دروس يوم","homepage.exam":"امتحان {{name}} من {{from}} إلى {{to}}","quizzesPage.from_to":"من {{from}} إلى {{to}}"}

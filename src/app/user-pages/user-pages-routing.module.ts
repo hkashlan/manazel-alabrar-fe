@@ -5,7 +5,8 @@ import { UserLayoutComponent } from './components/user-layout/user-layout.compon
 import { CourseDetailComponent } from './pages/course-detail/course-detail.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { LessonComponent } from './pages/lesson/lesson.component';
-import { QuizComponent } from './pages/quizes/quizes.component';
+import { QuizComponent } from './pages/quiz/quiz.component';
+import { QuizzesComponent } from './pages/quizzes/quizzes.component';
 import { UserHomepageComponent } from './pages/user-homepage/user-homepage.component';
 import { userPageRouting } from './user-pages-routing';
 
@@ -37,6 +38,10 @@ const routes: Routes = [
       },
       {
         path: getRouteUrl(userPageRouting.quizzes),
+        component: QuizzesComponent,
+      },
+      {
+        path: getRouteUrl(userPageRouting.quiz),
         component: QuizComponent,
       },
     ],

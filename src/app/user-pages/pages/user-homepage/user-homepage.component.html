@@ -2,7 +2,7 @@
   <button mat-icon-button (click)="nextDate()">
     <mat-icon>navigate_next</mat-icon>
   </button>
-  <span> مقررات يوم {{ currentDate | date }} </span>
+  <span> {{ translationKeys.homepage.courses | translate }} {{ currentDate | date }} </span>
   <button mat-icon-button (click)="previousDate()">
     <mat-icon>navigate_before</mat-icon>
   </button>
@@ -22,13 +22,13 @@
 </div>
 
 <div class="header">
-  <button mat-icon-button (click)="nextDate()">
-    <mat-icon>navigate_next</mat-icon>
-  </button>
-  <span> next exam {{ currentDate | date }} </span>
-  <button mat-icon-button (click)="previousDate()">
-    <mat-icon>navigate_before</mat-icon>
-  </button>
+  <span> {{ translationKeys.homepage.exams | translate }} </span>
 </div>
-<div class="lesson-item">امتحان العقيدة خلال ٣ ايام</div>
+<div
+  class="lesson-item"
+  *ngFor="let quiz of quizzes"
+  [routerLink]="['../' + quizRouter, quiz.quizParams.facultyId, quiz.quizParams.courseId, quiz.quizParams.quizId]"
+  [translate]="translationKeys.homepage.exam"
+  [translateParams]="quiz.transParam"
+></div>
 <div *ngIf="!lessons.length" class="empty-message">لا يوجد مقرارات</div>

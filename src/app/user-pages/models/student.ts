@@ -25,6 +25,14 @@ export interface Lesson {
   questions: Question[];
 }
 
+export interface Quiz {
+  dateFrom: Date;
+  dateTo: Date;
+  name: string;
+  questions: Question[];
+  mark?: number;
+}
+
 export interface Course {
   id: number;
   facultyId: number;
@@ -34,6 +42,7 @@ export interface Course {
   to: Date;
   lessons: Lesson[];
   progress: number;
+  quizzes: Quiz[];
 }
 
 export interface Faculty {

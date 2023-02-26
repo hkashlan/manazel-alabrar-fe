@@ -1,0 +1,14 @@
+<h1 class="header">
+  {{ translationKeys.quizzes | translate }}
+</h1>
+<app-table [tableColumns]="quizzesTableColumns" [tableData]="quizzes">
+  <ng-template [appColDef]="'quizName'" let-element>
+    <a
+      *ngIf="element.canTake; else showName"
+      [routerLink]="[element.quizParams.facultyId, element.quizParams.courseId, element.quizParams.quizId]"
+    >
+      {{ element.quizName }}
+    </a>
+    <ng-template #showName>{{ element.quizName }}</ng-template>
+  </ng-template>
+</app-table>

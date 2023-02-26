@@ -1,10 +1,64 @@
-import { Course, QuestionType, Student } from '../models/student';
+import { Course, Question, QuestionType, Student } from '../models/student';
 
-const tomorrowDate = () => {
+const addDate = (dateToAdd: number) => {
   const tomorrow = new Date();
-  tomorrow.setDate(new Date().getDate() + 1);
+  tomorrow.setDate(new Date().getDate() + dateToAdd);
   return tomorrow;
 };
+const tomorrowDate = () => addDate(1);
+const yesterdayDate = () => addDate(-1);
+
+const lessonQuestionsOne: Question[] = [
+  {
+    text: 'السؤال الاول',
+    questionType: QuestionType.SingleChoice,
+    answers: [
+      {
+        text: 'answer 1',
+        correct: true,
+      },
+      {
+        text: 'answer 2 23',
+        correct: false,
+      },
+    ],
+  },
+  {
+    text: 'السؤال الثاني sdf',
+    questionType: QuestionType.MultiChoice,
+    answers: [
+      {
+        text: 'answer 2',
+        correct: true,
+      },
+      {
+        text: 'answer 1 324',
+        correct: true,
+      },
+      {
+        text: 'answer 1 324',
+        correct: false,
+      },
+    ],
+  },
+];
+
+const lessonQuestionsTwo: Question[] = [
+  {
+    text: 'السؤال الثاني',
+    questionType: QuestionType.SingleChoice,
+    answers: [
+      {
+        text: 'answer 2',
+        correct: true,
+      },
+      {
+        text: 'answer 2',
+        correct: false,
+      },
+    ],
+  },
+];
 
 export const student: Student = {
   name: 'Razan',
@@ -34,40 +88,7 @@ export const student: Student = {
               present: true,
               mark: 40,
               date: new Date(),
-              questions: [
-                {
-                  text: 'السؤال الاول',
-                  questionType: QuestionType.SingleChoice,
-                  answers: [
-                    {
-                      text: 'answer 1',
-                      correct: true,
-                    },
-                    {
-                      text: 'answer 2 23',
-                      correct: false,
-                    },
-                  ],
-                },
-                {
-                  text: 'السؤال الثاني sdf',
-                  questionType: QuestionType.MultiChoice,
-                  answers: [
-                    {
-                      text: 'answer 2',
-                      correct: true,
-                    },
-                    {
-                      text: 'answer 1 324',
-                      correct: true,
-                    },
-                    {
-                      text: 'answer 1 324',
-                      correct: false,
-                    },
-                  ],
-                },
-              ],
+              questions: lessonQuestionsOne,
             },
             {
               lessonId: 2,
@@ -77,22 +98,15 @@ export const student: Student = {
               present: false,
               mark: 40,
               date: tomorrowDate(),
-              questions: [
-                {
-                  text: 'السؤال الثاني',
-                  questionType: QuestionType.SingleChoice,
-                  answers: [
-                    {
-                      text: 'answer 2',
-                      correct: true,
-                    },
-                    {
-                      text: 'answer 2',
-                      correct: false,
-                    },
-                  ],
-                },
-              ],
+              questions: lessonQuestionsTwo,
+            },
+          ],
+          quizzes: [
+            {
+              dateFrom: yesterdayDate(),
+              dateTo: tomorrowDate(),
+              name: 'exam 1',
+              questions: [...lessonQuestionsOne, ...lessonQuestionsTwo],
             },
           ],
         },
@@ -114,38 +128,15 @@ export const student: Student = {
               present: true,
               mark: 40,
               date: new Date(),
-              questions: [
-                {
-                  text: 'السؤال الاول',
-                  questionType: QuestionType.SingleChoice,
-
-                  answers: [
-                    {
-                      text: 'answer 1',
-                      correct: true,
-                    },
-                    {
-                      text: 'answer 2',
-                      correct: false,
-                    },
-                  ],
-                },
-                {
-                  text: 'السؤال الثاني',
-                  questionType: QuestionType.SingleChoice,
-
-                  answers: [
-                    {
-                      text: 'answer 2',
-                      correct: true,
-                    },
-                    {
-                      text: 'answer 2',
-                      correct: false,
-                    },
-                  ],
-                },
-              ],
+              questions: lessonQuestionsOne,
+            },
+          ],
+          quizzes: [
+            {
+              dateFrom: tomorrowDate(),
+              dateTo: addDate(2),
+              name: 'exam 2',
+              questions: [...lessonQuestionsOne, ...lessonQuestionsTwo],
             },
           ],
         },
@@ -159,6 +150,7 @@ export const student: Student = {
           to: new Date(),
           progress: 70,
           lessons: [],
+          quizzes: [],
         },
       ],
     },
@@ -242,6 +234,7 @@ export const courses: Course[] = [
         ],
       },
     ],
+    quizzes: [],
   },
   {
     id: 2,
@@ -252,5 +245,6 @@ export const courses: Course[] = [
     to: new Date(),
     progress: 70,
     lessons: [],
+    quizzes: [],
   },
 ];

@@ -6,11 +6,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TableColumn } from '../../../core/components/table/table';
 import { ColumnDefinition, TableComponent } from '../../../core/components/table/table.component';
 import { translationKeys } from '../../../core/models/translations';
-import { getRouteNumberParam } from '../../../core/utils/params';
 import { YesNoTranslatePipe } from '../../../core/yes-no-translate.pipe';
 import { Lesson } from '../../models/student';
-import { userPageRouting, UserParameters } from '../../user-pages-routing';
-import { UserStore } from '../../user-state';
+import { getUserRouteInfo, userPageRouting } from '../../user-pages-routing';
 
 @Component({
   selector: 'app-course-detail',
@@ -23,16 +21,13 @@ export class CourseDetailComponent {
   translationKeys = translationKeys;
   lessonRouter = userPageRouting.lesson.path;
 
-  lessonId = getRouteNumberParam(UserParameters.lessonId);
-  courseId = getRouteNumberParam(UserParameters.courseId);
-  facultyId = getRouteNumberParam(UserParameters.facultyId);
-  faculty = this.userStore.get().student.faculties.find((f) => f.id === this.facultyId);
-  course = this.faculty?.courses.find((c) => c.id === this.courseId);
-
+  routeInfo = getUserRouteInfo();
+  facultyId = this.routeInfo.facultyId;
+  courseId = this.routeInfo.courseId;
+  course = this.routeInfo.course;
   lessons = this.course?.lessons!;
-  ordersTableColumns: TableColumn<Lesson>[] = this.initializeColumns();
 
-  constructor(private userStore: UserStore) {}
+  ordersTableColumns: TableColumn<Lesson>[] = this.initializeColumns();
 
   initializeColumns(): TableColumn<Lesson>[] {
     const yesNoTranslatePipe = new YesNoTranslatePipe();
