@@ -7,25 +7,6 @@ import { courses, student } from './student-mock';
   providedIn: 'root',
 })
 export class StudentService {
-  constructor() {}
-
-  saveToken(): Promise<boolean> {
-    return Promise.resolve(true);
-    // return fetch(`/api/auth/google/callback${location.search}`)
-    //   .then((res) => {
-    //     if (res.status !== 200) {
-    //       throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);
-    //     }
-    //     return res;
-    //   })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     localStorage.setItem('jwt', res.jwt);
-    //     localStorage.setItem('username', res.user.username);
-    //   })
-    //   .then(() => true);
-  }
-
   loadProfile(): Observable<Student> {
     return of(student);
   }

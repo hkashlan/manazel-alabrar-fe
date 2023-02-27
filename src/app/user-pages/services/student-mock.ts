@@ -67,15 +67,15 @@ export const student: Student = {
   faculties: [
     {
       id: 1,
-      name: 'Quran',
+      name: 'المستوى الأول',
       description: 'Learn Quran',
       progress: 50,
       courses: [
         {
           id: 1,
           facultyId: 1,
-          name: 'level 1',
-          description: 'Level 1 description',
+          name: 'عقيدة',
+          description: 'عقيدة description',
           from: new Date(),
           to: new Date(),
           progress: 70,
@@ -114,8 +114,8 @@ export const student: Student = {
           id: 3,
           facultyId: 1,
 
-          name: 'level 3',
-          description: 'Level 3 description',
+          name: 'عربي',
+          description: 'عربي description',
           from: new Date(),
           to: new Date(),
           progress: 70,
@@ -144,8 +144,8 @@ export const student: Student = {
           id: 2,
           facultyId: 1,
 
-          name: 'level 2',
-          description: 'Level 2 description',
+          name: 'عربي',
+          description: 'عربي description',
           from: new Date(),
           to: new Date(),
           progress: 70,
@@ -161,8 +161,8 @@ export const courses: Course[] = [
   {
     id: 1,
     facultyId: 1,
-    name: 'level 1',
-    description: 'Level 1 description',
+    name: 'عقيدة',
+    description: 'عقيدة description',
     from: new Date(),
     to: new Date(),
     progress: 70,
@@ -239,8 +239,8 @@ export const courses: Course[] = [
   {
     id: 2,
     facultyId: 2,
-    name: 'level 2',
-    description: 'Level 2 description',
+    name: 'عربي',
+    description: 'عربي description',
     from: new Date(),
     to: new Date(),
     progress: 70,

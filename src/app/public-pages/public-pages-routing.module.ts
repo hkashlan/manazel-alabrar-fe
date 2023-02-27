@@ -1,20 +1,20 @@
 import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StudentService } from '../user-pages/services/student.service';
+import { AuthenticationService } from '../core/services/authentication.service';
+import { getRouteParam } from '../core/utils/params';
 import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
   {
     path: 'login',
     pathMatch: 'full',
-    loadComponent: () =>
-      import('./login/login.component').then((m) => m.LoginComponent),
+    loadComponent: () => import('./login/login.component').then((m) => m.LoginComponent),
   },
   {
-    path: 'callback',
+    path: 'callback/:provider',
     pathMatch: 'full',
-    canMatch: [() => inject(StudentService).saveToken()],
-    redirectTo: '/user/user-home',
+    canMatch: [(route) => inject(AuthenticationService).saveToken(getRouteParam('provider') || 'google')],
+    component: HomepageComponent,
   },
   {
     path: '',

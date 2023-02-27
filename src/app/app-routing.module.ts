@@ -1,6 +1,7 @@
 import { inject, NgModule } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterModule, Routes } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService } from './core/services/authentication.service';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
       {
         path: 'user',
         loadChildren: () => import('./user-pages/user-pages-routing.module').then((m) => m.UserPagesRoutingModule),
+        canActivate: [() => inject(AuthenticationService).isLoggedIn()],
       },
       {
         path: 'public',
@@ -30,14 +32,21 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
+        canMatch: [() => inject(AuthenticationService).isLoggedIn()],
         redirectTo: 'user',
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        canMatch: [() => !inject(AuthenticationService).isLoggedIn()],
+        redirectTo: 'public',
       },
     ],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

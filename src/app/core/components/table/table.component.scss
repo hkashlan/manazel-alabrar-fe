@@ -1,0 +1,9 @@
+@use "/src/scss/layout-bp" as layout;
+
+:host {
+  font-size: 12px;
+
+  @include layout.layout-bp(gt-xs) {
+    font-size: 16px;
+  }
+}
