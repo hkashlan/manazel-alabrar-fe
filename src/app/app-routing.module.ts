@@ -20,26 +20,32 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'user',
-        loadChildren: () => import('./user-pages/user-pages-routing.module').then((m) => m.UserPagesRoutingModule),
-        canActivate: [() => inject(AuthenticationService).isLoggedIn()],
-      },
-      {
-        path: 'public',
-        loadChildren: () =>
-          import('./public-pages/public-pages-routing.module').then((m) => m.PublicPagesRoutingModule),
-      },
-      {
         path: '',
         pathMatch: 'full',
-        canMatch: [() => inject(AuthenticationService).isLoggedIn()],
+        canMatch: [
+          () => {
+            const tt = inject(AuthenticationService).isLoggedIn();
+            debugger;
+            console.log('tt' + tt);
+            return tt;
+          },
+        ],
         redirectTo: 'user',
       },
       {
         path: '',
         pathMatch: 'full',
-        canMatch: [() => !inject(AuthenticationService).isLoggedIn()],
         redirectTo: 'public',
+      },
+      {
+        path: 'user',
+        loadChildren: () => import('./user-pages/user-pages-routing.module').then((m) => m.UserPagesRoutingModule),
+        canMatch: [() => inject(AuthenticationService).isLoggedIn()],
+      },
+      {
+        path: 'public',
+        loadChildren: () =>
+          import('./public-pages/public-pages-routing.module').then((m) => m.PublicPagesRoutingModule),
       },
     ],
   },
