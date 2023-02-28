@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { StorageService } from './storage.service';
 
@@ -11,7 +12,7 @@ export class AuthenticationService {
 
   loggedInStatus$ = this.loginTracker.asObservable();
 
-  constructor(private ss: StorageService) {}
+  constructor(private router: Router, private ss: StorageService) {}
 
   saveToken(providerName: string): Promise<boolean> {
     return fetch(`http://localhost:1337/api/auth/${providerName}/callback${location.search}`)
@@ -34,6 +35,7 @@ export class AuthenticationService {
   logout() {
     this.ss.clear();
     this.loginTracker.next(false);
+    this.router.navigateByUrl('/');
   }
 
   isLoggedIn() {
