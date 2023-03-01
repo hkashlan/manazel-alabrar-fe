@@ -7,7 +7,6 @@ import { StorageService } from './storage.service';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private url = `http://localhost:1337/auth/local`;
   private loginTracker = new BehaviorSubject(this.isLoggedIn());
 
   loggedInStatus$ = this.loginTracker.asObservable();
@@ -15,7 +14,7 @@ export class AuthenticationService {
   constructor(private router: Router, private ss: StorageService) {}
 
   saveToken(providerName: string): Promise<boolean> {
-    return fetch(`http://localhost:1337/api/auth/${providerName}/callback${location.search}`)
+    return fetch(`/api/auth/${providerName}/callback${location.search}`)
       .then((res) => {
         if (res.status !== 200) {
           throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);
