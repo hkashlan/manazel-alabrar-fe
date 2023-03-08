@@ -1,10 +1,10 @@
 // Define the logging functions
 function logProxyRequest(proxyReq, req, res) {
-  // console.log("Proxy request:", req.method, req.url);
+  console.log("Proxy request:", req.method, req.url);
 }
 
 function logProxyResponse(proxyRes, req, res) {
-  // console.log("Proxy response:", proxyRes.statusCode);
+  console.log("Proxy response:", proxyRes.statusCode);
 }
 
 // Export the proxy configuration with the logging functions

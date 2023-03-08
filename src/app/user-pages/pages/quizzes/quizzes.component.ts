@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TableColumn } from '../../../core/components/table/table';
 import { QuizzesPageFromToTransParams, translationKeys } from '../../../core/models/translations';
 import { CoreModule } from '../../../core/modules/core.module';
-import { Course, Faculty, Quiz } from '../../models/student';
+import { BFF } from '../../models/student';
 import { QuizParams } from '../../user-pages-routing';
 import { UserStore } from '../../user-state';
 import { canTakeQuiz } from '../../utils/quiz-utils';
@@ -28,7 +28,7 @@ interface QuizInfo {
 export class QuizzesComponent {
   translationKeys = translationKeys;
 
-  courses: Course[] = [];
+  courses: BFF.Course[] = [];
 
   quizzes: QuizInfo[] = this.getQuizzes();
   quizzesTableColumns: TableColumn<QuizInfo>[] = this.initializeColumns();
@@ -60,15 +60,15 @@ export class QuizzesComponent {
     ];
   }
 
-  private createQuizInfo(faculty: Faculty, course: Course, quiz: Quiz, quizIndex: number): QuizInfo {
+  private createQuizInfo(faculty: BFF.Faculty, course: BFF.Course, quiz: BFF.Quiz, quizIndex: number): QuizInfo {
     const fromTo = this.translateService.instant(translationKeys.quizzesPage.from_to, {
       from: this.datePipe.transform(quiz.dateFrom),
       to: this.datePipe.transform(quiz.dateTo),
     } as QuizzesPageFromToTransParams);
     return {
-      facultyName: faculty.name,
-      courseName: course.name,
-      quizName: quiz.name,
+      facultyName: faculty.title,
+      courseName: course.title,
+      quizName: quiz.title,
       mark: quiz.mark,
       canTake: canTakeQuiz(quiz),
       fromTo,

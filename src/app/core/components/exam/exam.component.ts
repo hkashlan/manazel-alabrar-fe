@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { provideComponentStore } from '@ngrx/component-store';
 import { TranslateModule } from '@ngx-translate/core';
-import { Question, QuestionType } from '../../../user-pages/models/student';
+import { BFF } from '../../../user-pages/models/student';
 import { translationKeys } from '../../models/translations';
 import { MultiChoiceComponent } from './components/multi-choice/multi-choice.component';
 import { SingleChoiceComponent } from './components/single-choice/single-choice.component';
@@ -18,9 +18,9 @@ import { ExamState, ExamStore } from './exam.store';
   providers: [provideComponentStore(ExamStore)],
 })
 export class ExamComponent implements OnInit {
-  @Input() questions: Question[] = [];
+  @Input() questions: BFF.Question[] = [];
 
-  qt = QuestionType;
+  qt = BFF.QuestionType;
 
   translationKeys = translationKeys;
 

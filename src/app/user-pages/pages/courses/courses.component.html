@@ -1,8 +1,8 @@
 <ng-container *ngFor="let faculty of faculties">
   <div *ngFor="let course of faculty.courses" [routerLink]="[faculty.id, course.id]" class="panel course">
     {{ course.id }}
-    <div class="title">{{ faculty.name }}</div>
-    <div class="sub-title">{{ course.name }}</div>
+    <div class="title">{{ faculty.title }}</div>
+    <div class="sub-title">{{ course.title }}</div>
     <img mat-card-image src="/assets/logo.svg" />
   </div>
 </ng-container>

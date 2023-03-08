@@ -1,6 +1,6 @@
 import { Directive, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { first, Subscription } from 'rxjs';
-import { Question } from '../../../../user-pages/models/student';
+import { BFF } from '../../../../user-pages/models/student';
 import { ExamState, ExamStore } from '../exam.store';
 
 @Directive()
@@ -8,7 +8,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
   @Input() qIndex: number = 0;
   store = inject(ExamStore);
 
-  question: Question = {} as Question;
+  question: BFF.Question = {} as BFF.Question;
   checkAnswer = false;
   isCorrect: boolean = false;
 

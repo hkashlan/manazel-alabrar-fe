@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Faculty } from '../../models/student';
+import { BFF } from '../../models/student';
 import { UserStore } from '../../user-state';
 
 @Component({
@@ -12,7 +12,7 @@ import { UserStore } from '../../user-state';
   styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent {
-  faculties: Faculty[];
+  faculties: BFF.Faculty[];
 
   constructor(userStore: UserStore) {
     this.faculties = userStore.get().student.faculties;

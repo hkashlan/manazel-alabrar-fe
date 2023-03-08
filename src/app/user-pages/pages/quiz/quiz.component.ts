@@ -7,7 +7,7 @@ import { getUserRouteInfo } from '../../user-pages-routing';
   standalone: true,
   imports: [CommonModule, ExamComponent],
   template: `
-    <h1 class="header">{{ quiz.name }}</h1>
+    <h1 class="header">{{ quiz.title }}</h1>
     <app-exam [questions]="questions"></app-exam>
   `,
 })

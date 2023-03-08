@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { RouteInfo } from '../core/models/route-info';
 import { getRouteNumberParam } from '../core/utils/params';
-import { Course, Faculty, Lesson, Quiz } from './models/student';
+import { BFF } from './models/student';
 import { UserStore } from './user-state';
 
 export interface CourseDetailParams {
@@ -81,10 +81,10 @@ export interface UserRouteInfo {
   [UserParameters.lessonId]: number;
   [UserParameters.quizId]: number;
 
-  faculty: Faculty;
-  course: Course;
-  lesson?: Lesson;
-  quiz?: Quiz;
+  faculty: BFF.Faculty;
+  course: BFF.Course;
+  lesson?: BFF.Lesson;
+  quiz?: BFF.Quiz;
 }
 
 export function getUserRouteInfo(): UserRouteInfo {

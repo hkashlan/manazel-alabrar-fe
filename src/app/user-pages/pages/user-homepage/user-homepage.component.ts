@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HomepageExamTransParams, translationKeys } from '../../../core/models/translations';
 import { SharedModule } from '../../../core/modules/shared.module';
-import { Course, Faculty, Lesson, Quiz } from '../../models/student';
+import { BFF } from '../../models/student';
 import { LessonParams, QuizParams, userPageRouting } from '../../user-pages-routing';
 import { UserStore } from '../../user-state';
 import { canTakeQuiz } from '../../utils/quiz-utils';
@@ -18,7 +18,7 @@ interface LessonItem {
 }
 
 interface QuizItem {
-  exam: Quiz;
+  exam: BFF.Quiz;
   transParam: HomepageExamTransParams;
   quizParams: QuizParams;
 }
@@ -66,11 +66,11 @@ export class UserHomepageComponent implements OnInit {
       .flat();
   }
 
-  private mapExamToExamItem(f: Faculty, c: Course, e: Quiz, examIndex: number): QuizItem {
+  private mapExamToExamItem(f: BFF.Faculty, c: BFF.Course, e: BFF.Quiz, examIndex: number): QuizItem {
     return {
       exam: e,
       transParam: {
-        name: e.name,
+        name: e.title,
         from: this.datePipe.transform(e.dateFrom)!,
         to: this.datePipe.transform(e.dateTo)!,
       },
@@ -90,14 +90,14 @@ export class UserHomepageComponent implements OnInit {
       .flat();
   }
 
-  private getLessonsForToday(c: Course): LessonItem[] {
+  private getLessonsForToday(c: BFF.Course): LessonItem[] {
     return c.lessons.filter((lesson) => sameDay(lesson.date, this.currentDate)).map((l) => this.createLessonItem(c, l));
   }
 
-  private createLessonItem(course: Course, lesson: Lesson): LessonItem {
+  private createLessonItem(course: BFF.Course, lesson: BFF.Lesson): LessonItem {
     return {
-      courseName: course.name,
-      lessonName: lesson.name,
+      courseName: course.title,
+      lessonName: lesson.title,
       lessonParams: {
         courseId: course.id,
         lessonId: lesson.lessonId,
