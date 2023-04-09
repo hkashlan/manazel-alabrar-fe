@@ -22,14 +22,7 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        canMatch: [
-          () => {
-            const tt = inject(AuthenticationService).isLoggedIn();
-            debugger;
-            console.log('tt' + tt);
-            return tt;
-          },
-        ],
+        canMatch: [() => inject(AuthenticationService).isLoggedIn()],
         redirectTo: 'user',
       },
       {

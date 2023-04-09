@@ -1,27 +1,11 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable()
 export class DateInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Clone the request to modify it
-    const modifiedReq = req.clone({
-      // Set the response type to JSON
-      responseType: 'json',
-    });
-
-    return next.handle(modifiedReq).pipe(
-      map((event: HttpEvent<any>) => {
-        // If the response is JSON, recursively parse any date strings to Date objects
-        if (event instanceof HttpResponse && event.body) {
-          const modifiedBody = this.parseDates(event.body);
-          return event.clone({ body: modifiedBody });
-        }
-
-        return event;
-      })
-    );
+    return req.url.includes('api') ? this.fixDate(req, next) : next.handle(req);
   }
 
   private parseDates(obj: any): any {
@@ -48,5 +32,24 @@ export class DateInterceptor implements HttpInterceptor {
     }
 
     return obj;
+  }
+
+  fixDate(req: HttpRequest<any>, next: HttpHandler) {
+    const modifiedReq = req.clone({
+      // Set the response type to JSON
+      responseType: 'json',
+    });
+
+    return next.handle(modifiedReq).pipe(
+      map((event: HttpEvent<any>) => {
+        // If the response is JSON, recursively parse any date strings to Date objects
+        if (event instanceof HttpResponse && event.body) {
+          const modifiedBody = this.parseDates(event.body);
+          return event.clone({ body: modifiedBody });
+        }
+
+        return event;
+      })
+    );
   }
 }
