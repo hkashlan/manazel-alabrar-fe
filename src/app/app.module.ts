@@ -8,6 +8,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { interceptors } from './core/interceptors/indext';
 import { SharedModule } from './core/modules/shared.module';
 import { YesNoTranslatePipe } from './core/yes-no-translate.pipe';
 
@@ -37,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
+  providers: interceptors,
   bootstrap: [AppComponent],
 })
 export class AppModule {}

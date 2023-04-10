@@ -1,5 +1,5 @@
 <div class="question" *ngFor="let q of questions; let i = index">
-  <h3>{{ q.text }}</h3>
+  <h3>{{ q.title }}</h3>
   <ng-container [ngSwitch]="q.questionType">
     <app-single-choice *ngSwitchCase="qt.SingleChoice" [qIndex]="i"></app-single-choice>
     <app-multi-choice *ngSwitchCase="qt.MultiChoice" [qIndex]="i"></app-multi-choice>

@@ -1,40 +1,25 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Course, Student } from '../models/student';
+import { BFF } from '../models/student';
 import { courses, student } from './student-mock';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StudentService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  saveToken(): Promise<boolean> {
-    return Promise.resolve(true);
-    // return fetch(`/api/auth/google/callback${location.search}`)
-    //   .then((res) => {
-    //     if (res.status !== 200) {
-    //       throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);
-    //     }
-    //     return res;
-    //   })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     localStorage.setItem('jwt', res.jwt);
-    //     localStorage.setItem('username', res.user.username);
-    //   })
-    //   .then(() => true);
-  }
-
-  loadProfile(): Observable<Student> {
+  loadProfile(): Observable<BFF.Student> {
     return of(student);
   }
 
-  loadCourses(): Observable<Course[]> {
+  loadCourses(): Observable<BFF.Course[]> {
     return of(courses);
   }
 
-  loadStudent(): Observable<Student> {
-    return of(student);
+  loadStudent(): Observable<BFF.Student> {
+    // return of(student);
+    return this.http.get<BFF.Student>('/api/user/my-faculties');
   }
 }

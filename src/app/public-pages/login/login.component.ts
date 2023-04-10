@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { SharedModule } from '../../core/modules/shared.module';
 
 @Component({
@@ -7,4 +8,6 @@ import { SharedModule } from '../../core/modules/shared.module';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {}
+export class LoginComponent {
+  loginPrefix = environment.loginPrefix;
+}

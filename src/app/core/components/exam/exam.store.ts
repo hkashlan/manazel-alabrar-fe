@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { Question } from '../../../user-pages/models/student';
+import { BFF } from '../../../user-pages/models/student';
 
 export interface ExamState {
-  questions: Question[];
+  questions: BFF.Question[];
   answers: boolean[];
   checkAnswer: boolean;
 }

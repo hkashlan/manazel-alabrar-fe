@@ -7,7 +7,7 @@ import { TableColumn } from '../../../core/components/table/table';
 import { ColumnDefinition, TableComponent } from '../../../core/components/table/table.component';
 import { translationKeys } from '../../../core/models/translations';
 import { YesNoTranslatePipe } from '../../../core/yes-no-translate.pipe';
-import { Lesson } from '../../models/student';
+import { BFF } from '../../models/student';
 import { getUserRouteInfo, userPageRouting } from '../../user-pages-routing';
 
 @Component({
@@ -27,14 +27,14 @@ export class CourseDetailComponent {
   course = this.routeInfo.course;
   lessons = this.course?.lessons!;
 
-  ordersTableColumns: TableColumn<Lesson>[] = this.initializeColumns();
+  ordersTableColumns: TableColumn<BFF.Lesson>[] = this.initializeColumns();
 
-  initializeColumns(): TableColumn<Lesson>[] {
+  initializeColumns(): TableColumn<BFF.Lesson>[] {
     const yesNoTranslatePipe = new YesNoTranslatePipe();
     return [
       {
         name: translationKeys.lesson,
-        dataKey: 'name',
+        dataKey: 'title',
         position: 'left',
       },
       {

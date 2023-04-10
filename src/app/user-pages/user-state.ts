@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { delay } from 'rxjs';
-import { Student } from './models/student';
+import { BFF } from './models/student';
 import { StudentService } from './services/student.service';
 
 export interface UserState {
-  student: Student;
+  student: BFF.Student;
 }
 
 export const initialState: UserState = {
-  student: {} as Student,
+  student: {} as BFF.Student,
 };
 
 @Injectable()
