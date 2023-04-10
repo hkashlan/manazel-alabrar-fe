@@ -1,0 +1,55 @@
+.section-intro {
+  background-image: url("/assets/public/img/section.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.second-section {
+  background-image: url("/assets/public/img/quran.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+.box {
+  box-shadow: 0px 1px 13px 0px black;
+}
+.big::marker {
+  font-size: 25px !important;
+  color: #004258 !important;
+}
+.small::marker {
+  color: #deb626;
+  font-size: 20px;
+}
+ul .small {
+  list-style: disc !important;
+}
+.row {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+@media (min-width: 300px) and (max-width: 600px) {
+  .for-margin {
+    margin-bottom: 0.25rem;
+    padding-top: 12px;
+  }
+  .for-padding {
+    margin-top: 12px;
+  }
+  .for-padding-footer {
+    padding-bottom: 2px;
+  }
+}
+@media (min-width: 600px) and (max-width: 3000px) {
+  .for-margin {
+    margin-bottom: 1.5rem;
+  }
+  .for-padding {
+    margin: 48px 0px 0px;
+    padding: 0px 24px;
+  }
+  .for-padding-footer {
+    margin: 0px 38px !important;
+    padding: 48px 12px !important;
+  }
+}

@@ -11,6 +11,11 @@ const routes: Routes = [
     loadComponent: () => import('./login/login.component').then((m) => m.LoginComponent),
   },
   {
+    path: 'register',
+    pathMatch: 'full',
+    loadComponent: () => import('./register/register.component').then((m) => m.RegisterComponent),
+  },
+  {
     path: 'callback/:provider',
     pathMatch: 'full',
     canMatch: [(route) => inject(AuthenticationService).saveToken(getRouteParam('provider') || 'google')],
@@ -19,8 +24,8 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    // component: HomepageComponent,
-    redirectTo: 'login',
+    component: HomepageComponent,
+    // redirectTo: 'login',
   },
 ];
 
