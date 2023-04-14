@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   standalone: true,
@@ -8,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class NavbarComponent {
+  loginPrefix: string;
+  constructor() {
+    this.loginPrefix = environment.loginPrefix;
+  }
 }

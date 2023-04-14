@@ -40,10 +40,16 @@
         </div>
       </div>
       <a routerLink="/login" class="nav-item nav-link" style="font-size: 19px; color: #0e576b">التسجيل</a>
+      <a href="{{ loginPrefix }}/api/connect/google" class="nav-item nav-link" style="font-size: 19px; color: #0e576b"
+        >تسجيل الدخول</a
+      >
       <a href="#" class="nav-item nav-link" style="font-size: 19px; color: #0e576b">اتصل بنا</a>
     </div>
     <a routerLink="./login" class="btn new-round px-3 d-none d-lg-block" style="background-color: #deb626; color: white"
       >انضم الآن<i class="fa fa-arrow-left me-3"></i
     ></a>
+    <a class="btn new-round px-3 d-none d-lg-block" href="{{ loginPrefix }}/api/connect/google" style="color: #deb626"
+      >تسجيل الدخول</a
+    >
   </div>
 </nav>

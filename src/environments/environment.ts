@@ -15,4 +15,4 @@ const prodEnvironment: Environment = {
   production: true,
 };
 
-export const environment: Environment = !isDevMode() ? devEnvironment : prodEnvironment;
+export const environment: Environment = isDevMode() ? devEnvironment : prodEnvironment;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { SharedModule } from '../../core/modules/shared.module';
 import { NavbarComponent } from '../components/navbar/navbar.component';
@@ -9,6 +9,7 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
   imports: [SharedModule, NavbarComponent],
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomepageComponent {
   loginPrefix = environment.loginPrefix;
