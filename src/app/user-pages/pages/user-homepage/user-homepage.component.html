@@ -13,7 +13,7 @@
   class="lesson-item"
   [routerLink]="[
     '../' + lessonRouter,
-    lesson.lessonParams.facultyId,
+    lesson.lessonParams.pathId,
     lesson.lessonParams.courseId,
     lesson.lessonParams.lessonId
   ]"
@@ -27,7 +27,7 @@
 <div
   class="lesson-item"
   *ngFor="let quiz of quizzes"
-  [routerLink]="['../' + quizRouter, quiz.quizParams.facultyId, quiz.quizParams.courseId, quiz.quizParams.quizId]"
+  [routerLink]="['../' + quizRouter, quiz.quizParams.pathId, quiz.quizParams.courseId, quiz.quizParams.quizId]"
   [translate]="translationKeys.homepage.exam"
   [translateParams]="quiz.transParam"
 ></div>

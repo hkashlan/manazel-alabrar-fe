@@ -6,7 +6,7 @@ export interface Environment {
 }
 
 const devEnvironment: Environment = {
-  loginPrefix: '',
+  loginPrefix: 'http://localhost:1337',
   production: false,
 };
 

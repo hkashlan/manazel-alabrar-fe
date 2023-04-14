@@ -12,9 +12,9 @@ import { UserStore } from '../../user-state';
   styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent {
-  faculties: BFF.Faculty[];
+  paths: BFF.Path[];
 
   constructor(userStore: UserStore) {
-    this.faculties = userStore.get().student.faculties;
+    this.paths = userStore.get().student.paths;
   }
 }

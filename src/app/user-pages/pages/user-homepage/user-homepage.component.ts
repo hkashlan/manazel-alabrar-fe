@@ -57,7 +57,7 @@ export class UserHomepageComponent implements OnInit {
     const today = new Date();
     this.quizzes = this.userStore
       .get()
-      .student.faculties.map((f) =>
+      .student.paths.map((f) =>
         f.courses.map((c) =>
           c.quizzes.filter(canTakeQuiz).map((e, examIndex) => this.mapExamToExamItem(f, c, e, examIndex))
         )
@@ -66,7 +66,7 @@ export class UserHomepageComponent implements OnInit {
       .flat();
   }
 
-  private mapExamToExamItem(f: BFF.Faculty, c: BFF.Course, e: BFF.Quiz, examIndex: number): QuizItem {
+  private mapExamToExamItem(f: BFF.Path, c: BFF.Course, e: BFF.Quiz, examIndex: number): QuizItem {
     return {
       exam: e,
       transParam: {
@@ -75,7 +75,7 @@ export class UserHomepageComponent implements OnInit {
         to: this.datePipe.transform(e.dateTo)!,
       },
       quizParams: {
-        facultyId: f.id,
+        pathId: f.id,
         courseId: c.id,
         quizId: examIndex,
       },
@@ -85,7 +85,7 @@ export class UserHomepageComponent implements OnInit {
   private filterCourses() {
     this.lessons = this.userStore
       .get()
-      .student.faculties.map((faculty) => faculty.courses.map((c) => this.getLessonsForToday(c)))
+      .student.paths.map((path) => path.courses.map((c) => this.getLessonsForToday(c)))
       .flat()
       .flat();
   }
@@ -101,7 +101,7 @@ export class UserHomepageComponent implements OnInit {
       lessonParams: {
         courseId: course.id,
         lessonId: lesson.lessonId,
-        facultyId: course.facultyId,
+        pathId: course.pathId,
       },
     };
   }

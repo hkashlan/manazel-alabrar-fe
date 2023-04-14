@@ -22,7 +22,7 @@ export class CourseDetailComponent {
   lessonRouter = userPageRouting.lesson.path;
 
   routeInfo = getUserRouteInfo();
-  facultyId = this.routeInfo.facultyId;
+  pathId = this.routeInfo.pathId;
   courseId = this.routeInfo.courseId;
   course = this.routeInfo.course;
   lessons = this.course?.lessons!;

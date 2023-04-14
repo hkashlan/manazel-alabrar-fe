@@ -29,7 +29,7 @@ export namespace BFF {
   export interface Quiz {
     dateFrom: Date;
     dateTo: Date;
-    doneOnDate?: Date;
+    doneOnDate: Date;
     title: string;
     questions: Question[];
     mark?: number;
@@ -37,7 +37,7 @@ export namespace BFF {
 
   export interface Course {
     id: number;
-    facultyId: number;
+    pathId: number;
     title: string;
     description: string;
     dateFrom: Date;
@@ -47,7 +47,7 @@ export namespace BFF {
     quizzes: Quiz[];
   }
 
-  export interface Faculty {
+  export interface Path {
     id: number;
     title: string;
     description: string;
@@ -59,6 +59,6 @@ export namespace BFF {
     title: string;
     lastTitle: string;
     image: string;
-    faculties: Faculty[];
+    paths: Path[];
   }
 }

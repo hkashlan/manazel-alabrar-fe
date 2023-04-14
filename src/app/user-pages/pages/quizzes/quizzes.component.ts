@@ -60,7 +60,7 @@ export class QuizzesComponent {
     ];
   }
 
-  private createQuizInfo(faculty: BFF.Faculty, course: BFF.Course, quiz: BFF.Quiz, quizIndex: number): QuizInfo {
+  private createQuizInfo(faculty: BFF.Path, course: BFF.Course, quiz: BFF.Quiz, quizIndex: number): QuizInfo {
     const fromTo = this.translateService.instant(translationKeys.quizzesPage.from_to, {
       from: this.datePipe.transform(quiz.dateFrom),
       to: this.datePipe.transform(quiz.dateTo),
@@ -73,7 +73,7 @@ export class QuizzesComponent {
       canTake: canTakeQuiz(quiz),
       fromTo,
       quizParams: {
-        facultyId: faculty.id,
+        pathId: faculty.id,
         courseId: course.id,
         quizId: quizIndex,
       },
@@ -83,9 +83,7 @@ export class QuizzesComponent {
   getQuizzes(): QuizInfo[] {
     return this.userStore
       .get()
-      .student.faculties.map((f) =>
-        f.courses.map((c) => c.quizzes.map((q, index) => this.createQuizInfo(f, c, q, index)))
-      )
+      .student.paths.map((f) => f.courses.map((c) => c.quizzes.map((q, index) => this.createQuizInfo(f, c, q, index))))
       .flat()
       .flat();
   }

@@ -5,8 +5,8 @@
   <mat-sidenav-content>
     <app-user-header (sidenavToggle)="sidenav.toggle()"></app-user-header>
     <main *ngIf="student$ | async as student">
-      <router-outlet *ngIf="!!student.faculties"></router-outlet>
-      <mat-spinner *ngIf="!student.faculties"></mat-spinner>
+      <router-outlet *ngIf="!!student.paths"></router-outlet>
+      <mat-spinner *ngIf="!student.paths"></mat-spinner>
     </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

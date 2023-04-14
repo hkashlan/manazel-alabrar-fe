@@ -5,7 +5,7 @@
   <ng-template [appColDef]="'quizName'" let-element>
     <a
       *ngIf="element.canTake; else showName"
-      [routerLink]="[element.quizParams.facultyId, element.quizParams.courseId, element.quizParams.quizId]"
+      [routerLink]="[element.quizParams.pathId, element.quizParams.courseId, element.quizParams.quizId]"
     >
       {{ element.quizName }}
     </a>
