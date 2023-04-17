@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SharedModule } from '../../../core/modules/shared.module';
+import { LoadingService } from '../../services/loading-service';
 import { UserStore } from '../../user-state';
 import { UserHeaderComponent } from './components/user-header/user-header.component';
 import { UserSidenavListComponent } from './components/user-sidenav-list/user-sidenav-list.component';
@@ -13,6 +14,6 @@ import { UserSidenavListComponent } from './components/user-sidenav-list/user-si
   providers: [UserStore],
 })
 export class UserLayoutComponent {
-  student$ = this.userStore.select((s) => s.student);
-  constructor(private userStore: UserStore) {}
+  student$ = inject(UserStore).select((s) => s.student);
+  loading$ = inject(LoadingService).loadingSubject$;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { BFF } from '../../../user-pages/models/student';
+import { BFF } from '../../../user-pages/models/schema-bff';
 
 export interface ExamState {
   questions: BFF.Question[];

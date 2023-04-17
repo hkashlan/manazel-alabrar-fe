@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HomepageExamTransParams, translationKeys } from '../../../core/models/translations';
 import { SharedModule } from '../../../core/modules/shared.module';
-import { BFF } from '../../models/student';
+import { BFF } from '../../models/schema-bff';
 import { LessonParams, QuizParams, userPageRouting } from '../../user-pages-routing';
 import { UserStore } from '../../user-state';
 import { canTakeQuiz } from '../../utils/quiz-utils';
@@ -66,7 +66,7 @@ export class UserHomepageComponent implements OnInit {
       .flat();
   }
 
-  private mapExamToExamItem(f: BFF.Path, c: BFF.Course, e: BFF.Quiz, examIndex: number): QuizItem {
+  private mapExamToExamItem(f: BFF.myPaths.Path, c: BFF.myPaths.Course, e: BFF.Quiz, examIndex: number): QuizItem {
     return {
       exam: e,
       transParam: {
@@ -90,11 +90,11 @@ export class UserHomepageComponent implements OnInit {
       .flat();
   }
 
-  private getLessonsForToday(c: BFF.Course): LessonItem[] {
+  private getLessonsForToday(c: BFF.myPaths.Course): LessonItem[] {
     return c.lessons.filter((lesson) => sameDay(lesson.date, this.currentDate)).map((l) => this.createLessonItem(c, l));
   }
 
-  private createLessonItem(course: BFF.Course, lesson: BFF.Lesson): LessonItem {
+  private createLessonItem(course: BFF.myPaths.Course, lesson: BFF.Lesson): LessonItem {
     return {
       courseName: course.title,
       lessonName: lesson.title,

@@ -1,4 +1,4 @@
-// import { BFF } from '../models/student';
+// import { BFF } from '../models/schema-bff';
 
 // const addDate = (dateToAdd: number) => {
 //   const tomorrow = new Date();
@@ -60,7 +60,7 @@
 //   },
 // ];
 
-// export const student: BFF.Student = {
+// export const student: BFF.myPaths.Student = {
 //   title: 'Razan',
 //   lastTitle: 'Zabadneh',
 //   image: '',
@@ -157,7 +157,7 @@
 //   ],
 // };
 
-// export const courses: BFF.Course[] = [
+// export const courses: BFF.myPaths.Course[] = [
 //   {
 //     id: 1,
 //     pathId: 1,

@@ -1,0 +1,7 @@
+<div *ngFor="let path of paths$ | async" class="panel course">
+  {{ path.id }}
+  <div class="title">{{ path.title }}</div>
+  <div class="sub-title">{{ path.description }}</div>
+  <img mat-card-image src="/assets/logo.svg" />
+  <button mat-fab extended color="primary" (click)="register()">{{ translationKeys.path.register | translate }}</button>
+</div>

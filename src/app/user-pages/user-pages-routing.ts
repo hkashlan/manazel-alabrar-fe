@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { RouteInfo } from '../core/models/route-info';
 import { getRouteNumberParam } from '../core/utils/params';
-import { BFF } from './models/student';
+import { BFF } from './models/schema-bff';
 import { UserStore } from './user-state';
 
 export interface CourseDetailParams {
@@ -34,6 +34,7 @@ export enum UserParameters {
 
 const home: RouteInfo = { path: 'home' };
 const course: RouteInfo = { path: 'course' };
+const path: RouteInfo = { path: 'path' };
 const courseDetail: RouteInfo = {
   path: 'course',
   parameters: [UserParameters.pathId, UserParameters.courseId],
@@ -55,6 +56,7 @@ export const userPageRouting = {
   home,
   course,
   courseDetail,
+  path,
   lesson,
   quizzes,
   quiz,
@@ -64,6 +66,10 @@ export const menus: MenuInfo[] = [
   {
     path: home.path,
     title: 'الصفحة الرئيسية',
+  },
+  {
+    path: path.path,
+    title: 'مسارات مفتوحة',
   },
   {
     path: course.path,
@@ -81,8 +87,8 @@ export interface UserRouteInfo {
   [UserParameters.lessonId]: number;
   [UserParameters.quizId]: number;
 
-  path: BFF.Path;
-  course: BFF.Course;
+  path: BFF.myPaths.Path;
+  course: BFF.myPaths.Course;
   lesson?: BFF.Lesson;
   quiz?: BFF.Quiz;
 }

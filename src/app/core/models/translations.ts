@@ -15,6 +15,7 @@ export const translationKeys = {
     exam: "homepage.exam",
   },
   quizzesPage: { from_to: "quizzesPage.from_to" },
+  path: { register: "path.register" },
 };
 export interface HomepageExamTransParams {
   name: string;

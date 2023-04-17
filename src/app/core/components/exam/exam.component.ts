@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { provideComponentStore } from '@ngrx/component-store';
 import { TranslateModule } from '@ngx-translate/core';
-import { BFF } from '../../../user-pages/models/student';
+import { BFF } from '../../../user-pages/models/schema-bff.d';
 import { translationKeys } from '../../models/translations';
 import { MultiChoiceComponent } from './components/multi-choice/multi-choice.component';
 import { SingleChoiceComponent } from './components/single-choice/single-choice.component';

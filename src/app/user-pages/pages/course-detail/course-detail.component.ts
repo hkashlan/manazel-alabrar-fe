@@ -7,7 +7,7 @@ import { TableColumn } from '../../../core/components/table/table';
 import { ColumnDefinition, TableComponent } from '../../../core/components/table/table.component';
 import { translationKeys } from '../../../core/models/translations';
 import { YesNoTranslatePipe } from '../../../core/yes-no-translate.pipe';
-import { BFF } from '../../models/student';
+import { BFF } from '../../models/schema-bff';
 import { getUserRouteInfo, userPageRouting } from '../../user-pages-routing';
 
 @Component({

@@ -5,6 +5,7 @@ import { UserLayoutComponent } from './components/user-layout/user-layout.compon
 import { CourseDetailComponent } from './pages/course-detail/course-detail.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { LessonComponent } from './pages/lesson/lesson.component';
+import { PathComponent } from './pages/path/path.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
 import { QuizzesComponent } from './pages/quizzes/quizzes.component';
 import { UserHomepageComponent } from './pages/user-homepage/user-homepage.component';
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: getRouteUrl(userPageRouting.courseDetail),
         component: CourseDetailComponent,
+      },
+      {
+        path: getRouteUrl(userPageRouting.path),
+        component: PathComponent,
       },
       {
         path: getRouteUrl(userPageRouting.lesson),
