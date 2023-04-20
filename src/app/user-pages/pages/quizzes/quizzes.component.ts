@@ -88,7 +88,9 @@ export class QuizzesComponent {
   getQuizzes(): QuizInfo[] {
     return this.userStore
       .get()
-      .student.paths.map((f) => f.courses.map((c) => c.quizzes.map((q, index) => this.createQuizInfo(f, c, q, index))))
+      .studentResponse.data!.paths.map((f) =>
+        f.courses.map((c) => c.quizzes.map((q, index) => this.createQuizInfo(f, c, q, index)))
+      )
       .flat()
       .flat();
   }

@@ -3,7 +3,9 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
+import { ConfirmDialogService } from '../../../core/components/confirm-dialog/confirm-dialog.service';
 import { translationKeys } from '../../../core/models/translations';
+import { LoadingService } from '../../services/loading-service';
 import { UserStore } from '../../user-state';
 
 @Component({
@@ -16,15 +18,35 @@ import { UserStore } from '../../user-state';
 export class PathComponent implements OnInit {
   @HostBinding('class') classes = 'cards';
 
-  paths$ = this.userStore.openPath$;
+  openPathResponse$ = this.userStore.openPathResponse$;
 
   translationKeys = translationKeys;
+  error: { message: string } | undefined;
 
-  constructor(private userStore: UserStore) {}
+  constructor(
+    private userStore: UserStore,
+    private confirmDialogService: ConfirmDialogService,
+    public loadingService: LoadingService
+  ) {}
 
   ngOnInit(): void {
     this.userStore.loadOpenPaths();
   }
 
-  register() {}
+  register(pathId: number) {
+    this.confirmDialogService
+      .openDialog({ msg: this.translationKeys.path.register_confirm })
+      .afterClosed()
+      .subscribe((accepted) => {
+        if (accepted) {
+          this.userStore.register(pathId + 5).subscribe((response) => {
+            if (response.data) {
+              this.userStore.patchState({ openPathsResponse: { data: response.data } });
+            } else {
+              this.error = response.error;
+            }
+          });
+        }
+      });
+  }
 }

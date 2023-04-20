@@ -57,7 +57,7 @@ export class UserHomepageComponent implements OnInit {
     const today = new Date();
     this.quizzes = this.userStore
       .get()
-      .student.paths.map((f) =>
+      .studentResponse.data!.paths.map((f) =>
         f.courses.map((c) =>
           c.quizzes.filter(canTakeQuiz).map((e, examIndex) => this.mapExamToExamItem(f, c, e, examIndex))
         )
@@ -85,7 +85,7 @@ export class UserHomepageComponent implements OnInit {
   private filterCourses() {
     this.lessons = this.userStore
       .get()
-      .student.paths.map((path) => path.courses.map((c) => this.getLessonsForToday(c)))
+      .studentResponse.data!.paths.map((path) => path.courses.map((c) => this.getLessonsForToday(c)))
       .flat()
       .flat();
   }

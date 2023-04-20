@@ -5,35 +5,39 @@ import { LoadingService } from './services/loading-service';
 import { StudentService } from './services/student.service';
 
 export interface UserState {
-  student: BFF.myPaths.Student;
-  openPaths: BFF.openPath.PathInstance[];
+  studentResponse: BFF.myPaths.response;
+  openPathsResponse: BFF.openPath.response;
 }
 
 export const initialState: UserState = {
-  student: {} as BFF.myPaths.Student,
-  openPaths: [],
+  studentResponse: {},
+  openPathsResponse: {},
 };
 
 @Injectable()
 export class UserStore extends ComponentStore<UserState> {
-  readonly student$ = this.select((state) => state.student);
-  readonly openPath$ = this.select((state) => state.openPaths);
+  readonly student$ = this.select((state) => state.studentResponse);
+  readonly openPathResponse$ = this.select((state) => state.openPathsResponse);
 
   constructor(private studentService: StudentService, private loadingService: LoadingService) {
     super(initialState);
     this.loadingService.updateLoading(true);
     this.studentService.loadStudent().subscribe((student) => {
       this.loadingService.updateLoading(false);
-      this.patchState({ student });
+      this.patchState({ studentResponse: student });
     });
   }
 
   loadOpenPaths() {
     this.loadingService.updateLoading(true);
     this.studentService.loadOpenPath().subscribe((openPaths) => {
-      this.patchState({ openPaths });
+      this.patchState({ openPathsResponse: openPaths });
       this.loadingService.updateLoading(false);
     });
+  }
+
+  register(path: number) {
+    return this.studentService.register(path);
   }
 
   public override get() {

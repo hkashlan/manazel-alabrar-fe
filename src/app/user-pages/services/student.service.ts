@@ -10,12 +10,16 @@ import { BFF } from '../models/schema-bff';
 export class StudentService {
   constructor(private http: HttpClient) {}
 
-  loadStudent(): Observable<BFF.myPaths.Student> {
+  loadStudent(): Observable<BFF.myPaths.response> {
     // return of(student);
-    return this.http.get<BFF.myPaths.Student>('/api/user/my-paths');
+    return this.http.get<BFF.myPaths.response>('/api/user/my-paths');
   }
 
-  loadOpenPath(): Observable<BFF.openPath.PathInstance[]> {
-    return this.http.get<BFF.openPath.PathInstance[]>('/api/user/open-paths');
+  loadOpenPath(): Observable<BFF.openPath.response> {
+    return this.http.get<BFF.openPath.response>('/api/user/open-paths');
+  }
+
+  register(path: number): Observable<BFF.register.response> {
+    return this.http.get<BFF.register.response>('/api/user/open-paths/register/' + path);
   }
 }

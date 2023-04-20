@@ -17,6 +17,6 @@ export class CoursesComponent {
   paths: BFF.myPaths.Path[];
 
   constructor(userStore: UserStore) {
-    this.paths = userStore.get().student.paths;
+    this.paths = userStore.get().studentResponse.data!.paths;
   }
 }
