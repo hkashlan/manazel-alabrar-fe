@@ -26,8 +26,8 @@ export class ProfileComponent {
   constructor(private fb: FormBuilder, private userStore: UserStore) {
     const student = this.userStore.get().studentResponse.data!;
     this.form.setValue({
-      firstName: student.firstName ?? 'هادي',
-      lastName: student.lastName ?? 'قشلان',
+      firstName: student.firstName,
+      lastName: student.lastName,
     });
   }
 
