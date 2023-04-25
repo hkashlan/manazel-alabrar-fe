@@ -37,6 +37,13 @@
           }
         }
       }
+    },
+    {
+      "type": "npm",
+      "script": "translate",
+      "problemMatcher": [],
+      "label": "npm: translate",
+      "detail": "cd translations && node translate-generate.js "
     }
   ]
 }

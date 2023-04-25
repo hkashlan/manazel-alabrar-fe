@@ -20,6 +20,7 @@ export const translationKeys = {
     register_confirm: "path.register_confirm",
     no_path_open: "path.no_path_open",
   },
+  new_version: { msg: "new_version.msg", update_now: "new_version.update_now" },
 };
 export interface HomepageExamTransParams {
   name: string;
