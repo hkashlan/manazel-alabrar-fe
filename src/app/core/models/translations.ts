@@ -21,6 +21,11 @@ export const translationKeys = {
     no_path_open: "path.no_path_open",
   },
   new_version: { msg: "new_version.msg", update_now: "new_version.update_now" },
+  logout: "logout",
+  profile: "profile",
+  firstName: "firstName",
+  lastName: "lastName",
+  save: "save",
 };
 export interface HomepageExamTransParams {
   name: string;

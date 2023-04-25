@@ -34,6 +34,7 @@ export enum UserParameters {
 
 const home: RouteInfo = { path: 'home' };
 const course: RouteInfo = { path: 'course' };
+const profile: RouteInfo = { path: 'profile' };
 const path: RouteInfo = { path: 'path' };
 const courseDetail: RouteInfo = {
   path: 'course',
@@ -57,6 +58,7 @@ export const userPageRouting = {
   course,
   courseDetail,
   path,
+  profile,
   lesson,
   quizzes,
   quiz,

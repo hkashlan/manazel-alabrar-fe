@@ -22,4 +22,8 @@ export class StudentService {
   register(path: number): Observable<BFF.register.response> {
     return this.http.get<BFF.register.response>('/api/user/open-paths/register/' + path);
   }
+
+  saveProfile(firstName: string, lastName: string): Observable<BFF.saveProfile.response> {
+    return this.http.post<BFF.saveProfile.response>('/api/user/open-paths/save-profile', { firstName, lastName });
+  }
 }

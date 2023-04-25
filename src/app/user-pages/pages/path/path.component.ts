@@ -39,7 +39,7 @@ export class PathComponent implements OnInit {
       .afterClosed()
       .subscribe((accepted) => {
         if (accepted) {
-          this.userStore.register(pathId + 5).subscribe((response) => {
+          this.userStore.register(pathId).subscribe((response) => {
             if (response.data) {
               this.userStore.patchState({ openPathsResponse: { data: response.data } });
             } else {

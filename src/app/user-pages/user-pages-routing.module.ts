@@ -6,6 +6,7 @@ import { CourseDetailComponent } from './pages/course-detail/course-detail.compo
 import { CoursesComponent } from './pages/courses/courses.component';
 import { LessonComponent } from './pages/lesson/lesson.component';
 import { PathComponent } from './pages/path/path.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
 import { QuizzesComponent } from './pages/quizzes/quizzes.component';
 import { UserHomepageComponent } from './pages/user-homepage/user-homepage.component';
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: getRouteUrl(userPageRouting.course),
         component: CoursesComponent,
+      },
+      {
+        path: getRouteUrl(userPageRouting.profile),
+        component: ProfileComponent,
       },
       {
         path: getRouteUrl(userPageRouting.courseDetail),

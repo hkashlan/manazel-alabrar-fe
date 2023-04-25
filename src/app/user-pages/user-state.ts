@@ -40,6 +40,17 @@ export class UserStore extends ComponentStore<UserState> {
     return this.studentService.register(path);
   }
 
+  saveProfile(firstName: string, lastName: string) {
+    return this.studentService.saveProfile(firstName, lastName).subscribe((response) => {
+      debugger;
+      this.patchState((state) => {
+        state.studentResponse.data!.firstName = response.data?.firstName!;
+        state.studentResponse.data!.lastName = response.data?.lastName!;
+        return state;
+      });
+    });
+  }
+
   public override get() {
     return super.get();
   }
