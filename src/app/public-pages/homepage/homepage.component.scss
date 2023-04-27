@@ -1,0 +1,242 @@
+div {
+  font-family: "Cairo", sans-serif !important ;
+}
+
+body {
+  background-color: white !important;
+}
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 21.25rem;
+  left: 15%;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  color: #fff;
+  text-align: center;
+}
+@media (max-width: 418px) {
+  .display-2 {
+    font-size: 23px !important;
+  }
+  .mob {
+    font-size: 15px !important;
+  }
+}
+@media (max-width: 281px) {
+  .display-2 {
+    font-size: 20px !important;
+    margin-bottom: 6px !important;
+  }
+  .display-4 {
+    font-size: 20px !important;
+    margin-bottom: 0 !important;
+  }
+  .mob {
+    font-size: 10px !important;
+  }
+  .btn {
+    font-size: 0.5rem !important;
+  }
+}
+.divBack {
+  background-image: url("/assets/public/img/new/Frame.svg");
+  background-position: center;
+  background-size: auto;
+}
+@media (max-width: 576px) {
+  .mob {
+    width: 50% !important;
+  }
+  .smaller {
+    font-size: inherit !important;
+  }
+  .slider1 {
+    font-size: 10px !important;
+    bottom: 51% !important;
+    right: 14% !important;
+  }
+  // .footerLogo{
+  //     height: 110px !important;
+  // }
+}
+@media (max-width: 260px) {
+  .head {
+    font-size: 9px !important;
+    margin-top: 8px !important;
+  }
+  .tail {
+    font-size: 7px !important;
+    margin-right: 0 !important;
+  }
+}
+@media (min-width: 260px) and (max-width: 300px) {
+  .head {
+    font-size: 10px !important;
+    margin-top: 8px !important;
+  }
+  .tail {
+    font-size: 8px !important;
+    margin-right: 0 !important;
+  }
+}
+@media (min-width: 300px) and (max-width: 360px) {
+  .head {
+    font-size: 12px !important;
+    margin-top: 8px !important;
+  }
+  .tail {
+    font-size: 10px !important;
+    margin-right: 0 !important;
+  }
+}
+@media (min-width: 360px) and (max-width: 450px) {
+  .head {
+    font-size: 15px !important;
+    margin-top: 8px !important;
+  }
+  .tail {
+    font-size: 15px !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media (min-width: 450px) and (max-width: 528px) {
+  .head {
+    font-size: 19px !important;
+    margin-top: 8px !important;
+  }
+  .tail {
+    font-size: 14px !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media (min-width: 528px) and (max-width: 742px) {
+  .head {
+    font-size: 19px !important;
+    margin-top: 8px !important;
+  }
+  .tail {
+    font-size: 16px !important;
+    margin-right: 0 !important;
+  }
+}
+@media (min-width: 742px) and (max-width: 1095px) {
+  .head {
+    font-size: 25px !important;
+    margin-top: 8px !important;
+  }
+  .tail {
+    font-size: 24px !important;
+    margin-right: 0 !important;
+  }
+}
+@media (max-width: 1066px) {
+  .list {
+    font-size: 5px !important ;
+  }
+}
+.slider1 {
+  right: 16%;
+  bottom: 63%;
+}
+.list {
+  font-size: 25px;
+}
+.footerLogo {
+  width: 140px;
+  height: 180px;
+}
+.star {
+  list-style-image: url("/assets/public/img/slider1/نجمة\ جنب\ الكتابة.png");
+}
+li::marker {
+  padding-top: 1%;
+}
+@media (max-width: 767px) {
+  .back {
+    background-image: url("/assets/public/img/new/Group 41.png") !important;
+  }
+}
+.back {
+  background-image: url("/assets/public/img/new/Frame 29.svg");
+}
+.head {
+  font-size: 42px;
+}
+.tail {
+  font-size: 30px;
+}
+.head2 {
+  font-size: 30px;
+}
+@media (min-width: 360px) and (max-width: 450px) {
+  .head2 {
+    font-size: 14px !important;
+  }
+}
+@media (max-width: 360px) {
+  .head2 {
+    font-size: 10px !important;
+  }
+}
+@media (min-width: 450px) and (max-width: 528px) {
+  .head2 {
+    font-size: 21px !important;
+  }
+}
+@media (min-width: 528px) and (max-width: 742px) {
+  .head2 {
+    font-size: 15px !important;
+  }
+}
+@media (min-width: 742px) and (max-width: 1095px) {
+  .head2 {
+    font-size: 19px !important;
+  }
+}
+@media (min-width: 300px) and (max-width: 600px) {
+  .for-margin {
+    margin-bottom: 0.25rem;
+    padding-top: 12px;
+  }
+  .for-padding {
+    margin-top: 12px;
+  }
+  .for-padding-footer {
+    padding-bottom: 2px;
+  }
+}
+@media (min-width: 600px) and (max-width: 1000px) {
+  .for-margin {
+    margin-bottom: 1.5rem;
+  }
+  .for-padding {
+    margin: 48px 0px 0px;
+    padding: 0px 24px;
+  }
+  .for-padding-footer {
+    margin: 0px 38px !important;
+    padding: 10px 12px !important;
+  }
+  .back {
+    height: 1000px;
+  }
+  .for-translate {
+    transform: translate(0px, 190px);
+  }
+}
+@media (min-width: 1000px) and (max-width: 3000px) {
+  .for-margin {
+    margin-bottom: 1.5rem;
+  }
+  .for-padding {
+    margin: 48px 0px 0px;
+    padding: 0px 24px;
+  }
+  .for-padding-footer {
+    margin: 0px 38px !important;
+    padding: 80px 12px !important;
+  }
+}

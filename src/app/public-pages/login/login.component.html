@@ -1,5 +1,137 @@
-<div>
-  <h3>Google Social Login</h3>
+<div class="container-fluid px-5 d-none d-lg-block" style="direction: rtl; background-color: #004354">
+  <div class="row gx-0" style="margin: auto; max-width: 1320px">
+    <div class="col-lg-6 text-center mb-2 mb-lg-0 container-xxl" style="text-align: start !important">
+      <div class="d-inline-flex align-items-center" style="height: 45px">
+        <small class="text-light"><i class="fa fa-envelope-open ms-2"></i>manzilalabrar@gmail.com</small>
+      </div>
+    </div>
+    <div class="col-lg-6 text-start text-lg-start">
+      <div class="d-inline-flex align-items-center" style="height: 45px">
+        <small class="text-light ms-2">تابعونا</small>
+        <a class="text-white ms-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>|&nbsp;&nbsp;
+        <a href="{{ loginPrefix }}/api/connect/google" style="color: #deb626">تسجيل الدخول</a>
+      </div>
+    </div>
+  </div>
 </div>
+<app-navbar></app-navbar>
+<section class="section-intro" style="min-height: 150px">
+  <div class="row d-flex align-items-center" style="min-height: 150px">
+    <h1 class="text-white text-end mx-auto" style="max-width: 1320px; font-family: 'Cairo', sans-serif">
+      التسجيل
+      <nav class="breadcrumb text-end" style="justify-content: end">
+        <a
+          class="breadcrumb-item"
+          routerLink="/login"
+          style="font-size: 15px; color: #deb626; font-family: 'Cairo', sans-serif"
+          >التسجيل</a
+        >
+        <a
+          class="breadcrumb-item"
+          routerLink="/"
+          style="font-size: 15px; color: #deb626; font-family: 'Cairo', sans-serif"
+          >الرئيسية</a
+        >
+      </nav>
+    </h1>
+  </div>
+</section>
+<section class="second-section" style="min-height: 400px; display: flex; align-items: center; justify-content: center">
+  <div class="box wow fadeInUp" style="padding: 25px; background-color: white" data-wow-delay="0.3s">
+    <!--  <ul style="direction:rtl">
 
-<a mat-button href="{{ loginPrefix }}/api/connect/google"> <mat-icon svgIcon="google"></mat-icon> Login With Google </a>
+          <li style="font-size: 25px; font-weight:900; color:black ; " class="big">حفظ القرآن الكريم
+
+              <figcaption style="font-size: 11px; ">"ضمن مجموعات"</figcaption>
+
+              <ul>
+                  <li style="font-size: 17px; font-weight:500" class="small">مجموعة المجازات المتمكنة</li>
+                  <li style="font-size: 17px; font-weight:500" class="small">مجموعة المجازات </li>
+                  <li style="font-size: 17px; font-weight:500" class="small">مجموعة المبتدئات</li>
+              </ul>
+          </li>
+          <li style="font-size: 25px; font-weight:900; color:black" class="big">قراءة الشمائل المحمدية</li>
+          <li style="font-size: 25px; font-weight:900; color:black" class="big">حفظ الأحاديث القصار من رياض الصالحين
+          </li>
+      </ul> -->
+    <p class="mx-auto" style="font-size: 20px; width: 80%; text-align: center; font-weight: 700">
+      تعلن إدارة أكاديمية منازل الابرار عن استقبال طلبات تسجيلكم لدورات القرآن الكريم و العلوم الشرعية
+    </p>
+    <div class="d-flex" style="direction: rtl; justify-content: space-around">
+      <h3 style="font-family: 'Cairo', sans-serif">للتسجيل</h3>
+      <a routerLink="../register"
+        ><button
+          class="btn"
+          style="
+            background-color: #deb626;
+            color: white;
+            min-width: 40%;
+            font-size: 20px;
+            border-radius: 35px;
+            font-family: 'Cairo', sans-serif;
+          "
+        >
+          اضغط هنا
+        </button>
+      </a>
+    </div>
+  </div>
+</section>
+<div
+  class="container-fluid text-white-50 footer pt-5 mt-5 wow fadeIn"
+  data-wow-delay="0.1s"
+  style="direction: rtl; background-color: #297e92; font-family: 'Cairo', sans-serif"
+>
+  <div class="container for-padding-footer">
+    <div class="row g-5">
+      <div class="col-lg-3 col-md-6">
+        <img src="/assets/public/img/Frame 23.png" alt="" class="img-fluid" />
+      </div>
+      <div class="col-lg-4 for-padding" style="font-family: 'Cairo', sans-serif">
+        <h3 class="for-margin" style="font-family: 'Cairo', sans-serif; color: #cfa53e">تواصل معنا</h3>
+        <p class="mb-2 text-white" style="font-family: 'Cairo', sans-serif">
+          <i class="fa fa-map-marker-alt ms-3"></i>المنصورية, قطعة, 25501/1
+        </p>
+        <p class="mb-2 text-white" style="font-family: 'Cairo', sans-serif">
+          <i class="fa fa-phone-alt ms-3"></i> <span dir="ltr">+956 000000</span>
+        </p>
+        <p class="mb-2 text-white" style="font-family: 'Cairo', sans-serif">
+          <i class="fa fa-envelope ms-3"></i>manazilalabrar@gmail.com
+        </p>
+      </div>
+      <div class="col-lg-3 for-padding">
+        <h3 class="for-margin" style="font-family: 'Cairo', sans-serif; color: #cfa53e">روابط سريعة</h3>
+        <a class="btn btn-link text-white" href="" style="text-align: start; font-family: 'Cairo', sans-serif"
+          >الأسئلة الشائعة</a
+        >
+        <a class="btn btn-link text-white" href="" style="text-align: start; font-family: 'Cairo', sans-serif"
+          >الأقسام العلمية</a
+        >
+        <a class="btn btn-link text-white" href="" style="text-align: start; font-family: 'Cairo', sans-serif">تسجيل</a>
+        <a class="btn btn-link text-white" href="" style="text-align: start; font-family: 'Cairo', sans-serif"
+          >إعلانات</a
+        >
+      </div>
+
+      <div class="col-lg-2 for-padding">
+        <h3 class="for-margin" style="font-family: 'Cairo', sans-serif; color: #cfa53e">مقالات</h3>
+        <a class="btn btn-link text-white" href="" style="text-align: start; font-family: 'Cairo', sans-serif">عام</a>
+        <a class="btn btn-link text-white" href="" style="text-align: start; font-family: 'Cairo', sans-serif">فقه</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container py-3 px-5" style="direction: ltr; background-color: #004258; min-width: 100%">
+  <div class="copyright">
+    <div class="row">
+      <div class="col-md-6 text-center text-md-start mb-3 mb-md-0 text-white">
+        &copy;All Right Reserved.
+
+        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+      </div>
+      <div class="col-md-6 text-center text-md-end mb-3 mb-md-0 text-white">
+        Designed by : <a href="https://joybox-me.com/" style="color: #deb626">JoyBox</a>
+      </div>
+    </div>
+  </div>
+</div>

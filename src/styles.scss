@@ -1,8 +1,16 @@
 @use "./scss/colors" as colors;
 @use "./scss/layout-bp" as layout;
+@import "./scss/grid";
 @import "./scss/material";
 
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  font-family: "El Messiri", sans-serif;
+}
+body {
+  background-color: white !important;
+}
 
 html,
 body {
