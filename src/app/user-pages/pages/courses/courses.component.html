@@ -1,4 +1,4 @@
-<ng-container *ngFor="let faculty of faculties">
+<ng-container *ngFor="let faculty of paths">
   <div *ngFor="let course of faculty.courses" [routerLink]="[faculty.id, course.id]" class="panel course">
     {{ course.id }}
     <div class="title">{{ faculty.title }}</div>

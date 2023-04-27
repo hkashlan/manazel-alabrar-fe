@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { BFF } from '../models/student';
-import { courses, student } from './student-mock';
+import { Observable } from 'rxjs';
+import { BFF } from '../models/schema-bff';
+// import { courses, student } from './student-mock';
 
 @Injectable({
   providedIn: 'root',
@@ -10,16 +10,20 @@ import { courses, student } from './student-mock';
 export class StudentService {
   constructor(private http: HttpClient) {}
 
-  loadProfile(): Observable<BFF.Student> {
-    return of(student);
-  }
-
-  loadCourses(): Observable<BFF.Course[]> {
-    return of(courses);
-  }
-
-  loadStudent(): Observable<BFF.Student> {
+  loadStudent(): Observable<BFF.myPaths.response> {
     // return of(student);
-    return this.http.get<BFF.Student>('/api/user/my-faculties');
+    return this.http.get<BFF.myPaths.response>('/api/user/my-paths');
+  }
+
+  loadOpenPath(): Observable<BFF.openPath.response> {
+    return this.http.get<BFF.openPath.response>('/api/user/open-paths');
+  }
+
+  register(path: number): Observable<BFF.register.response> {
+    return this.http.get<BFF.register.response>('/api/user/open-paths/register/' + path);
+  }
+
+  saveProfile(firstName: string, lastName: string): Observable<BFF.saveProfile.response> {
+    return this.http.post<BFF.saveProfile.response>('/api/user/open-paths/save-profile', { firstName, lastName });
   }
 }

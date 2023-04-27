@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BFF } from '../../models/student';
+import { BFF } from '../../models/schema-bff';
 import { UserStore } from '../../user-state';
 
 @Component({
@@ -12,9 +12,11 @@ import { UserStore } from '../../user-state';
   styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent {
-  faculties: BFF.Faculty[];
+  @HostBinding('class') classes = 'cards';
+
+  paths: BFF.myPaths.Path[];
 
   constructor(userStore: UserStore) {
-    this.faculties = userStore.get().student.faculties;
+    this.paths = userStore.get().studentResponse.data!.paths;
   }
 }

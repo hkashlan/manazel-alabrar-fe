@@ -1,4 +1,4 @@
-import { BFF } from '../models/student';
+import { BFF } from '../models/schema-bff';
 
 export function canTakeQuiz(quiz: BFF.Quiz): boolean {
   const date = new Date();

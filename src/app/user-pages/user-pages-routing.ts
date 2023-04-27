@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { RouteInfo } from '../core/models/route-info';
 import { getRouteNumberParam } from '../core/utils/params';
-import { BFF } from './models/student';
+import { BFF } from './models/schema-bff';
 import { UserStore } from './user-state';
 
 export interface CourseDetailParams {
@@ -9,13 +9,13 @@ export interface CourseDetailParams {
 }
 
 export interface LessonParams {
-  [UserParameters.facultyId]: number;
+  [UserParameters.pathId]: number;
   [UserParameters.courseId]: number;
   [UserParameters.lessonId]: number;
 }
 
 export interface QuizParams {
-  [UserParameters.facultyId]: number;
+  [UserParameters.pathId]: number;
   [UserParameters.courseId]: number;
   [UserParameters.quizId]: number;
 }
@@ -28,23 +28,25 @@ export interface MenuInfo {
 export enum UserParameters {
   courseId = 'courseId',
   lessonId = 'lessonId',
-  facultyId = 'facultyId',
+  pathId = 'pathId',
   quizId = 'quizId',
 }
 
 const home: RouteInfo = { path: 'home' };
 const course: RouteInfo = { path: 'course' };
+const profile: RouteInfo = { path: 'profile' };
+const path: RouteInfo = { path: 'path' };
 const courseDetail: RouteInfo = {
   path: 'course',
-  parameters: [UserParameters.facultyId, UserParameters.courseId],
+  parameters: [UserParameters.pathId, UserParameters.courseId],
 };
 const lesson: RouteInfo = {
   path: 'lesson',
-  parameters: [UserParameters.facultyId, UserParameters.courseId, UserParameters.lessonId],
+  parameters: [UserParameters.pathId, UserParameters.courseId, UserParameters.lessonId],
 };
 const quiz: RouteInfo = {
   path: 'quiz',
-  parameters: [UserParameters.facultyId, UserParameters.courseId, UserParameters.quizId],
+  parameters: [UserParameters.pathId, UserParameters.courseId, UserParameters.quizId],
 };
 
 const quizzes: RouteInfo = {
@@ -55,6 +57,8 @@ export const userPageRouting = {
   home,
   course,
   courseDetail,
+  path,
+  profile,
   lesson,
   quizzes,
   quiz,
@@ -64,6 +68,10 @@ export const menus: MenuInfo[] = [
   {
     path: home.path,
     title: 'الصفحة الرئيسية',
+  },
+  {
+    path: path.path,
+    title: 'مسارات مفتوحة',
   },
   {
     path: course.path,
@@ -76,13 +84,13 @@ export const menus: MenuInfo[] = [
 ];
 
 export interface UserRouteInfo {
-  [UserParameters.facultyId]: number;
+  [UserParameters.pathId]: number;
   [UserParameters.courseId]: number;
   [UserParameters.lessonId]: number;
   [UserParameters.quizId]: number;
 
-  faculty: BFF.Faculty;
-  course: BFF.Course;
+  path: BFF.myPaths.Path;
+  course: BFF.myPaths.Course;
   lesson?: BFF.Lesson;
   quiz?: BFF.Quiz;
 }
@@ -90,15 +98,15 @@ export interface UserRouteInfo {
 export function getUserRouteInfo(): UserRouteInfo {
   const userStore = inject(UserStore);
 
-  const facultyId = getRouteNumberParam(UserParameters.facultyId);
+  const pathId = getRouteNumberParam(UserParameters.pathId);
   const courseId = getRouteNumberParam(UserParameters.courseId);
   const lessonId = getRouteNumberParam(UserParameters.lessonId);
   const quizId = getRouteNumberParam(UserParameters.quizId);
 
-  const faculty = userStore.get().student.faculties.find((f) => f.id === facultyId)!;
-  const course = faculty?.courses.find((c) => c.id === courseId)!;
+  const path = userStore.get().studentResponse.data?.paths.find((f) => f.id === pathId)!;
+  const course = path?.courses.find((c) => c.id === courseId)!;
   const lesson = course?.lessons.find((l) => l.lessonId === lessonId);
   const quiz = course?.quizzes[quizId];
 
-  return { facultyId, courseId, lessonId, quizId, faculty, course, lesson, quiz };
+  return { pathId, courseId, lessonId, quizId, path, course, lesson, quiz };
 }

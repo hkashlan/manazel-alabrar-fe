@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HomepageExamTransParams, translationKeys } from '../../../core/models/translations';
 import { SharedModule } from '../../../core/modules/shared.module';
-import { BFF } from '../../models/student';
+import { BFF } from '../../models/schema-bff';
 import { LessonParams, QuizParams, userPageRouting } from '../../user-pages-routing';
 import { UserStore } from '../../user-state';
 import { canTakeQuiz } from '../../utils/quiz-utils';
@@ -57,7 +57,7 @@ export class UserHomepageComponent implements OnInit {
     const today = new Date();
     this.quizzes = this.userStore
       .get()
-      .student.faculties.map((f) =>
+      .studentResponse.data!.paths.map((f) =>
         f.courses.map((c) =>
           c.quizzes.filter(canTakeQuiz).map((e, examIndex) => this.mapExamToExamItem(f, c, e, examIndex))
         )
@@ -66,7 +66,7 @@ export class UserHomepageComponent implements OnInit {
       .flat();
   }
 
-  private mapExamToExamItem(f: BFF.Faculty, c: BFF.Course, e: BFF.Quiz, examIndex: number): QuizItem {
+  private mapExamToExamItem(f: BFF.myPaths.Path, c: BFF.myPaths.Course, e: BFF.Quiz, examIndex: number): QuizItem {
     return {
       exam: e,
       transParam: {
@@ -75,7 +75,7 @@ export class UserHomepageComponent implements OnInit {
         to: this.datePipe.transform(e.dateTo)!,
       },
       quizParams: {
-        facultyId: f.id,
+        pathId: f.id,
         courseId: c.id,
         quizId: examIndex,
       },
@@ -85,23 +85,23 @@ export class UserHomepageComponent implements OnInit {
   private filterCourses() {
     this.lessons = this.userStore
       .get()
-      .student.faculties.map((faculty) => faculty.courses.map((c) => this.getLessonsForToday(c)))
+      .studentResponse.data!.paths.map((path) => path.courses.map((c) => this.getLessonsForToday(c)))
       .flat()
       .flat();
   }
 
-  private getLessonsForToday(c: BFF.Course): LessonItem[] {
+  private getLessonsForToday(c: BFF.myPaths.Course): LessonItem[] {
     return c.lessons.filter((lesson) => sameDay(lesson.date, this.currentDate)).map((l) => this.createLessonItem(c, l));
   }
 
-  private createLessonItem(course: BFF.Course, lesson: BFF.Lesson): LessonItem {
+  private createLessonItem(course: BFF.myPaths.Course, lesson: BFF.Lesson): LessonItem {
     return {
       courseName: course.title,
       lessonName: lesson.title,
       lessonParams: {
         courseId: course.id,
         lessonId: lesson.lessonId,
-        facultyId: course.facultyId,
+        pathId: course.pathId,
       },
     };
   }

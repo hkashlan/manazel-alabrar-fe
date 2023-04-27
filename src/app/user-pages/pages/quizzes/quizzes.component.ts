@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TableColumn } from '../../../core/components/table/table';
 import { QuizzesPageFromToTransParams, translationKeys } from '../../../core/models/translations';
 import { CoreModule } from '../../../core/modules/core.module';
-import { BFF } from '../../models/student';
+import { BFF } from '../../models/schema-bff';
 import { QuizParams } from '../../user-pages-routing';
 import { UserStore } from '../../user-state';
 import { canTakeQuiz } from '../../utils/quiz-utils';
@@ -28,7 +28,7 @@ interface QuizInfo {
 export class QuizzesComponent {
   translationKeys = translationKeys;
 
-  courses: BFF.Course[] = [];
+  courses: BFF.myPaths.Course[] = [];
 
   quizzes: QuizInfo[] = this.getQuizzes();
   quizzesTableColumns: TableColumn<QuizInfo>[] = this.initializeColumns();
@@ -60,7 +60,12 @@ export class QuizzesComponent {
     ];
   }
 
-  private createQuizInfo(faculty: BFF.Faculty, course: BFF.Course, quiz: BFF.Quiz, quizIndex: number): QuizInfo {
+  private createQuizInfo(
+    faculty: BFF.myPaths.Path,
+    course: BFF.myPaths.Course,
+    quiz: BFF.Quiz,
+    quizIndex: number
+  ): QuizInfo {
     const fromTo = this.translateService.instant(translationKeys.quizzesPage.from_to, {
       from: this.datePipe.transform(quiz.dateFrom),
       to: this.datePipe.transform(quiz.dateTo),
@@ -73,7 +78,7 @@ export class QuizzesComponent {
       canTake: canTakeQuiz(quiz),
       fromTo,
       quizParams: {
-        facultyId: faculty.id,
+        pathId: faculty.id,
         courseId: course.id,
         quizId: quizIndex,
       },
@@ -83,7 +88,7 @@ export class QuizzesComponent {
   getQuizzes(): QuizInfo[] {
     return this.userStore
       .get()
-      .student.faculties.map((f) =>
+      .studentResponse.data!.paths.map((f) =>
         f.courses.map((c) => c.quizzes.map((q, index) => this.createQuizInfo(f, c, q, index)))
       )
       .flat()

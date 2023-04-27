@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="student$ | async as student">
   <div class="side-menu">
     <button mat-icon-button (click)="onToggleSidenav()">
       <mat-icon>menu</mat-icon>
@@ -18,17 +18,17 @@
   </div>
   <div class="profile">
     <button mat-button [matMenuTriggerFor]="menu">
-      <span>رزان</span>
+      <span>{{ student.data?.firstName }} {{ student.data?.lastName }}</span>
       <img mat-card-avatar src="./assets/muslim-female.png" />
     </button>
     <mat-menu #menu="matMenu" backdropClass="customize" [classList]="'customize'">
-      <button mat-menu-item>
+      <button mat-menu-item [routerLink]="profilePath">
         <mat-icon>profile</mat-icon>
-        Profile
+        {{ translationKeys.profile | translate }}
       </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>
-        Logout
+        {{ translationKeys.logout | translate }}
       </button>
     </mat-menu>
   </div>

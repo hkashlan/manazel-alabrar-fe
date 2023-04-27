@@ -13,3 +13,13 @@ homepage.exams,exams,امتحانات
 homepage.courses,today lessons,دروس يوم
 homepage.exam,exam {{name}} from {{from}} to {{to}},امتحان {{name}} من {{from}} إلى {{to}}
 quizzesPage.from_to,from {{from}} to {{to}},من {{from}} إلى {{to}}
+path.register,register,تسجيل
+path.register_confirm,are you sure you want to register?,هل انت متأكدة من التسجيل؟
+path.no_path_open,no path is open,لا يوجد مسارات مفتوحة
+new_version.msg,new version is there please reload the window,هناك نسخة جديدة نرجو اعادة تحميل الصفحة
+new_version.update_now,reload now,تحديث الآن
+logout,logout,تسجيل خروج
+profile,profile,صفحتي
+firstName,first name,الأسم الأول
+lastName,last name,الأسم الأخير
+save,save,حفظ

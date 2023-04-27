@@ -1,6 +1,6 @@
 import { Directive, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { first, Subscription } from 'rxjs';
-import { BFF } from '../../../../user-pages/models/student';
+import { BFF } from '../../../../user-pages/models/schema-bff';
 import { ExamState, ExamStore } from '../exam.store';
 
 @Directive()
