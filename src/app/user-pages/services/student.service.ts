@@ -26,4 +26,10 @@ export class StudentService {
   saveProfile(firstName: string, lastName: string): Observable<BFF.saveProfile.response> {
     return this.http.post<BFF.saveProfile.response>('/api/user/open-paths/save-profile', { firstName, lastName });
   }
+
+  finishLesson(courseId: number, lessonId: number, finished: boolean): Observable<BFF.finishLesson.response> {
+    return this.http.get<BFF.finishLesson.response>(
+      `/api/user/open-paths/finish-lesson/${courseId}/${lessonId}/${finished}`
+    );
+  }
 }

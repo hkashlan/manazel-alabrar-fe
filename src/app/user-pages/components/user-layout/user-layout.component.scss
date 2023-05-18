@@ -6,6 +6,8 @@ main {
   margin: auto;
   margin-top: sizes.$large;
   width: 95%;
+  height: calc(100% - 100px);
+  min-height: calc(100% - 100px);
 
   @include layout-bp(gt-sm) {
     width: 80%;

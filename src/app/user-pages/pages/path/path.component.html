@@ -6,7 +6,7 @@
     <div *ngFor="let path of openPathResponse.data" class="panel course">
       {{ path.id }}
       <div class="title">{{ path.title }}</div>
-      <div class="sub-title">{{ path.description }}</div>
+      <div class="sub-title" [innerHTML]="getDescription(path.description)"></div>
       <img mat-card-image src="/assets/logo.svg" />
       <button mat-fab extended color="primary" (click)="register(path.id)">
         {{ translationKeys.path.register | translate }}
