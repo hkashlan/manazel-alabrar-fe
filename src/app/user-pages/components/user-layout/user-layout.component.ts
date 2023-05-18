@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { SharedModule } from '../../../core/modules/shared.module';
 import { LoadingService } from '../../services/loading-service';
 import { UserStore } from '../../user-state';
@@ -15,6 +14,6 @@ import { UserSidenavListComponent } from './components/user-sidenav-list/user-si
   providers: [UserStore],
 })
 export class UserLayoutComponent {
-  student$ = inject(UserStore).student$.pipe(map((s) => s.data));
-  loading$ = inject(LoadingService).loadingSubject$;
+  student = inject(UserStore).studentResponse;
+  loading = inject(LoadingService).loading;
 }

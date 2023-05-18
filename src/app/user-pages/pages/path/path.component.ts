@@ -19,7 +19,7 @@ import { UserStore } from '../../user-state';
 export class PathComponent implements OnInit {
   @HostBinding('class') classes = 'cards';
 
-  openPathResponse$ = this.userStore.openPathResponse$;
+  openPathResponse = this.userStore.openPathsResponse;
 
   translationKeys = translationKeys;
   error: { message: string } | undefined;
@@ -46,7 +46,7 @@ export class PathComponent implements OnInit {
         if (accepted) {
           this.userStore.register(pathId).subscribe((response) => {
             if (response.data) {
-              this.userStore.patchState({ openPathsResponse: { data: response.data } });
+              this.userStore.openPathsResponse.set(response);
             } else {
               this.error = response.error;
             }

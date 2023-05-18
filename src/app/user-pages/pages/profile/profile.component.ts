@@ -24,7 +24,7 @@ export class ProfileComponent {
   translationKeys = translationKeys;
 
   constructor(private fb: FormBuilder, private userStore: UserStore) {
-    const student = this.userStore.get().studentResponse.data!;
+    const student = this.userStore.studentResponse().data!;
     this.form.setValue({
       firstName: student.firstName,
       lastName: student.lastName,

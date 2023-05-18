@@ -1,45 +1,23 @@
-import { Directive, inject, Input, OnDestroy, OnInit } from '@angular/core';
-import { first, Subscription } from 'rxjs';
-import { BFF } from '../../../../user-pages/models/schema-bff';
-import { ExamState, ExamStore } from '../exam.store';
+import { computed, Directive, inject, Input } from '@angular/core';
+import { ExamStore } from '../exam.store';
 
 @Directive()
-export class QuestionComponent implements OnInit, OnDestroy {
-  @Input() qIndex: number = 0;
+export class QuestionComponent {
   store = inject(ExamStore);
 
-  question: BFF.Question = {} as BFF.Question;
-  checkAnswer = false;
+  @Input() qIndex: number = 0;
+
+  question = computed(() => this.store.questions()[this.qIndex]);
+  checkAnswer = this.store.checkAnswer;
   isCorrect: boolean = false;
-
-  subscription = new Subscription();
-
-  readonly updateAnswer = this.store.updater((state: ExamState, change: { qIndex: number; correct: boolean }) => {
-    state.answers[change.qIndex] = change.correct;
-    return { ...state, answers: [...state.answers] };
-  });
-
-  ngOnInit(): void {
-    this.fetchQuestion();
-
-    this.subscription.add(this.store.check$.subscribe((check) => (this.checkAnswer = check)));
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
-  triggerScore(correct: boolean) {
-    this.isCorrect = correct;
-    this.updateAnswer({ qIndex: this.qIndex, correct });
-  }
 
   protected questionFetched() {}
 
-  private fetchQuestion() {
-    this.store
-      .select((s) => s.questions)
-      .pipe(first())
-      .subscribe((questions) => (this.question = questions[this.qIndex]));
+  triggerScore(correct: boolean) {
+    this.isCorrect = correct;
+    this.store.answers.update((a) => {
+      a[this.qIndex] = correct;
+      return a;
+    });
   }
 }

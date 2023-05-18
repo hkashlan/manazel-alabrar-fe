@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Output, Signal } from '@angular/core';
 import { translationKeys } from '../../../../../core/models/translations';
 import { SharedModule } from '../../../../../core/modules/shared.module';
 import { AuthenticationService } from '../../../../../core/services/authentication.service';
@@ -21,10 +20,10 @@ export class UserHeaderComponent {
   profilePath = userPageRouting.profile.path;
 
   translationKeys = translationKeys;
-  student$: Observable<BFF.myPaths.response>;
+  student: Signal<BFF.myPaths.response>;
 
   constructor(private userStore: UserStore, private authenticationService: AuthenticationService) {
-    this.student$ = this.userStore.student$;
+    this.student = this.userStore.studentResponse;
   }
 
   public onToggleSidenav = () => {

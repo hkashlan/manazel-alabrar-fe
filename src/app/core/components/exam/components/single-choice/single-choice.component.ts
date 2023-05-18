@@ -14,6 +14,6 @@ export class SingleChoiceComponent extends QuestionComponent {
   selectedAnswer = -1;
   saveValue(value: number) {
     this.selectedAnswer = value;
-    super.triggerScore(this.question.answers[this.selectedAnswer].correct);
+    super.triggerScore(this.question().answers[this.selectedAnswer].correct);
   }
 }
