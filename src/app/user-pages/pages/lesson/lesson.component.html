@@ -5,13 +5,25 @@
 <mat-tab-group class="panel">
   <mat-tab label="{{ translationKeys.lesson | translate }}">
     <div [innerHTML]="lesson.description"></div>
-    <iframe
+    <ngx-extended-pdf-viewer
+      [src]="course.book!"
+      [page]="lesson.pageNumber"
+      [height]="'95%'"
+      [useBrowserLocale]="true"
+      [textLayer]="true"
+      [showHandToolButton]="true"
+    >
+    </ngx-extended-pdf-viewer>
+    <!-- <iframe
       *ngIf="course.book"
       type="application/pdf"
-      [src]="course.book + '#view=fitH&page=' + lesson.pageNumber | safe"
+      [src]="
+        'https://drive.google.com/gview?embedded=true&url=' + course.book + '#view=fitH&page=' + lesson.pageNumber
+          | safe
+      "
       width="100%"
       height="100%"
-    ></iframe>
+    ></iframe> -->
   </mat-tab>
   <mat-tab label="{{ translationKeys.questions | translate }}" *ngIf="lesson.questions as questions">
     <app-exam
