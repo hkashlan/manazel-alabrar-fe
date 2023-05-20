@@ -8,7 +8,7 @@
     <object
       *ngIf="course.book"
       type="application/pdf"
-      [attr.data]="course.book + '#page=' + lesson.pageNumber | safe"
+      [attr.data]="course.book + '#view=fitH&page=' + lesson.pageNumber | safe"
       width="100%"
       height="100%"
     ></object>
