@@ -5,13 +5,13 @@
 <mat-tab-group class="panel">
   <mat-tab label="{{ translationKeys.lesson | translate }}">
     <div [innerHTML]="lesson.description"></div>
-    <object
+    <iframe
       *ngIf="course.book"
       type="application/pdf"
-      [attr.data]="course.book + '#view=fitH&page=' + lesson.pageNumber | safe"
+      [src]="course.book + '#view=fitH&page=' + lesson.pageNumber | safe"
       width="100%"
       height="100%"
-    ></object>
+    ></iframe>
   </mat-tab>
   <mat-tab label="{{ translationKeys.questions | translate }}" *ngIf="lesson.questions as questions">
     <app-exam
