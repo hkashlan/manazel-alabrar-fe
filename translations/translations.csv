@@ -3,6 +3,7 @@ course,course,مقرر
 quizzes,quizzes,الإختبارات
 questions,questions,اسئلة
 check_exam,check result,تحقق
+your_result,your results {{result}} from {{total}},علامتك هي {{result}} من {{total}}
 lesson,lesson,درس
 lesson_finished,I finished the lesson,انهيت الدرس
 lesson_present,present,حضور

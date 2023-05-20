@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { BFF } from '../../../user-pages/models/schema-bff';
@@ -17,13 +17,16 @@ import { ExamStore } from './exam.store';
   providers: [ExamStore],
 })
 export class ExamComponent implements OnInit {
+  private examStore = inject(ExamStore);
+
   @Input() questions: BFF.Question[] = [];
+  @Input({ required: true }) done: boolean = false;
+  @Output() finishExam = new EventEmitter<number>();
+
+  checkAnswer = this.examStore.checkAnswer;
 
   qt = BFF.QuestionType;
-
   translationKeys = translationKeys;
-
-  constructor(private examStore: ExamStore) {}
 
   ngOnInit(): void {
     const answers = this.questions.map(() => false);
@@ -35,9 +38,7 @@ export class ExamComponent implements OnInit {
 
   toggleCheck() {
     this.examStore.checkAnswer.set(!this.examStore.checkAnswer());
+    const grade = this.examStore.answers().filter((a) => a).length;
+    this.finishExam.emit(grade);
   }
-
-  // score(questionIndex: number, correct: boolean) {
-  //   this.answers[questionIndex] = correct;
-  // }
 }

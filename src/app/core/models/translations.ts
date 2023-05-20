@@ -3,6 +3,7 @@ export const translationKeys = {
   quizzes: "quizzes",
   questions: "questions",
   check_exam: "check_exam",
+  your_result: "your_result",
   lesson: "lesson",
   lesson_finished: "lesson_finished",
   lesson_present: "lesson_present",
@@ -27,6 +28,10 @@ export const translationKeys = {
   lastName: "lastName",
   save: "save",
 };
+export interface YourResultTransParams {
+  result: string;
+  total: string;
+}
 export interface HomepageExamTransParams {
   name: string;
   from: string;

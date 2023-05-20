@@ -20,16 +20,17 @@ export class LessonComponent {
   @HostBinding('class') class = 'page';
 
   routeInfo = getUserRouteInfo();
-  lesson = this.routeInfo.lesson;
+  lesson = this.routeInfo.lesson!;
   course = this.routeInfo.course;
 
   translationKeys = translationKeys;
 
   finishLesson(finished: boolean) {
-    this.studentService
-      .finishLesson(this.routeInfo.course.id, this.routeInfo.lessonId, finished)
-      .subscribe((result) => {
-        console.log(result);
-      });
+    this.studentService.finishLesson(this.routeInfo.course.id, this.routeInfo.lessonId, finished).subscribe();
+  }
+
+  finishExam(mark: number) {
+    this.lesson.mark = mark;
+    this.studentService.finishExam(this.routeInfo.course.id, this.routeInfo.lessonId, mark).subscribe();
   }
 }

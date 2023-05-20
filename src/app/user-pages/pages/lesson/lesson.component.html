@@ -1,24 +1,32 @@
 <h1 class="header">
   {{ translationKeys.course | translate }}: {{ course.title }}, {{ translationKeys.lesson | translate }}:
-  {{ lesson?.title }}
+  {{ lesson.title }}
 </h1>
 <mat-tab-group class="panel">
   <mat-tab label="{{ translationKeys.lesson | translate }}">
-    <div [innerHTML]="lesson?.description"></div>
+    <div [innerHTML]="lesson.description"></div>
     <object
       *ngIf="course.book"
       type="application/pdf"
-      [attr.data]="course.book + '#page=' + lesson?.pageNumber | safe"
+      [attr.data]="course.book + '#page=' + lesson.pageNumber | safe"
       width="100%"
       height="100%"
     ></object>
   </mat-tab>
-  <mat-tab label="{{ translationKeys.questions | translate }}" *ngIf="lesson?.questions as questions">
-    <app-exam [questions]="questions"></app-exam>
+  <mat-tab label="{{ translationKeys.questions | translate }}" *ngIf="lesson.questions as questions">
+    <app-exam
+      *ngIf="!lesson.mark"
+      [questions]="questions"
+      [done]="!!lesson.mark"
+      (finishExam)="finishExam($event)"
+    ></app-exam>
+    <h4 *ngIf="lesson.mark">
+      {{ translationKeys.your_result | translate : { result: lesson.mark, total: questions.length } }}
+    </h4>
   </mat-tab>
 </mat-tab-group>
 <div class="panel">
-  <mat-checkbox [checked]="lesson?.done" (change)="finishLesson($event.checked)">{{
+  <mat-checkbox [checked]="lesson.done" (change)="finishLesson($event.checked)">{{
     translationKeys.lesson_finished | translate
   }}</mat-checkbox>
 </div>
