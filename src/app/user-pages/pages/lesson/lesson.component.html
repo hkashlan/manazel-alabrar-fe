@@ -6,14 +6,42 @@
   <mat-tab label="{{ translationKeys.lesson | translate }}">
     <div [innerHTML]="lesson.description"></div>
     <ngx-extended-pdf-viewer
+      #pdfView
       [src]="course.book!"
       [page]="lesson.pageNumber"
       [height]="'95%'"
+      [showBorders]="false"
       [useBrowserLocale]="true"
       [textLayer]="true"
       [showHandToolButton]="true"
+      [customToolbar]="multiToolbar"
     >
     </ngx-extended-pdf-viewer>
+    <ng-template #multiToolbar>
+      <div class="header">
+        <button mat-icon-button id="zoomIn">
+          <mat-icon>zoom_in</mat-icon>
+        </button>
+        <button mat-icon-button id="zoomOut">
+          <mat-icon>zoom_out</mat-icon>
+        </button>
+        <button mat-icon-button (click)="toggleFullScreen()">
+          <mat-icon>fullscreen</mat-icon>
+        </button>
+
+        <button mat-icon-button id="primaryPageRotateCw">
+          <mat-icon>replay</mat-icon>
+        </button>
+
+        <div class="flex-spacer"></div>
+        <button mat-icon-button id="print">
+          <mat-icon>print</mat-icon>
+        </button>
+        <button mat-icon-button id="download">
+          <mat-icon>download</mat-icon>
+        </button>
+      </div>
+    </ng-template>
     <!-- <iframe
       *ngIf="course.book"
       type="application/pdf"
