@@ -7,7 +7,8 @@
     <div [innerHTML]="lesson.description"></div>
     <ngx-extended-pdf-viewer
       #pdfView
-      [src]="course.book!"
+      *ngIf="pdfUrl"
+      [src]="pdfUrl!"
       [page]="lesson.pageNumber"
       [height]="'95%'"
       [showBorders]="false"

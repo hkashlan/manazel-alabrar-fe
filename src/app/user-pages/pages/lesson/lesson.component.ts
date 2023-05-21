@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, Inject, inject } from '@angular/core';
+import { Component, ElementRef, HostBinding, Inject, OnInit, inject } from '@angular/core';
 
 import { DOCUMENT } from '@angular/common';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
@@ -16,7 +16,7 @@ import { getUserRouteInfo } from '../../user-pages-routing';
   templateUrl: './lesson.component.html',
   styleUrls: ['./lesson.component.scss'],
 })
-export class LessonComponent {
+export class LessonComponent implements OnInit {
   private studentService = inject(StudentService);
 
   @HostBinding('class') class = 'page';
@@ -25,10 +25,21 @@ export class LessonComponent {
   lesson = this.routeInfo.lesson!;
   course = this.routeInfo.course;
 
+  pdfUrl = '';
+
   translationKeys = translationKeys;
   elem: any;
 
   constructor(@Inject(DOCUMENT) private document: any, public element: ElementRef<Element>) {}
+
+  ngOnInit() {
+    setTimeout(async () => {
+      if (this.course.book) {
+        const pdfBlob = await fetch(this.course.book!).then((r) => r.blob());
+        this.pdfUrl = URL.createObjectURL(pdfBlob);
+      }
+    }, 300);
+  }
 
   toggleFullScreen() {
     this.elem = this.element.nativeElement.querySelector('ngx-extended-pdf-viewer');
