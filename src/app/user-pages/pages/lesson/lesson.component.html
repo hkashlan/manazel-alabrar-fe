@@ -1,7 +1,7 @@
-<h1 class="header">
+<h4 class="header">
   {{ translationKeys.course | translate }}: {{ course.title }}, {{ translationKeys.lesson | translate }}:
   {{ lesson.title }}
-</h1>
+</h4>
 <mat-tab-group class="panel">
   <mat-tab label="{{ translationKeys.lesson | translate }}">
     <div [innerHTML]="lesson.description"></div>
@@ -29,11 +29,6 @@
           <mat-icon>fullscreen</mat-icon>
         </button>
 
-        <button mat-icon-button id="primaryPageRotateCw">
-          <mat-icon>replay</mat-icon>
-        </button>
-
-        <div class="flex-spacer"></div>
         <button mat-icon-button id="print">
           <mat-icon>print</mat-icon>
         </button>
