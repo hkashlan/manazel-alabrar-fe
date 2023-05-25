@@ -33,7 +33,7 @@ export class ExamComponent implements OnInit {
 
     this.examStore.questions.set(this.questions);
     this.examStore.answers.set(answers);
-    this.examStore.checkAnswer.set(false);
+    this.examStore.checkAnswer.set(this.done);
   }
 
   toggleCheck() {

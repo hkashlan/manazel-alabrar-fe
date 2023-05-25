@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { isDevMode, NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,14 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { interceptors } from './core/interceptors/indext';
 import { SharedModule } from './core/modules/shared.module';
-import { YesNoTranslatePipe } from './core/yes-no-translate.pipe';
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/');
 }
 @NgModule({
-  declarations: [AppComponent, YesNoTranslatePipe],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

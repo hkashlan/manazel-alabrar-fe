@@ -1,5 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { HomepageExamTransParams, translationKeys } from '../../../core/models/translations';
 import { SharedModule } from '../../../core/modules/shared.module';
 import { BFF } from '../../models/schema-bff';
@@ -26,17 +28,26 @@ interface QuizItem {
 @Component({
   selector: 'app-user-homepage',
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, MatDatepickerModule, FormsModule],
   templateUrl: './user-homepage.component.html',
   styleUrls: ['./user-homepage.component.scss'],
 })
 export class UserHomepageComponent implements OnInit {
-  currentDate = new Date();
+  _currentDate = new Date();
   lessons: LessonItem[] = [];
   quizzes: QuizItem[] = [];
   lessonRouter = userPageRouting.lesson.path;
   quizRouter = userPageRouting.quiz.path;
   translationKeys = translationKeys;
+
+  get currentDate(): Date {
+    return this._currentDate;
+  }
+
+  set currentDate(date: Date) {
+    this._currentDate = date;
+    this.filterCourses();
+  }
 
   constructor(private userStore: UserStore, private datePipe: DatePipe) {}
 
@@ -108,6 +119,5 @@ export class UserHomepageComponent implements OnInit {
 
   private changeDate(add: number): void {
     this.currentDate = new Date(this.currentDate.setDate(this.currentDate.getDate() + add));
-    this.filterCourses();
   }
 }

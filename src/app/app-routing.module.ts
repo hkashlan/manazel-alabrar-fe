@@ -32,7 +32,7 @@ const routes: Routes = [
       },
       {
         path: 'user',
-        loadChildren: () => import('./user-pages/user-pages-routing.module').then((m) => m.UserPagesRoutingModule),
+        loadChildren: () => import('./user-pages/user-pages-routing.module'),
         canMatch: [() => inject(AuthenticationService).isLoggedIn()],
       },
       {

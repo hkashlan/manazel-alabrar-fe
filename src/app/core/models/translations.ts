@@ -27,6 +27,8 @@ export const translationKeys = {
   firstName: "firstName",
   lastName: "lastName",
   save: "save",
+  date: "date",
+  from: "from",
 };
 export interface YourResultTransParams {
   result: string;
