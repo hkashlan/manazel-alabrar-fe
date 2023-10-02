@@ -9,7 +9,7 @@
       <div class="d-inline-flex align-items-center" style="height: 45px">
         <small class="text-light ms-2">تابعونا</small>
         <a class="text-white ms-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>|&nbsp;&nbsp;
-        <a href="{{ loginPrefix }}/api/connect/google" style="color: #deb626">تسجيل الدخول</a>
+        <a href="{{ loginPrefix }}" style="color: #deb626">تسجيل الدخول</a>
       </div>
     </div>
   </div>
@@ -74,6 +74,25 @@
           اضغط هنا
         </button>
       </a>
+    </div>
+    <div [formGroup]="loginFrom" class="login-form">
+      <mat-form-field>
+        <mat-label>{{ translationKeys.login.user_name | translate }}</mat-label>
+        <input matInput formControlName="userName" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ translationKeys.login.password | translate }}</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+      <button mat-flat-button [disabled]="loginFrom.invalid">{{ translationKeys.login.login | translate }}</button>
+
+      <div>---------- {{ translationKeys.or | translate }} ----------</div>
+      <button mat-flat-button>
+        <mat-icon [svgIcon]="'google'">google</mat-icon> {{ translationKeys.login.google | translate }}
+      </button>
+      <button mat-flat-button>
+        <mat-icon [svgIcon]="'facebook'">facebook</mat-icon> {{ translationKeys.login.facebook | translate }}
+      </button>
     </div>
   </div>
 </section>

@@ -53,3 +53,33 @@ ul .small {
     padding: 48px 12px !important;
   }
 }
+
+.login-form {
+  > * {
+    display: block;
+    margin: auto;
+    text-align: center;
+  }
+
+  div {
+    margin: 20px;
+  }
+
+  button {
+    background-color: #deb626;
+    color: white;
+    min-width: 40%;
+    font-size: 20px;
+    border-radius: 35px;
+    font-family: "Cairo", sans-serif;
+    min-width: 280px;
+
+    mat-icon {
+      height: 2.25rem;
+    }
+
+    + button {
+      margin-top: 20px;
+    }
+  }
+}

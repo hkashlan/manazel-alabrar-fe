@@ -1,19 +1,24 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { translationKeys } from 'src/app/core/models/translations';
 import { environment } from '../../../environments/environment';
 import { SharedModule } from '../../core/modules/shared.module';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 
 @Component({
   standalone: true,
-  imports: [SharedModule, NavbarComponent],
+  imports: [ReactiveFormsModule, SharedModule, NavbarComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  loginPrefix = environment.loginPrefix;
+  loginPrefix = environment.auth.google;
+  translationKeys = translationKeys;
 
-  loginFrom = new FormGroup({});
+  loginFrom = this.fb.nonNullable.group({
+    userName: ['', Validators.required],
+    password: ['', Validators.required],
+  });
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}

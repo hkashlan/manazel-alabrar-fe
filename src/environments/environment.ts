@@ -1,17 +1,23 @@
 import { isDevMode } from '@angular/core';
 
 export interface Environment {
-  loginPrefix: string;
+  auth: {
+    google: string;
+  };
   production: boolean;
 }
 
 const devEnvironment: Environment = {
-  loginPrefix: 'http://localhost:1337',
+  auth: {
+    google: 'http://localhost:1337/api/connect/google',
+  },
   production: false,
 };
 
 const prodEnvironment: Environment = {
-  loginPrefix: 'https://lms-be.manazel-alabrar.com',
+  auth: {
+    google: 'https://lms-be.manazel-alabrar.com/api/connect/google',
+  },
   production: true,
 };
 

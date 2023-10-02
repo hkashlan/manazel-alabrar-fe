@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
-    this.loginPrefix = environment.loginPrefix;
+    this.loginPrefix = environment.auth.google;
   }
   createform() {
     return this.fb.group(

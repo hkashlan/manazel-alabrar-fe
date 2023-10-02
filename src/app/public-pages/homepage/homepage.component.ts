@@ -12,7 +12,7 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomepageComponent {
-  loginPrefix = environment.loginPrefix;
+  loginPrefix = environment.auth.google;
 
   constructor() {}
   photo: any = '/assets/img/Group 28.png';

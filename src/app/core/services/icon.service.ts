@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 const icons: Record<string, string> = {
   google: '/assets/providers/google.svg',
+  facebook: '/assets/providers/facebook.svg',
 };
 
 @Injectable({

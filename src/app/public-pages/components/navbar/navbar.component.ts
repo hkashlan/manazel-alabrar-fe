@@ -12,6 +12,6 @@ import { environment } from '../../../../environments/environment';
 export class NavbarComponent {
   loginPrefix: string;
   constructor() {
-    this.loginPrefix = environment.loginPrefix;
+    this.loginPrefix = environment.auth.google;
   }
 }
