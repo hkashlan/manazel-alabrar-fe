@@ -3,6 +3,7 @@ import { isDevMode } from '@angular/core';
 export interface Environment {
   auth: {
     google: string;
+    facebook: string;
   };
   production: boolean;
 }
@@ -10,6 +11,7 @@ export interface Environment {
 const devEnvironment: Environment = {
   auth: {
     google: 'http://localhost:1337/api/connect/google',
+    facebook: 'http://localhost:1337/api/connect/facebook',
   },
   production: false,
 };
@@ -17,6 +19,7 @@ const devEnvironment: Environment = {
 const prodEnvironment: Environment = {
   auth: {
     google: 'https://lms-be.manazel-alabrar.com/api/connect/google',
+    facebook: 'https://lms-be.manazel-alabrar.com/api/connect/facebook',
   },
   production: true,
 };

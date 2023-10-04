@@ -78,21 +78,24 @@
     <div [formGroup]="loginFrom" class="login-form">
       <mat-form-field>
         <mat-label>{{ translationKeys.login.user_name | translate }}</mat-label>
-        <input matInput formControlName="userName" />
+        <input matInput formControlName="identifier" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>{{ translationKeys.login.password | translate }}</mat-label>
         <input matInput type="password" formControlName="password" />
       </mat-form-field>
-      <button mat-flat-button [disabled]="loginFrom.invalid">{{ translationKeys.login.login | translate }}</button>
+      {{ loginFrom.errors | json }}
+      <button mat-flat-button [disabled]="loginFrom.invalid" (click)="login()">
+        {{ translationKeys.login.login | translate }}
+      </button>
 
       <div>---------- {{ translationKeys.or | translate }} ----------</div>
-      <button mat-flat-button>
-        <mat-icon [svgIcon]="'google'">google</mat-icon> {{ translationKeys.login.google | translate }}
-      </button>
-      <button mat-flat-button>
-        <mat-icon [svgIcon]="'facebook'">facebook</mat-icon> {{ translationKeys.login.facebook | translate }}
-      </button>
+      <a mat-flat-button href="{{ environment.auth.google }}">
+        <mat-icon [svgIcon]="'google'"></mat-icon> {{ translationKeys.login.google | translate }}
+      </a>
+      <a mat-flat-button href="{{ environment.auth.facebook }}">
+        <mat-icon [svgIcon]="'facebook'"></mat-icon> {{ translationKeys.login.facebook | translate }}
+      </a>
     </div>
   </div>
 </section>

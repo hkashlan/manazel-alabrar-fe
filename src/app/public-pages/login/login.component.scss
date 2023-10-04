@@ -65,6 +65,7 @@ ul .small {
     margin: 20px;
   }
 
+  a,
   button {
     background-color: #deb626;
     color: white;
@@ -78,7 +79,7 @@ ul .small {
       height: 2.25rem;
     }
 
-    + button {
+    + a {
       margin-top: 20px;
     }
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { translationKeys } from 'src/app/core/models/translations';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { environment } from '../../../environments/environment';
 import { SharedModule } from '../../core/modules/shared.module';
 import { NavbarComponent } from '../components/navbar/navbar.component';
@@ -14,14 +15,21 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
 export class LoginComponent {
   loginPrefix = environment.auth.google;
   translationKeys = translationKeys;
+  environment = environment;
 
   loginFrom = this.fb.nonNullable.group({
-    userName: ['', Validators.required],
+    identifier: ['', Validators.required],
     password: ['', Validators.required],
   });
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthenticationService) {}
 
   ngOnInit(): void {}
+
+  login() {
+    const value = this.loginFrom.getRawValue();
+    this.authService.saveToken('local', value);
+  }
+
   logincord() {
     return this.fb.group(
       {
