@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
 import { SharedModule } from '../../core/modules/shared.module';
 
 @Component({
@@ -11,17 +10,13 @@ import { SharedModule } from '../../core/modules/shared.module';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   token: boolean = true;
   loading: boolean = false;
   registerform = this.createform();
   phone_number: any;
-  loginPrefix: string = '';
   constructor(private fb: FormBuilder, private router: Router) {}
 
-  ngOnInit(): void {
-    this.loginPrefix = environment.auth.google;
-  }
   createform() {
     return this.fb.group(
       {

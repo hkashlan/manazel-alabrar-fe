@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { StorageService } from './storage.service';
 
+export const LOGIN_INFO = 'login_info';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -36,6 +38,9 @@ export class AuthenticationService {
       .then((res) => {
         this.ss.setItem('jwt', res.jwt);
         this.ss.setItem('username', res.user.username);
+        if (user) {
+          this.ss.setItem(LOGIN_INFO, JSON.stringify(user));
+        }
         this.loginTracker.next(true);
         window.location.href = '/ar/user';
       })

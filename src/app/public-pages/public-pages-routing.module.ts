@@ -24,8 +24,8 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    // component: HomepageComponent,
-    redirectTo: 'login',
+    component: HomepageComponent,
+    // redirectTo: 'login',
   },
 ];
 
