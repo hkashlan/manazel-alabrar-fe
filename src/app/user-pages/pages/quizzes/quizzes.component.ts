@@ -38,11 +38,11 @@ export class QuizzesComponent {
   initializeColumns(): TableColumn<QuizInfo>[] {
     return [
       {
-        name: 'exam',
+        name: 'quizzes.exam_name',
         dataKey: 'quizName',
       },
       {
-        name: 'faculty',
+        name: 'quizzes.faculty',
         dataKey: 'facultyName',
       },
       {
@@ -50,11 +50,11 @@ export class QuizzesComponent {
         dataKey: 'courseName',
       },
       {
-        name: 'fromTo',
+        name: 'quizzes.from',
         dataKey: 'fromTo',
       },
       {
-        name: 'mark',
+        name: 'quizzes.mark',
         dataKey: 'mark',
       },
     ];

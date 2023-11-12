@@ -17,6 +17,8 @@ export class LoginComponent {
   translationKeys = translationKeys;
   environment = environment;
 
+  subject: string = encodeURIComponent('نسيت كلمة السر');
+
   loginFrom = this.fb.nonNullable.group({
     identifier: ['', Validators.required],
     password: ['', Validators.required],
@@ -52,5 +54,16 @@ export class LoginComponent {
         updateOn: 'change',
       }
     );
+  }
+
+  getBody(): string {
+    return [
+      'السلام عليكم',
+      'نسيت كلمت السر الخاص بي',
+      'اسم المستخدم: ' + this.loginFrom.controls.identifier.value,
+      '',
+      'جزاكم الله خيرا',
+      '',
+    ].join('\n');
   }
 }

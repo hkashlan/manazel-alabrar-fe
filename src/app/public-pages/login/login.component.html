@@ -95,10 +95,14 @@
       <a mat-flat-button href="{{ environment.auth.google }}">
         <mat-icon [svgIcon]="'google'"></mat-icon> {{ translationKeys.login.google | translate }}
       </a>
+
       <!-- <a mat-flat-button href="{{ environment.auth.facebook }}">
         <mat-icon [svgIcon]="'facebook'"></mat-icon> {{ translationKeys.login.facebook | translate }}
       </a> -->
     </div>
+    <a [href]="'mailto:manazelalabrarkw@gmail.com?subject=' + subject + '&body=' + getBody()" class="forget-password">
+      {{ translationKeys.login.sendEmail | translate }}
+    </a>
   </div>
 </section>
 <div

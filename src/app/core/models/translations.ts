@@ -33,6 +33,7 @@ export const translationKeys = {
     google: "login.google",
     facebook: "login.facebook",
     login: "login.login",
+    sendEmail: "login.sendEmail",
   },
 };
 export interface HomepageExamTransParams {

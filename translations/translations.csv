@@ -29,3 +29,8 @@ login.password,password,كلمة السر
 login.google,continue with goold,الاستمرار مع غوغل
 login.facebook,continue with facebook,الاستمرا مع فيس بوك
 login.login,login,دخول
+login.sendEmail,send email if you have an issue,يمكنك ارسال ايميل لاستعادة حسابك
+quizzes.exam_name,exam name,اسم الامتحان
+quizzes.mark,mark,علامة
+quizzes.from,from,من
+quizzes.faculty,faculty,مسار
