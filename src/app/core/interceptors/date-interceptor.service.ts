@@ -19,6 +19,7 @@ export class DateInterceptor implements HttpInterceptor {
       for (const key in obj) {
         if (obj.hasOwnProperty(key)) {
           const value = obj[key];
+
           if (typeof value === 'string' && key.toLowerCase().includes('date')) {
             const date = Date.parse(value);
             if (!isNaN(date) && value.length > 5) {
