@@ -17,9 +17,9 @@ export class DateInterceptor implements HttpInterceptor {
     // If the input is an object, recursively parse any date strings in its properties
     if (obj instanceof Object) {
       for (const key in obj) {
-        if (key.toLocaleLowerCase().includes('date') && obj.hasOwnProperty(key)) {
+        if (obj.hasOwnProperty(key)) {
           const value = obj[key];
-          if (typeof value === 'string') {
+          if (typeof value === 'string' && key.toLocaleLowerCase().includes('date')) {
             const date = Date.parse(value);
             if (!isNaN(date)) {
               obj[key] = new Date(date);

@@ -9,6 +9,11 @@ import { MultiChoiceComponent } from './components/multi-choice/multi-choice.com
 import { SingleChoiceComponent } from './components/single-choice/single-choice.component';
 import { ExamState, ExamStore } from './exam.store';
 
+export enum QuestionType {
+  SingleChoice = 'SingleChoice',
+  MultiChoice = 'MultiChoice',
+}
+
 @Component({
   selector: 'app-exam',
   standalone: true,
@@ -20,7 +25,7 @@ import { ExamState, ExamStore } from './exam.store';
 export class ExamComponent implements OnInit {
   @Input() questions: BFF.Question[] = [];
 
-  qt = BFF.QuestionType;
+  qt = QuestionType;
 
   translationKeys = translationKeys;
 
