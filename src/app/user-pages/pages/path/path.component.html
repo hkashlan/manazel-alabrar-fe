@@ -1,12 +1,12 @@
 <ng-container *ngIf="error?.message as message">
   {{ message | translate }}
 </ng-container>
-<ng-container *ngIf="!(loadingService.loadingSubject$ | async)">
-  <ng-container *ngIf="openPathResponse$ | async as openPathResponse">
+<ng-container *ngIf="!loadingService.loading()">
+  <ng-container *ngIf="openPathResponse() as openPathResponse">
     <div *ngFor="let path of openPathResponse.data" class="panel course">
       {{ path.id }}
       <div class="title">{{ path.title }}</div>
-      <div class="sub-title">{{ path.description }}</div>
+      <div class="sub-title" [innerHTML]="getDescription(path.description)"></div>
       <img mat-card-image src="/assets/logo.svg" />
       <button mat-fab extended color="primary" (click)="register(path.id)">
         {{ translationKeys.path.register | translate }}

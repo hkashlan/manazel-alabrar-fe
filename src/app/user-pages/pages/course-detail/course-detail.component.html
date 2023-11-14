@@ -1,8 +1,8 @@
 <h1 class="header">
-  {{ translationKeys.quizzes | translate }}
+  {{ translationKeys.course | translate }}
 </h1>
 <app-table [tableColumns]="ordersTableColumns" [tableData]="lessons">
-  <ng-template [appColDef]="'name'" let-element>
-    <a [routerLink]="['../../../', lessonRouter, pathId, courseId, element.lessonId]"> {{ element.name }} </a>
+  <ng-template [appColDef]="translationKeys.lesson" let-element>
+    <a [routerLink]="['../../../', lessonRouter, pathId, courseId, element.lessonId]"> {{ element.title }} </a>
   </ng-template>
 </app-table>

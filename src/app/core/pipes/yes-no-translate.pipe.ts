@@ -1,12 +1,13 @@
-import { inject, Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { translationKeys } from './models/translations';
+import { translationKeys } from '../models/translations';
 
 @Pipe({
+  standalone: true,
   name: 'yesNoTranslate',
 })
 export class YesNoTranslatePipe implements PipeTransform {
-  translate = inject(TranslateService);
+  constructor(private translate: TranslateService) {}
 
   transform(value: boolean): string {
     return this.translate.instant(value ? translationKeys.yes : translationKeys.no);

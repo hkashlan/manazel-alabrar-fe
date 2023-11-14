@@ -3,6 +3,7 @@ course,course,مقرر
 quizzes,quizzes,الإختبارات
 questions,questions,اسئلة
 check_exam,check result,تحقق
+your_result,your results {{result}} from {{total}},علامتك هي {{result}} من {{total}}
 lesson,lesson,درس
 lesson_finished,I finished the lesson,انهيت الدرس
 lesson_present,present,حضور
@@ -34,3 +35,5 @@ quizzes.exam_name,exam name,اسم الامتحان
 quizzes.mark,mark,علامة
 quizzes.from,from,من
 quizzes.faculty,faculty,مسار
+date,date,تاريخ
+from,from,من

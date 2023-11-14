@@ -1,18 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { provideComponentStore } from '@ngrx/component-store';
 import { TranslateModule } from '@ngx-translate/core';
-import { BFF } from '../../../user-pages/models/schema-bff.d';
+import { BFF } from '../../../user-pages/models/schema-bff';
 import { translationKeys } from '../../models/translations';
 import { MultiChoiceComponent } from './components/multi-choice/multi-choice.component';
 import { SingleChoiceComponent } from './components/single-choice/single-choice.component';
-import { ExamState, ExamStore } from './exam.store';
-
-export enum QuestionType {
-  SingleChoice = 'SingleChoice',
-  MultiChoice = 'MultiChoice',
-}
+import { ExamStore } from './exam.store';
 
 @Component({
   selector: 'app-exam',
@@ -20,32 +14,31 @@ export enum QuestionType {
   imports: [CommonModule, MatButtonModule, TranslateModule, SingleChoiceComponent, MultiChoiceComponent],
   templateUrl: './exam.component.html',
   styleUrls: ['./exam.component.scss'],
-  providers: [provideComponentStore(ExamStore)],
+  providers: [ExamStore],
 })
 export class ExamComponent implements OnInit {
+  private examStore = inject(ExamStore);
+
   @Input() questions: BFF.Question[] = [];
+  @Input({ required: true }) done: boolean = false;
+  @Output() finishExam = new EventEmitter<number>();
 
-  qt = QuestionType;
+  checkAnswer = this.examStore.checkAnswer;
 
+  qt = BFF.QuestionType;
   translationKeys = translationKeys;
-
-  constructor(private examStore: ExamStore) {}
 
   ngOnInit(): void {
     const answers = this.questions.map(() => false);
-    const initialState: ExamState = {
-      questions: this.questions,
-      answers,
-      checkAnswer: false,
-    };
-    this.examStore.setState(initialState);
+
+    this.examStore.questions.set(this.questions);
+    this.examStore.answers.set(answers);
+    this.examStore.checkAnswer.set(this.done);
   }
 
   toggleCheck() {
-    this.examStore.patchState((state) => ({ checkAnswer: !state.checkAnswer }));
+    this.examStore.checkAnswer.set(!this.examStore.checkAnswer());
+    const grade = this.examStore.answers().filter((a) => a).length;
+    this.finishExam.emit(grade);
   }
-
-  // score(questionIndex: number, correct: boolean) {
-  //   this.answers[questionIndex] = correct;
-  // }
 }

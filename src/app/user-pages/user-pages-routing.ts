@@ -103,7 +103,7 @@ export function getUserRouteInfo(): UserRouteInfo {
   const lessonId = getRouteNumberParam(UserParameters.lessonId);
   const quizId = getRouteNumberParam(UserParameters.quizId);
 
-  const path = userStore.get().studentResponse.data?.paths.find((f) => f.id === pathId)!;
+  const path = userStore.studentResponse().data?.paths.find((f) => f.id === pathId)!;
   const course = path?.courses.find((c) => c.id === courseId)!;
   const lesson = course?.lessons.find((l) => l.lessonId === lessonId);
   const quiz = course?.quizzes[quizId];

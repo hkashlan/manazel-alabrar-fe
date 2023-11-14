@@ -62,4 +62,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UserPagesRoutingModule {}
+export default class UserPagesRoutingModule {}

@@ -14,11 +14,11 @@ export class MultiChoiceComponent extends QuestionComponent {
   checked: boolean[] = [];
   changeValue(t: MatCheckboxChange, index: number) {
     this.checked[index] = t.checked;
-    const isCorrect = this.question.answers.every((a, index) => a.correct === this.checked[index]);
+    const isCorrect = this.question().answers.every((a, index) => a.correct === this.checked[index]);
     super.triggerScore(isCorrect);
   }
 
   override questionFetched(): void {
-    this.checked = this.question.answers.map(() => false);
+    this.checked = this.question().answers.map(() => false);
   }
 }
