@@ -20,8 +20,7 @@ export class RegisterComponent {
   createform() {
     return this.fb.group(
       {
-        first_name: ['', [Validators.required]],
-        last_name: ['', [Validators.required]],
+        name: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         password_confirmation: ['', [Validators.required]],
@@ -86,10 +85,7 @@ export class RegisterComponent {
     // );
   }
   get firstname() {
-    return this.registerform.get('first_name');
-  }
-  get lastname() {
-    return this.registerform.get('last_name');
+    return this.registerform.get('name');
   }
   get email() {
     return this.registerform.get('email');
