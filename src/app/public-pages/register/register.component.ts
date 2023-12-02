@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
 import { SharedModule } from '../../core/modules/shared.module';
 
 @Component({
@@ -11,22 +10,17 @@ import { SharedModule } from '../../core/modules/shared.module';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   token: boolean = true;
   loading: boolean = false;
   registerform = this.createform();
   phone_number: any;
-  loginPrefix: string = '';
   constructor(private fb: FormBuilder, private router: Router) {}
 
-  ngOnInit(): void {
-    this.loginPrefix = environment.loginPrefix;
-  }
   createform() {
     return this.fb.group(
       {
-        first_name: ['', [Validators.required]],
-        last_name: ['', [Validators.required]],
+        name: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         password_confirmation: ['', [Validators.required]],
@@ -91,10 +85,7 @@ export class RegisterComponent implements OnInit {
     // );
   }
   get firstname() {
-    return this.registerform.get('first_name');
-  }
-  get lastname() {
-    return this.registerform.get('last_name');
+    return this.registerform.get('name');
   }
   get email() {
     return this.registerform.get('email');

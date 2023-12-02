@@ -1,22 +1,42 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { translationKeys } from 'src/app/core/models/translations';
+import { AuthenticationService, LOGIN_INFO } from 'src/app/core/services/authentication.service';
 import { environment } from '../../../environments/environment';
 import { SharedModule } from '../../core/modules/shared.module';
+import { StorageService } from '../../core/services/storage.service';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 
 @Component({
   standalone: true,
-  imports: [SharedModule, NavbarComponent],
+  imports: [ReactiveFormsModule, SharedModule, NavbarComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  loginPrefix = environment.loginPrefix;
+  translationKeys = translationKeys;
+  environment = environment;
 
-  loginFrom = new FormGroup({});
-  constructor(private fb: FormBuilder) {}
+  subject: string = encodeURIComponent('نسيت كلمة السر');
 
-  ngOnInit(): void {}
+  loginFrom = this.fb.nonNullable.group({
+    identifier: ['', Validators.required],
+    password: ['', Validators.required],
+  });
+  formError = false;
+  constructor(private fb: FormBuilder, private ss: StorageService, private authService: AuthenticationService) {
+    const loginInformation = this.ss.getItem(LOGIN_INFO);
+    if (loginInformation) {
+      this.loginFrom.setValue(JSON.parse(loginInformation));
+    }
+  }
+
+  login() {
+    const value = this.loginFrom.getRawValue();
+    this.formError = false;
+    this.authService.saveToken('local', value).catch(() => (this.formError = true));
+  }
+
   logincord() {
     return this.fb.group(
       {
@@ -34,5 +54,16 @@ export class LoginComponent {
         updateOn: 'change',
       }
     );
+  }
+
+  getBody(): string {
+    return [
+      'السلام عليكم',
+      'نسيت كلمت السر الخاص بي',
+      'اسم المستخدم: ' + this.loginFrom.controls.identifier.value,
+      '',
+      'جزاكم الله خيرا',
+      '',
+    ].join('\n');
   }
 }

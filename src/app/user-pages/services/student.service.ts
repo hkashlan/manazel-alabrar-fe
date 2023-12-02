@@ -23,8 +23,20 @@ export class StudentService {
     return this.http.get<BFF.register.response>('/api/user/open-paths/register/' + path);
   }
 
-  saveProfile(firstName: string, lastName: string): Observable<BFF.saveProfile.response> {
-    return this.http.post<BFF.saveProfile.response>('/api/user/open-paths/save-profile', { firstName, lastName });
+  saveProfile(name: string): Observable<BFF.saveProfile.response> {
+    return this.http.post<BFF.saveProfile.response>('/api/user/open-paths/save-profile', { name });
+  }
+
+  finishLesson(courseId: number, lessonId: number, finished: boolean): Observable<BFF.studentLessonResponse.response> {
+    return this.http.get<BFF.studentLessonResponse.response>(
+      `/api/user/open-paths/finish-lesson/${courseId}/${lessonId}/${finished}`
+    );
+  }
+
+  finishExam(courseId: number, lessonId: number, mark: number): Observable<BFF.studentLessonResponse.response> {
+    return this.http.get<BFF.studentLessonResponse.response>(
+      `/api/user/open-paths/finish-exam/${courseId}/${lessonId}/${mark}`
+    );
   }
 
   finishLesson(courseId: number, lessonId: number, finished: boolean): Observable<BFF.finishLesson.response> {

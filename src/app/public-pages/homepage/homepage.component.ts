@@ -1,20 +1,15 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../core/modules/shared.module';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [SharedModule, NavbarComponent],
+  imports: [SharedModule, NavbarComponent, RouterModule],
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomepageComponent {
-  loginPrefix = environment.loginPrefix;
-
-  constructor() {}
   photo: any = '/assets/img/Group 28.png';
-  ngOnInit(): void {}
 }

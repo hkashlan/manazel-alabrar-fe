@@ -1,3 +1,5 @@
+import { StudentLesson } from './schema';
+
 export namespace BFF {
   export interface Response<T> {
     data?: T;
@@ -32,8 +34,7 @@ export namespace BFF {
     }
 
     export interface Student {
-      firstName: string;
-      lastName: string;
+      name: string;
       title: string;
       lastTitle: string;
       image: string;
@@ -66,14 +67,13 @@ export namespace BFF {
 
   export namespace saveProfile {
     export interface Profile {
-      firstName: string;
-      lastName: string;
+      name: string;
     }
 
     export type response = Response<Profile>;
   }
-  export namespace finishLesson {
-    export type response = Response<boolean>;
+  export namespace studentLessonResponse {
+    export type response = Response<StudentLesson>;
   }
 
   export namespace register {
@@ -85,7 +85,7 @@ export namespace BFF {
 
   export interface Answer {
     title: string;
-    correct: boolean;
+    correct?: boolean;
   }
 
   export enum QuestionType {

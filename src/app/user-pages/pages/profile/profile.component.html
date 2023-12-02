@@ -1,11 +1,7 @@
 <form [formGroup]="form" class="row">
   <mat-form-field class="col-lg-6 col-12">
     <mat-label>{{ translationKeys.firstName | translate }} </mat-label>
-    <input matInput formControlName="firstName" cdkFocusInitial />
-  </mat-form-field>
-  <mat-form-field class="col-lg-6 col-12">
-    <mat-label>{{ translationKeys.lastName | translate }} </mat-label>
-    <input matInput formControlName="lastName" />
+    <input matInput formControlName="name" cdkFocusInitial />
   </mat-form-field>
 
   <button [disabled]="!form.valid" mat-raised-button color="primary" (click)="save()">

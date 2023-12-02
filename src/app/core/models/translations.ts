@@ -10,6 +10,7 @@ export const translationKeys = {
   lesson_mark: "lesson_mark",
   yes: "yes",
   no: "no",
+  or: "or",
   homepage: {
     exams: "homepage.exams",
     courses: "homepage.courses",
@@ -27,6 +28,14 @@ export const translationKeys = {
   firstName: "firstName",
   lastName: "lastName",
   save: "save",
+  login: {
+    user_name: "login.user_name",
+    password: "login.password",
+    google: "login.google",
+    facebook: "login.facebook",
+    login: "login.login",
+    sendEmail: "login.sendEmail",
+  },
   date: "date",
   from: "from",
 };

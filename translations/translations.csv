@@ -1,4 +1,4 @@
-key,en,ar
+key,en,ar,1
 course,course,مقرر
 quizzes,quizzes,الإختبارات
 questions,questions,اسئلة
@@ -10,6 +10,7 @@ lesson_present,present,حضور
 lesson_mark,mark,علامة
 yes,yes,نعم
 no,no,لا
+or,or,أو
 homepage.exams,exams,امتحانات
 homepage.courses,today lessons,دروس يوم
 homepage.exam,exam {{name}} from {{from}} to {{to}},امتحان {{name}} من {{from}} إلى {{to}}
@@ -24,5 +25,15 @@ profile,profile,صفحتي
 firstName,first name,الأسم الأول
 lastName,last name,الأسم الأخير
 save,save,حفظ
+login.user_name,user name,اسم المستخدم
+login.password,password,كلمة السر
+login.google,continue with goold,الاستمرار مع غوغل
+login.facebook,continue with facebook,الاستمرا مع فيس بوك
+login.login,login,دخول
+login.sendEmail,send email if you have an issue,يمكنك ارسال ايميل لاستعادة حسابك
+quizzes.exam_name,exam name,اسم الامتحان
+quizzes.mark,mark,علامة
+quizzes.from,from,من
+quizzes.faculty,faculty,مسار
 date,date,تاريخ
 from,from,من

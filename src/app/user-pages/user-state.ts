@@ -28,11 +28,10 @@ export class UserStore {
     return this.studentService.register(path);
   }
 
-  saveProfile(firstName: string, lastName: string) {
-    return this.studentService.saveProfile(firstName, lastName).subscribe((response) => {
+  saveProfile(name: string) {
+    return this.studentService.saveProfile(name).subscribe((response) => {
       this.studentResponse.update((s) => {
-        s.data!.firstName = response.data?.firstName!;
-        s.data!.lastName = response.data?.lastName!;
+        s.data!.name = response.data?.name!;
         return s;
       });
     });

@@ -63,6 +63,9 @@ fs.readFile("translations.csv", "utf-8", (err, data) => {
   generateTranslationsTs(translationsKeys, translationsKeysInterfaces);
 
   Object.keys(translationsMap).forEach((key) => {
+    console.log("-----------------------------");
+    console.log(key);
+    console.log("-----------------------------");
     fs.writeFile(`../src/assets/i18n/${key}.json`, JSON.stringify(translationsMap[key]), (err) => {
       if (err) throw err;
       console.log(`gen/${key}.json has been saved!`);
