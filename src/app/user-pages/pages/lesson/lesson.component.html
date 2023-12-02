@@ -5,6 +5,9 @@
 <mat-tab-group class="panel">
   <mat-tab label="{{ translationKeys.lesson | translate }}">
     <div [innerHTML]="lesson.description"></div>
+    <audio *ngIf="lesson.audio" controls>
+      <source src="{{ lesson.audio }}" type="audio/mpeg" />
+    </audio>
     <ngx-extended-pdf-viewer
       #pdfView
       *ngIf="pdfUrl"
