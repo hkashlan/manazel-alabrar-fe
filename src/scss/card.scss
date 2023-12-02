@@ -1,5 +1,5 @@
-@use "/src/scss/sizes" as sizes;
-@use "/src/scss/layout-bp" as layout;
+@use "./sizes" as sizes;
+@use "./layout-bp" as layout;
 
 .cards {
   display: flex;

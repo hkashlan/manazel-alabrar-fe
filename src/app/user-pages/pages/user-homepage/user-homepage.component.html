@@ -2,7 +2,14 @@
   <button mat-icon-button (click)="nextDate()">
     <mat-icon>navigate_next</mat-icon>
   </button>
-  <span> {{ translationKeys.homepage.courses | translate }} {{ currentDate | date }} </span>
+  <div>
+    <input style="visibility: hidden; width: 1px" matInput [matDatepicker]="picker" [(ngModel)]="currentDate" />
+    {{ translationKeys.homepage.courses | translate }} {{ currentDate | date }}
+    <button mat-mini-fab (click)="picker.open()">
+      <mat-icon>calendar_month</mat-icon>
+    </button>
+    <mat-datepicker #picker></mat-datepicker>
+  </div>
   <button mat-icon-button (click)="previousDate()">
     <mat-icon>navigate_before</mat-icon>
   </button>
@@ -21,7 +28,7 @@
   {{ lesson.courseName }}: {{ lesson.lessonName }}
 </div>
 
-<div class="header">
+<div class="header" *ngIf="quizzes.length">
   <span> {{ translationKeys.homepage.exams | translate }} </span>
 </div>
 <div

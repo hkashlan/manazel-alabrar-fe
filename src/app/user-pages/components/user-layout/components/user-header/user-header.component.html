@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" *ngIf="student$ | async as student">
+<mat-toolbar color="primary" *ngIf="student() as student">
   <div class="side-menu">
     <button mat-icon-button (click)="onToggleSidenav()">
       <mat-icon>menu</mat-icon>

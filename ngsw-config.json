@@ -27,6 +27,14 @@
         "maxAge": "1d",
         "strategy": "freshness"
       }
+    },
+    {
+      "name": "uploads",
+      "urls": ["/uploads/**/*.**"],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "100d"
+      }
     }
   ]
 }

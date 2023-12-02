@@ -38,11 +38,11 @@ export class QuizzesComponent {
   initializeColumns(): TableColumn<QuizInfo>[] {
     return [
       {
-        name: 'exam',
+        name: 'quizzes.exam_name',
         dataKey: 'quizName',
       },
       {
-        name: 'faculty',
+        name: 'quizzes.faculty',
         dataKey: 'facultyName',
       },
       {
@@ -50,11 +50,11 @@ export class QuizzesComponent {
         dataKey: 'courseName',
       },
       {
-        name: 'fromTo',
+        name: 'quizzes.from',
         dataKey: 'fromTo',
       },
       {
-        name: 'mark',
+        name: 'quizzes.mark',
         dataKey: 'mark',
       },
     ];
@@ -87,10 +87,8 @@ export class QuizzesComponent {
 
   getQuizzes(): QuizInfo[] {
     return this.userStore
-      .get()
-      .studentResponse.data!.paths.map((f) =>
-        f.courses.map((c) => c.quizzes.map((q, index) => this.createQuizInfo(f, c, q, index)))
-      )
+      .studentResponse()
+      .data!.paths.map((f) => f.courses.map((c) => c.quizzes.map((q, index) => this.createQuizInfo(f, c, q, index))))
       .flat()
       .flat();
   }

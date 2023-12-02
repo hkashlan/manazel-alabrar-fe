@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'callback/:provider',
     pathMatch: 'full',
-    canMatch: [(route) => inject(AuthenticationService).saveToken(getRouteParam('provider') || 'google')],
+    canMatch: [() => inject(AuthenticationService).saveToken(getRouteParam('provider') || 'google')],
     component: HomepageComponent,
   },
   {

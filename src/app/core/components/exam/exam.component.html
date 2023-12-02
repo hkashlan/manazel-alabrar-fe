@@ -6,4 +6,6 @@
   </ng-container>
 </div>
 
-<button mat-raised-button color="primary" (click)="toggleCheck()">{{ translationKeys.check_exam | translate }}</button>
+<button mat-raised-button color="primary" (click)="toggleCheck()" [disabled]="done || checkAnswer()">
+  {{ translationKeys.check_exam | translate }}
+</button>

@@ -1,5 +1,5 @@
-@use "/src/scss/colors" as colors;
-@use "/src/scss/sizes" as sizes;
+@use "../../../../scss/colors" as colors;
+@use "../../../../scss/sizes" as sizes;
 
 .question {
   padding-bottom: sizes.$medium;

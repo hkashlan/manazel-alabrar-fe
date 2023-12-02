@@ -3,12 +3,14 @@ export const translationKeys = {
   quizzes: "quizzes",
   questions: "questions",
   check_exam: "check_exam",
+  your_result: "your_result",
   lesson: "lesson",
   lesson_finished: "lesson_finished",
   lesson_present: "lesson_present",
   lesson_mark: "lesson_mark",
   yes: "yes",
   no: "no",
+  or: "or",
   homepage: {
     exams: "homepage.exams",
     courses: "homepage.courses",
@@ -26,7 +28,21 @@ export const translationKeys = {
   firstName: "firstName",
   lastName: "lastName",
   save: "save",
+  login: {
+    user_name: "login.user_name",
+    password: "login.password",
+    google: "login.google",
+    facebook: "login.facebook",
+    login: "login.login",
+    sendEmail: "login.sendEmail",
+  },
+  date: "date",
+  from: "from",
 };
+export interface YourResultTransParams {
+  result: string;
+  total: string;
+}
 export interface HomepageExamTransParams {
   name: string;
   from: string;

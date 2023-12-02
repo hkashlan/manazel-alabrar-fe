@@ -17,23 +17,21 @@ import { UserStore } from '../../user-state';
 })
 export class ProfileComponent {
   form = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
+    name: ['', Validators.required],
   });
 
   translationKeys = translationKeys;
 
   constructor(private fb: FormBuilder, private userStore: UserStore) {
-    const student = this.userStore.get().studentResponse.data!;
+    const student = this.userStore.studentResponse().data!;
     this.form.setValue({
-      firstName: student.firstName,
-      lastName: student.lastName,
+      name: student.name,
     });
   }
 
   save() {
     if (this.form.valid) {
-      this.userStore.saveProfile(this.form.controls.firstName.value!, this.form.controls.lastName.value!);
+      this.userStore.saveProfile(this.form.controls.name.value!);
     }
   }
 }

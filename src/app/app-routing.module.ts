@@ -32,7 +32,7 @@ const routes: Routes = [
       },
       {
         path: 'user',
-        loadChildren: () => import('./user-pages/user-pages-routing.module').then((m) => m.UserPagesRoutingModule),
+        loadChildren: () => import('./user-pages/user-pages-routing.module'),
         canMatch: [() => inject(AuthenticationService).isLoggedIn()],
       },
       {
@@ -45,7 +45,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
