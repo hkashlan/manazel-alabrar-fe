@@ -22,6 +22,7 @@ export class AuthenticationService {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json', // Set the Content-Type header if sending JSON data
+            'cache-control': 'no-cache',
           },
           body: JSON.stringify(user), // Convert the data to JSON string
         };
