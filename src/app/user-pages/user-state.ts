@@ -9,6 +9,10 @@ export class UserStore {
   openPathsResponse = signal<BFF.openPath.response>({});
 
   constructor(private studentService: StudentService, private loadingService: LoadingService) {
+    this.resetStudent();
+  }
+
+  resetStudent() {
     this.loadingService.updateLoading(true);
     this.studentService.loadStudent().subscribe((student) => {
       this.loadingService.updateLoading(false);

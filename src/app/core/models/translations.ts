@@ -20,6 +20,7 @@ export const translationKeys = {
   path: {
     register: "path.register",
     register_confirm: "path.register_confirm",
+    register_done: "path.register_done",
     no_path_open: "path.no_path_open",
   },
   new_version: { msg: "new_version.msg", update_now: "new_version.update_now" },
