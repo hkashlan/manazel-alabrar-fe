@@ -72,6 +72,8 @@ export enum PathResultRelations {
 
 export enum UserAttributes {
   name = 'name',
+  firstName = 'firstName',
+  lastName = 'lastName',
   status = 'status',
   username = 'username',
   email = 'email',
@@ -159,6 +161,7 @@ export enum AnswerAttributes {
 export enum QuestionAttributes {
   questionType = 'questionType',
   title = 'title',
+  mark = 'mark',
   answers = 'answers',
 }
 
@@ -191,6 +194,8 @@ export enum PathResultAttributes {
 
 export interface User {
   name: string;
+  firstName?: string;
+  lastName?: string;
   status?: string;
   username: string;
   email: string;
@@ -283,6 +288,7 @@ export enum QuestionType {
 export interface Question {
   questionType: QuestionType;
   title: string;
+  mark: number;
   answers: Answer[];
 }
 

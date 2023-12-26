@@ -7,7 +7,7 @@ export class QuestionComponent {
 
   @Input() qIndex: number = 0;
 
-  question = computed(() => this.store.questions()[this.qIndex]);
+  question = computed(() => this.store.answers()[this.qIndex].question);
   checkAnswer = this.store.checkAnswer;
   isCorrect: boolean = false;
 
@@ -16,7 +16,8 @@ export class QuestionComponent {
   triggerScore(correct: boolean) {
     this.isCorrect = correct;
     this.store.answers.update((a) => {
-      a[this.qIndex] = correct;
+      a[this.qIndex].isCorrect = correct;
+      a[this.qIndex].answered = true;
       return a;
     });
   }

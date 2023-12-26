@@ -8,11 +8,13 @@ import { getUserRouteInfo } from '../../user-pages-routing';
   imports: [CommonModule, ExamComponent],
   template: `
     <h1 class="header">{{ quiz.title }}</h1>
-    <app-exam [questions]="questions" [done]="false"></app-exam>
+    <app-exam [questions]="questions" [done]="false" (finishExam)="finishExam($event)"></app-exam>
   `,
 })
 export class QuizComponent {
   routeInfo = getUserRouteInfo();
   quiz = this.routeInfo.quiz!;
   questions = this.quiz.questions!;
+
+  finishExam(degree: number) {}
 }

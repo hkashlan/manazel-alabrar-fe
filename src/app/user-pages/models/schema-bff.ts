@@ -96,6 +96,7 @@ export namespace BFF {
   export interface Question {
     title: string;
     answers: Answer[];
+    mark: number;
     questionType: QuestionType;
   }
 
@@ -105,9 +106,9 @@ export namespace BFF {
     pageNumber?: number;
     description: string;
     present: boolean;
+    audio?: string;
     done: boolean;
     date: Date;
-    audio?: string;
     mark: number;
     questions: Question[];
   }

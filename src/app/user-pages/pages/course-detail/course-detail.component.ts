@@ -49,7 +49,7 @@ export class CourseDetailComponent {
     title: l.title,
     done: this.yesNoTranslatePipe.transform(l.done),
     present: this.yesNoTranslatePipe.transform(l.present),
-    mark: `${l.mark} ${this.translate.instant(translationKeys.from)} ${l.questions.length}`,
+    mark: l.mark !== undefined ? `${l.mark} ${this.translate.instant(translationKeys.from)} ${l.questions.length}` : '',
     date: this.datePipe.transform(l.date, 'YYYY-dd-MM')!,
     lessonId: i,
   }));
