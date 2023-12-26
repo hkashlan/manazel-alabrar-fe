@@ -38,4 +38,10 @@ export class StudentService {
       `/api/user/open-paths/finish-exam/${courseId}/${lessonId}/${mark}`
     );
   }
+
+  finishQuiz(courseId: number, quizId: number, mark: number): Observable<BFF.studentLessonResponse.response> {
+    return this.http.get<BFF.studentLessonResponse.response>(
+      `/api/user/open-paths/finish-quiz/${courseId}/${quizId}/${mark}`
+    );
+  }
 }

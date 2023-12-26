@@ -8,6 +8,7 @@ import { SharedModule } from '../../../core/modules/shared.module';
 import { SafePipe } from '../../../core/pipes/safe-url.pipe';
 import { StudentService } from '../../services/student.service';
 import { getUserRouteInfo } from '../../user-pages-routing';
+import { UserStore } from '../../user-state';
 
 @Component({
   selector: 'app-lesson',
@@ -17,6 +18,7 @@ import { getUserRouteInfo } from '../../user-pages-routing';
   styleUrls: ['./lesson.component.scss'],
 })
 export class LessonComponent implements OnInit {
+  private userStore = inject(UserStore);
   private studentService = inject(StudentService);
 
   @HostBinding('class') class = 'page';
@@ -55,7 +57,7 @@ export class LessonComponent implements OnInit {
 
   finishExam(mark: number) {
     this.lesson.mark = mark;
-    this.studentService.finishExam(this.routeInfo.course.id, this.routeInfo.lessonId, mark).subscribe();
+    this.studentService.finishExam(this.routeInfo.course.id, this.routeInfo.lessonId, mark).subscribe((s) => {});
   }
 
   openFullscreen() {
