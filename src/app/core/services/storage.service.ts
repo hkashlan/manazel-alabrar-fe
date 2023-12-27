@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 
+export const sessionKeys = {
+  jwt: 'jwt',
+  username: 'username',
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -21,6 +26,7 @@ export class StorageService {
   }
 
   clear() {
-    window.localStorage.clear();
+    this.removeItem(sessionKeys.jwt);
+    this.removeItem(sessionKeys.username);
   }
 }

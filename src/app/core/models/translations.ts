@@ -1,6 +1,5 @@
 export const translationKeys = {
   course: "course",
-  quizzes: "quizzes",
   questions: "questions",
   check_exam: "check_exam",
   your_result: "your_result",
@@ -36,6 +35,13 @@ export const translationKeys = {
     facebook: "login.facebook",
     login: "login.login",
     sendEmail: "login.sendEmail",
+  },
+  quizzes: {
+    title: "quizzes.title",
+    exam_name: "quizzes.exam_name",
+    mark: "quizzes.mark",
+    from: "quizzes.from",
+    faculty: "quizzes.faculty",
   },
   date: "date",
   from: "from",

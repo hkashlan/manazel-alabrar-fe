@@ -1,6 +1,5 @@
 key,en,ar,1
 course,course,مقرر
-quizzes,quizzes,الإختبارات
 questions,questions,اسئلة
 check_exam,check result,تحقق
 your_result,your results {{result}} from {{total}},علامتك هي {{result}} من {{total}}
@@ -32,6 +31,7 @@ login.google,continue with goold,الاستمرار مع غوغل
 login.facebook,continue with facebook,الاستمرا مع فيس بوك
 login.login,login,دخول
 login.sendEmail,send email if you have an issue,يمكنك ارسال ايميل لاستعادة حسابك
+quizzes.title,quizzes,الإختبارات
 quizzes.exam_name,exam name,اسم الامتحان
 quizzes.mark,mark,علامة
 quizzes.from,from,من
