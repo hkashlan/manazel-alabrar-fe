@@ -8,6 +8,17 @@ import { MultiChoiceComponent } from './components/multi-choice/multi-choice.com
 import { SingleChoiceComponent } from './components/single-choice/single-choice.component';
 import { ExamStore, StudentAnswer } from './exam.store';
 
+function sumArray(arr: number[]): number {
+  // Using the reduce method to accumulate the sum
+  const sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  return sum;
+}
+
+export interface ExamResult {
+  mark: number;
+  fullMark: number;
+}
+
 @Component({
   selector: 'app-exam',
   standalone: true,
@@ -21,7 +32,7 @@ export class ExamComponent implements OnInit {
 
   @Input() questions: BFF.Question[] = [];
   @Input({ required: true }) done: boolean = false;
-  @Output() finishExam = new EventEmitter<number>();
+  @Output() finishExam = new EventEmitter<ExamResult>();
 
   qt = BFF.QuestionType;
   translationKeys = translationKeys;
@@ -45,10 +56,9 @@ export class ExamComponent implements OnInit {
 
   toggleCheck() {
     this.examStore.checkAnswer.set(!this.examStore.checkAnswer());
-    const grade = this.examStore
-      .answers()
-      .filter((a) => a.isCorrect)
-      .map((a) => a.question.mark || 1).length;
-    this.finishExam.emit(grade);
+    const answers = this.examStore.answers();
+    const mark = sumArray(answers.filter((a) => a.isCorrect).map((a) => a.question.mark || 1));
+    const fullMark = sumArray(answers.map((a) => a.question.mark || 1));
+    this.finishExam.emit({ mark, fullMark });
   }
 }

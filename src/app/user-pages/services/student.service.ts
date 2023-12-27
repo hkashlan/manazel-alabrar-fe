@@ -39,9 +39,14 @@ export class StudentService {
     );
   }
 
-  finishQuiz(courseId: number, quizId: number, mark: number): Observable<BFF.studentLessonResponse.response> {
+  finishQuiz(
+    courseId: number,
+    quizId: number,
+    fullMark: number,
+    mark: number
+  ): Observable<BFF.studentLessonResponse.response> {
     return this.http.get<BFF.studentLessonResponse.response>(
-      `/api/user/open-paths/finish-quiz/${courseId}/${quizId}/${mark}`
+      `/api/user/open-paths/finish-quiz/${courseId}/${quizId}/${fullMark}/${mark}`
     );
   }
 }

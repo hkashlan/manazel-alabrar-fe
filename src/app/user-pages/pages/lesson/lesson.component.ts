@@ -2,7 +2,7 @@ import { Component, ElementRef, HostBinding, Inject, OnInit, inject } from '@ang
 
 import { DOCUMENT } from '@angular/common';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-import { ExamComponent } from '../../../core/components/exam/exam.component';
+import { ExamComponent, ExamResult } from '../../../core/components/exam/exam.component';
 import { translationKeys } from '../../../core/models/translations';
 import { SharedModule } from '../../../core/modules/shared.module';
 import { SafePipe } from '../../../core/pipes/safe-url.pipe';
@@ -55,9 +55,9 @@ export class LessonComponent implements OnInit {
     this.studentService.finishLesson(this.routeInfo.course.id, this.routeInfo.lessonId, finished).subscribe();
   }
 
-  finishExam(mark: number) {
-    this.lesson.mark = mark;
-    this.studentService.finishExam(this.routeInfo.course.id, this.routeInfo.lessonId, mark).subscribe((s) => {});
+  finishExam(mark: ExamResult) {
+    this.lesson.mark = mark.mark;
+    this.studentService.finishExam(this.routeInfo.course.id, this.routeInfo.lessonId, mark.mark).subscribe((s) => {});
   }
 
   openFullscreen() {
