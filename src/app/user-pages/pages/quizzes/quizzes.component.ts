@@ -13,7 +13,7 @@ interface QuizInfo {
   facultyName: string;
   courseName: string;
   quizName: string;
-  mark?: number;
+  mark?: string;
   canTake: boolean;
   fromTo: string;
   quizParams: QuizParams;
@@ -70,11 +70,12 @@ export class QuizzesComponent {
       from: this.datePipe.transform(quiz.dateFrom),
       to: this.datePipe.transform(quiz.dateTo),
     } as QuizzesPageFromToTransParams);
+    const fromTrans = this.translateService.instant(translationKeys.from);
     return {
       facultyName: faculty.title,
       courseName: course.title,
       quizName: quiz.title,
-      mark: quiz.mark,
+      mark: quiz.mark !== undefined ? `${quiz.mark}  ${fromTrans} ${quiz.fullMark}` : '',
       canTake: canTakeQuiz(quiz),
       fromTo,
       quizParams: {
