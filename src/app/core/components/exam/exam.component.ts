@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, computed, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BFF } from '../../../user-pages/models/schema-bff';
@@ -31,7 +30,6 @@ export interface ExamResult {
 })
 export class ExamComponent implements OnInit {
   examStore = inject(ExamStore);
-  snackBar = inject(MatSnackBar);
   translateService = inject(TranslateService);
 
   @Input() questions: BFF.Question[] = [];
@@ -59,7 +57,6 @@ export class ExamComponent implements OnInit {
   }
 
   toggleCheck() {
-    this.snackBar.open(this.translateService.instant(translationKeys.path.register_done));
     this.examStore.checkAnswer.set(!this.examStore.checkAnswer());
     const answers = this.examStore.answers();
     const mark = sumArray(answers.filter((a) => a.isCorrect).map((a) => a.question.mark || 1));
