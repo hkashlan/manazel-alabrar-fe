@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, computed, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { RouterModule } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BFF } from '../../../user-pages/models/schema-bff';
 import { translationKeys } from '../../models/translations';
 import { MultiChoiceComponent } from './components/multi-choice/multi-choice.component';
@@ -22,13 +24,15 @@ export interface ExamResult {
 @Component({
   selector: 'app-exam',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, TranslateModule, SingleChoiceComponent, MultiChoiceComponent],
+  imports: [CommonModule, RouterModule, MatButtonModule, TranslateModule, SingleChoiceComponent, MultiChoiceComponent],
   templateUrl: './exam.component.html',
   styleUrls: ['./exam.component.scss'],
   providers: [ExamStore],
 })
 export class ExamComponent implements OnInit {
-  private examStore = inject(ExamStore);
+  examStore = inject(ExamStore);
+  snackBar = inject(MatSnackBar);
+  translateService = inject(TranslateService);
 
   @Input() questions: BFF.Question[] = [];
   @Input({ required: true }) done: boolean = false;
@@ -40,7 +44,7 @@ export class ExamComponent implements OnInit {
   disableDoneBtn = computed(() => {
     const answers = this.examStore.answers();
     const doneAllQeustions = answers.filter((a) => a.answered).length === answers.length;
-    return !doneAllQeustions || this.examStore.checkAnswer();
+    return !doneAllQeustions;
   });
 
   ngOnInit(): void {
@@ -55,6 +59,7 @@ export class ExamComponent implements OnInit {
   }
 
   toggleCheck() {
+    this.snackBar.open(this.translateService.instant(translationKeys.path.register_done));
     this.examStore.checkAnswer.set(!this.examStore.checkAnswer());
     const answers = this.examStore.answers();
     const mark = sumArray(answers.filter((a) => a.isCorrect).map((a) => a.question.mark || 1));

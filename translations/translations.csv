@@ -1,7 +1,8 @@
 key,en,ar,1
 course,course,مقرر
 questions,questions,اسئلة
-check_exam,check result,تحقق
+check_exam,check result,ارسال
+back_to_home_page,home page,الصفحة الرئيسية
 your_result,your results {{result}} from {{total}},علامتك هي {{result}} من {{total}}
 lesson,lesson,درس
 lesson_finished,I finished the lesson,انهيت الدرس
@@ -36,5 +37,6 @@ quizzes.exam_name,exam name,اسم الامتحان
 quizzes.mark,mark,علامة
 quizzes.from,from,من
 quizzes.faculty,faculty,مسار
+exam.done,exam done,لقد اتممت هذا الامتحانات وفقكي الله, يمكنك العودة إلى الصفحة الرئيسية
 date,date,تاريخ
 from,from,من

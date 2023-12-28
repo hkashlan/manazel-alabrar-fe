@@ -2,6 +2,7 @@ export const translationKeys = {
   course: "course",
   questions: "questions",
   check_exam: "check_exam",
+  back_to_home_page: "back_to_home_page",
   your_result: "your_result",
   lesson: "lesson",
   lesson_finished: "lesson_finished",
@@ -43,6 +44,7 @@ export const translationKeys = {
     from: "quizzes.from",
     faculty: "quizzes.faculty",
   },
+  exam: { done: "exam.done" },
   date: "date",
   from: "from",
 };
