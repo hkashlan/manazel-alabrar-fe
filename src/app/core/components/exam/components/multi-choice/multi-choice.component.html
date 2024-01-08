@@ -1,4 +1,5 @@
 <mat-checkbox
+  [checked]="checked[i]"
   *ngFor="let answer of question().answers; let i = index"
   (change)="changeValue($event, i)"
   [class.correct]="checkAnswer() && answer.correct"

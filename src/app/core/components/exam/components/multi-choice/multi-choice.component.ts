@@ -15,7 +15,8 @@ export class MultiChoiceComponent extends QuestionComponent {
   changeValue(t: MatCheckboxChange, index: number) {
     this.checked[index] = t.checked;
     const isCorrect = this.question().answers.every((a, index) => a.correct === this.checked[index]);
-    super.triggerScore(isCorrect);
+    const answers = this.checked.filter((element, index) => element).map((element, index) => index);
+    super.triggerScore(isCorrect, answers);
   }
 
   override questionFetched(): void {

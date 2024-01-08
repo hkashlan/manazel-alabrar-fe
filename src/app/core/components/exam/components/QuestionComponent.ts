@@ -13,11 +13,12 @@ export class QuestionComponent {
 
   protected questionFetched() {}
 
-  triggerScore(correct: boolean) {
+  triggerScore(correct: boolean, choices: number[]) {
     this.isCorrect = correct;
     this.store.answers.update((a) => {
       a[this.qIndex].isCorrect = correct;
       a[this.qIndex].answered = true;
+      a[this.qIndex].answeredOptions = choices;
       return a;
     });
   }

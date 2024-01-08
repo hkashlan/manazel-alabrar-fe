@@ -161,8 +161,8 @@ export enum AnswerAttributes {
 export enum QuestionAttributes {
   questionType = 'questionType',
   title = 'title',
-  mark = 'mark',
   answers = 'answers',
+  mark = 'mark',
 }
 
 export enum QuizAttributes {
@@ -178,6 +178,7 @@ export enum StudentQuizAttributes {
   student = 'student',
   date = 'date',
   mark = 'mark',
+  fullMark = 'fullMark',
 }
 
 export enum CourseResultAttributes {
@@ -273,6 +274,7 @@ export interface StudentLesson {
   student?: User;
   done?: boolean;
   mark?: number;
+  answeredOptions?: number[][];
 }
 
 export interface Answer {
@@ -288,8 +290,8 @@ export enum QuestionType {
 export interface Question {
   questionType: QuestionType;
   title: string;
-  mark: number;
   answers: Answer[];
+  mark?: number;
 }
 
 export interface Quiz {
@@ -304,7 +306,9 @@ export interface Quiz {
 export interface StudentQuiz {
   student?: User;
   date: Date;
-  mark?: number;
+  mark: number;
+  fullMark: number;
+  answeredOptions: number[][];
 }
 
 export interface CourseResult {

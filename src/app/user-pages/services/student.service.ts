@@ -27,26 +27,15 @@ export class StudentService {
     return this.http.post<BFF.saveProfile.response>('/api/user/open-paths/save-profile', { name });
   }
 
-  finishLesson(courseId: number, lessonId: number, finished: boolean): Observable<BFF.studentLessonResponse.response> {
-    return this.http.get<BFF.studentLessonResponse.response>(
-      `/api/user/open-paths/finish-lesson/${courseId}/${lessonId}/${finished}`
-    );
+  finishLesson(sudentQuizBody: BFF.StudentLessonBody): Observable<BFF.studentLessonResponse.response> {
+    return this.http.post<BFF.studentLessonResponse.response>(`/api/user/open-paths/finish-lesson`, sudentQuizBody);
   }
 
-  finishExam(courseId: number, lessonId: number, mark: number): Observable<BFF.studentLessonResponse.response> {
-    return this.http.get<BFF.studentLessonResponse.response>(
-      `/api/user/open-paths/finish-exam/${courseId}/${lessonId}/${mark}`
-    );
+  finishExam(sudentQuizBody: BFF.StudentLessonBody): Observable<BFF.studentLessonResponse.response> {
+    return this.http.post<BFF.studentLessonResponse.response>(`/api/user/open-paths/finish-exam`, sudentQuizBody);
   }
 
-  finishQuiz(
-    courseId: number,
-    quizId: number,
-    fullMark: number,
-    mark: number
-  ): Observable<BFF.studentLessonResponse.response> {
-    return this.http.get<BFF.studentLessonResponse.response>(
-      `/api/user/open-paths/finish-quiz/${courseId}/${quizId}/${fullMark}/${mark}`
-    );
+  finishQuiz(body: BFF.StudentQuizBody): Observable<BFF.studentLessonResponse.response> {
+    return this.http.post<BFF.studentLessonResponse.response>(`/api/user/open-paths/finish-quiz`, body);
   }
 }

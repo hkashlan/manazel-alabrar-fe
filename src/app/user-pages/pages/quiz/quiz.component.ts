@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { translationKeys } from 'src/app/core/models/translations';
 import { ExamComponent, ExamResult } from '../../../core/components/exam/exam.component';
+import { BFF } from '../../models/schema-bff';
 import { StudentService } from '../../services/student.service';
 import { getUserRouteInfo } from '../../user-pages-routing';
 import { UserStore } from '../../user-state';
@@ -30,12 +31,17 @@ export class QuizComponent {
   userStore = inject(UserStore);
 
   finishExam(degree: ExamResult) {
-    this.studentService
-      .finishQuiz(this.routeInfo.courseId, this.routeInfo.quizId, degree.fullMark, degree.mark)
-      .subscribe(() => {
-        this.quiz.mark = degree.mark;
-        this.quiz.fullMark = degree.fullMark;
-        this.userStore.resetStudent();
-      });
+    const body: BFF.StudentQuizBody = {
+      courseId: this.routeInfo.courseId,
+      quizId: this.routeInfo.quizId,
+      fullMark: degree.fullMark,
+      mark: degree.mark,
+      answeredOptions: [],
+    };
+    this.studentService.finishQuiz(body).subscribe(() => {
+      this.quiz.mark = degree.mark;
+      this.quiz.fullMark = degree.fullMark;
+      this.userStore.resetStudent();
+    });
   }
 }

@@ -56,7 +56,12 @@
     <h4 *ngIf="lesson.mark">
       {{ translationKeys.your_result | translate : { result: lesson.mark, total: questions.length } }}
     </h4>
-    <app-exam [questions]="questions" [done]="!!lesson.mark" (finishExam)="finishExam($event)"></app-exam>
+    <app-exam
+      [questions]="questions"
+      [done]="!!lesson.mark"
+      [answeredOptions]="lesson.answeredOptions"
+      (finishExam)="finishExam($event)"
+    ></app-exam>
   </mat-tab>
 </mat-tab-group>
 <div class="panel">

@@ -5,6 +5,7 @@ export interface StudentAnswer {
   question: BFF.Question;
   isCorrect: boolean;
   answered: boolean;
+  answeredOptions?: number[];
 }
 
 @Injectable()

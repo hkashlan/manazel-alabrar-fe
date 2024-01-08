@@ -6,6 +6,7 @@ import { ExamComponent, ExamResult } from '../../../core/components/exam/exam.co
 import { translationKeys } from '../../../core/models/translations';
 import { SharedModule } from '../../../core/modules/shared.module';
 import { SafePipe } from '../../../core/pipes/safe-url.pipe';
+import { BFF } from '../../models/schema-bff';
 import { StudentService } from '../../services/student.service';
 import { getUserRouteInfo } from '../../user-pages-routing';
 import { UserStore } from '../../user-state';
@@ -52,12 +53,23 @@ export class LessonComponent implements OnInit {
     }
   }
   finishLesson(finished: boolean) {
-    this.studentService.finishLesson(this.routeInfo.course.id, this.routeInfo.lessonId, finished).subscribe();
+    const sudentQuizBody: BFF.StudentLessonBody = {
+      courseId: this.routeInfo.course.id,
+      lessonId: this.routeInfo.lessonId,
+      done: finished,
+    };
+    this.studentService.finishLesson(sudentQuizBody).subscribe();
   }
 
   finishExam(mark: ExamResult) {
     this.lesson.mark = mark.mark;
-    this.studentService.finishExam(this.routeInfo.course.id, this.routeInfo.lessonId, mark.mark).subscribe((s) => {});
+    const sudentQuizBody: BFF.StudentLessonBody = {
+      courseId: this.routeInfo.course.id,
+      lessonId: this.routeInfo.lessonId,
+      mark: mark.mark,
+      answeredOptions: mark.answeredOptions,
+    };
+    this.studentService.finishExam(sudentQuizBody).subscribe((s) => {});
   }
 
   openFullscreen() {

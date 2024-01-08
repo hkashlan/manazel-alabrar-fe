@@ -18,6 +18,7 @@ function sumArray(arr: number[]): number {
 export interface ExamResult {
   mark: number;
   fullMark: number;
+  answeredOptions: number[][];
 }
 
 @Component({
@@ -33,6 +34,7 @@ export class ExamComponent implements OnInit {
   translateService = inject(TranslateService);
 
   @Input() questions: BFF.Question[] = [];
+  @Input() answeredOptions?: number[][];
   @Input({ required: true }) done: boolean = false;
   @Output() finishExam = new EventEmitter<ExamResult>();
 
@@ -46,10 +48,11 @@ export class ExamComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    const answers: StudentAnswer[] = this.questions.map((question) => ({
+    const answers: StudentAnswer[] = this.questions.map((question, index) => ({
       question,
       isCorrect: false,
       answered: false,
+      answeredOptions: this.answeredOptions?.[index] ?? [],
     }));
 
     this.examStore.answers.set(answers);
@@ -61,6 +64,8 @@ export class ExamComponent implements OnInit {
     const answers = this.examStore.answers();
     const mark = sumArray(answers.filter((a) => a.isCorrect).map((a) => a.question.mark || 1));
     const fullMark = sumArray(answers.map((a) => a.question.mark || 1));
-    this.finishExam.emit({ mark, fullMark });
+    const answeredOptions = answers.map((a) => a.answeredOptions ?? []);
+
+    this.finishExam.emit({ mark, fullMark, answeredOptions });
   }
 }
