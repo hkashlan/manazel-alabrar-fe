@@ -20,6 +20,6 @@ export class MultiChoiceComponent extends QuestionComponent {
   }
 
   override questionFetched(): void {
-    this.checked = this.question().answers.map(() => false);
+    this.checked = this.question().answers.map((a, index) => this.answeredOptions().includes(index));
   }
 }

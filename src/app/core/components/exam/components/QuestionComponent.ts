@@ -8,6 +8,7 @@ export class QuestionComponent {
   @Input() qIndex: number = 0;
 
   question = computed(() => this.store.answers()[this.qIndex].question);
+  answeredOptions = computed(() => this.store.answers()[this.qIndex].answeredOptions ?? []);
   checkAnswer = this.store.checkAnswer;
   isCorrect: boolean = false;
 
