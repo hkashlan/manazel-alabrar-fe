@@ -1,44 +1,71 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, computed, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BFF } from '../../../user-pages/models/schema-bff';
 import { translationKeys } from '../../models/translations';
 import { MultiChoiceComponent } from './components/multi-choice/multi-choice.component';
 import { SingleChoiceComponent } from './components/single-choice/single-choice.component';
-import { ExamStore } from './exam.store';
+import { ExamStore, StudentAnswer } from './exam.store';
+
+function sumArray(arr: number[]): number {
+  // Using the reduce method to accumulate the sum
+  const sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  return sum;
+}
+
+export interface ExamResult {
+  mark: number;
+  fullMark: number;
+  answeredOptions: number[][];
+}
 
 @Component({
   selector: 'app-exam',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, TranslateModule, SingleChoiceComponent, MultiChoiceComponent],
+  imports: [CommonModule, RouterModule, MatButtonModule, TranslateModule, SingleChoiceComponent, MultiChoiceComponent],
   templateUrl: './exam.component.html',
   styleUrls: ['./exam.component.scss'],
   providers: [ExamStore],
 })
 export class ExamComponent implements OnInit {
-  private examStore = inject(ExamStore);
+  examStore = inject(ExamStore);
+  translateService = inject(TranslateService);
 
   @Input() questions: BFF.Question[] = [];
+  @Input() answeredOptions?: number[][];
   @Input({ required: true }) done: boolean = false;
-  @Output() finishExam = new EventEmitter<number>();
-
-  checkAnswer = this.examStore.checkAnswer;
+  @Output() finishExam = new EventEmitter<ExamResult>();
 
   qt = BFF.QuestionType;
   translationKeys = translationKeys;
 
-  ngOnInit(): void {
-    const answers = this.questions.map(() => false);
+  disableDoneBtn = computed(() => {
+    const answers = this.examStore.answers();
+    const doneAllQeustions = answers.filter((a) => a.answered).length === answers.length;
+    return !doneAllQeustions;
+  });
 
-    this.examStore.questions.set(this.questions);
+  ngOnInit(): void {
+    const answers: StudentAnswer[] = this.questions.map((question, index) => ({
+      question,
+      isCorrect: false,
+      answered: false,
+      answeredOptions: this.answeredOptions?.[index] ?? [],
+    }));
+
     this.examStore.answers.set(answers);
     this.examStore.checkAnswer.set(this.done);
   }
 
   toggleCheck() {
     this.examStore.checkAnswer.set(!this.examStore.checkAnswer());
-    const grade = this.examStore.answers().filter((a) => a).length;
-    this.finishExam.emit(grade);
+    const answers = this.examStore.answers();
+    const mark = sumArray(answers.filter((a) => a.isCorrect).map((a) => a.question.mark || 1));
+    const fullMark = sumArray(answers.map((a) => a.question.mark || 1));
+    const answeredOptions = answers.map((a) => a.answeredOptions ?? []);
+
+    this.finishExam.emit({ mark, fullMark, answeredOptions });
   }
 }

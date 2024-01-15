@@ -7,16 +7,19 @@ export class QuestionComponent {
 
   @Input() qIndex: number = 0;
 
-  question = computed(() => this.store.questions()[this.qIndex]);
+  question = computed(() => this.store.answers()[this.qIndex].question);
+  answeredOptions = computed(() => this.store.answers()[this.qIndex].answeredOptions ?? []);
   checkAnswer = this.store.checkAnswer;
   isCorrect: boolean = false;
 
   protected questionFetched() {}
 
-  triggerScore(correct: boolean) {
+  triggerScore(correct: boolean, choices: number[]) {
     this.isCorrect = correct;
     this.store.answers.update((a) => {
-      a[this.qIndex] = correct;
+      a[this.qIndex].isCorrect = correct;
+      a[this.qIndex].answered = true;
+      a[this.qIndex].answeredOptions = choices;
       return a;
     });
   }

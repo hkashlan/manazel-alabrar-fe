@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogService } from '../../../core/components/confirm-dialog/confirm-dialog.service';
 import { translationKeys } from '../../../core/models/translations';
@@ -28,7 +29,8 @@ export class PathComponent implements OnInit {
     private userStore: UserStore,
     private confirmDialogService: ConfirmDialogService,
     public loadingService: LoadingService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +50,8 @@ export class PathComponent implements OnInit {
           this.userStore.register(pathId).subscribe((response) => {
             if (response.data) {
               this.userStore.openPathsResponse.set(response);
+              this.userStore.resetStudent();
+              this.snackBar.open(this.translateService.instant(translationKeys.path.register_done));
             } else {
               this.error = response.error;
             }

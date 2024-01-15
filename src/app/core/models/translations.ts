@@ -1,8 +1,8 @@
 export const translationKeys = {
   course: "course",
-  quizzes: "quizzes",
   questions: "questions",
   check_exam: "check_exam",
+  back_to_home_page: "back_to_home_page",
   your_result: "your_result",
   lesson: "lesson",
   lesson_finished: "lesson_finished",
@@ -20,6 +20,7 @@ export const translationKeys = {
   path: {
     register: "path.register",
     register_confirm: "path.register_confirm",
+    register_done: "path.register_done",
     no_path_open: "path.no_path_open",
   },
   new_version: { msg: "new_version.msg", update_now: "new_version.update_now" },
@@ -36,6 +37,14 @@ export const translationKeys = {
     login: "login.login",
     sendEmail: "login.sendEmail",
   },
+  quizzes: {
+    title: "quizzes.title",
+    exam_name: "quizzes.exam_name",
+    mark: "quizzes.mark",
+    from: "quizzes.from",
+    faculty: "quizzes.faculty",
+  },
+  exam: { done: "exam.done" },
   date: "date",
   from: "from",
 };

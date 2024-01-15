@@ -1,8 +1,8 @@
 <h1 class="header">
-  {{ translationKeys.quizzes | translate }}
+  {{ translationKeys.quizzes.title | translate }}
 </h1>
 <app-table [tableColumns]="quizzesTableColumns" [tableData]="quizzes">
-  <ng-template [appColDef]="'quizName'" let-element>
+  <ng-template [appColDef]="'quizzes.exam_name'" let-element>
     <a
       *ngIf="element.canTake; else showName"
       [routerLink]="[element.quizParams.pathId, element.quizParams.courseId, element.quizParams.quizId]"

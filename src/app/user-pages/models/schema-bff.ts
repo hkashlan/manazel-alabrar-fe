@@ -1,4 +1,4 @@
-import { StudentLesson } from "./schema";
+import { StudentLesson, StudentQuiz } from './schema';
 
 export namespace BFF {
   export interface Response<T> {
@@ -78,7 +78,7 @@ export namespace BFF {
 
   export namespace register {
     export enum Errors {
-      PATH_NOT_FOUND = "PATH_NOT_FOUND",
+      PATH_NOT_FOUND = 'PATH_NOT_FOUND',
     }
     export type response = Response<openPath.PathInstance[]>;
   }
@@ -89,13 +89,14 @@ export namespace BFF {
   }
 
   export enum QuestionType {
-    SingleChoice = "SingleChoice",
-    MultiChoice = "MultiChoice",
+    SingleChoice = 'SingleChoice',
+    MultiChoice = 'MultiChoice',
   }
 
   export interface Question {
     title: string;
     answers: Answer[];
+    mark?: number;
     questionType: QuestionType;
   }
 
@@ -105,10 +106,12 @@ export namespace BFF {
     pageNumber?: number;
     description: string;
     present: boolean;
+    audio?: string;
     done: boolean;
     date: Date;
     mark: number;
     questions: Question[];
+    answeredOptions: number[][];
   }
 
   export interface Quiz {
@@ -118,5 +121,17 @@ export namespace BFF {
     title: string;
     questions: Question[];
     mark?: number;
+    fullMark?: number;
+    answeredOptions?: number[][];
   }
+
+  export type StudentLessonBody = Omit<StudentLesson, 'student' | 'date'> & {
+    courseId: number;
+    lessonId: number;
+  };
+
+  export type StudentQuizBody = Omit<StudentQuiz, 'student' | 'date'> & {
+    courseId: number;
+    quizId: number;
+  };
 }

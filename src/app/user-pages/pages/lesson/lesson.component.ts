@@ -2,12 +2,14 @@ import { Component, ElementRef, HostBinding, Inject, OnInit, inject } from '@ang
 
 import { DOCUMENT } from '@angular/common';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-import { ExamComponent } from '../../../core/components/exam/exam.component';
+import { ExamComponent, ExamResult } from '../../../core/components/exam/exam.component';
 import { translationKeys } from '../../../core/models/translations';
 import { SharedModule } from '../../../core/modules/shared.module';
 import { SafePipe } from '../../../core/pipes/safe-url.pipe';
+import { BFF } from '../../models/schema-bff';
 import { StudentService } from '../../services/student.service';
 import { getUserRouteInfo } from '../../user-pages-routing';
+import { UserStore } from '../../user-state';
 
 @Component({
   selector: 'app-lesson',
@@ -17,6 +19,7 @@ import { getUserRouteInfo } from '../../user-pages-routing';
   styleUrls: ['./lesson.component.scss'],
 })
 export class LessonComponent implements OnInit {
+  private userStore = inject(UserStore);
   private studentService = inject(StudentService);
 
   @HostBinding('class') class = 'page';
@@ -50,12 +53,23 @@ export class LessonComponent implements OnInit {
     }
   }
   finishLesson(finished: boolean) {
-    this.studentService.finishLesson(this.routeInfo.course.id, this.routeInfo.lessonId, finished).subscribe();
+    const sudentQuizBody: BFF.StudentLessonBody = {
+      courseId: this.routeInfo.course.id,
+      lessonId: this.routeInfo.lessonId,
+      done: finished,
+    };
+    this.studentService.finishLesson(sudentQuizBody).subscribe();
   }
 
-  finishExam(mark: number) {
-    this.lesson.mark = mark;
-    this.studentService.finishExam(this.routeInfo.course.id, this.routeInfo.lessonId, mark).subscribe();
+  finishExam(mark: ExamResult) {
+    this.lesson.mark = mark.mark;
+    const sudentQuizBody: BFF.StudentLessonBody = {
+      courseId: this.routeInfo.course.id,
+      lessonId: this.routeInfo.lessonId,
+      mark: mark.mark,
+      answeredOptions: mark.answeredOptions,
+    };
+    this.studentService.finishExam(sudentQuizBody).subscribe((s) => {});
   }
 
   openFullscreen() {

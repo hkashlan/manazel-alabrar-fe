@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { StorageService } from './storage.service';
+import { StorageService, sessionKeys } from './storage.service';
 
 export const LOGIN_INFO = 'login_info';
 
@@ -22,6 +22,7 @@ export class AuthenticationService {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json', // Set the Content-Type header if sending JSON data
+            'cache-control': 'no-cache',
           },
           body: JSON.stringify(user), // Convert the data to JSON string
         };
@@ -36,8 +37,8 @@ export class AuthenticationService {
       })
       .then((res) => res.json())
       .then((res) => {
-        this.ss.setItem('jwt', res.jwt);
-        this.ss.setItem('username', res.user.username);
+        this.ss.setItem(sessionKeys.jwt, res.jwt);
+        this.ss.setItem(sessionKeys.username, res.user.username);
         if (user) {
           this.ss.setItem(LOGIN_INFO, JSON.stringify(user));
         }
