@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "manazel-alabrar-fe:build:production"
+              "buildTarget": "manazel-alabrar-fe:build:production"
             },
             "development": {
-              "browserTarget": "manazel-alabrar-fe:build:development"
+              "buildTarget": "manazel-alabrar-fe:build:development"
             }
           },
           "options": {
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "manazel-alabrar-fe:build"
+            "buildTarget": "manazel-alabrar-fe:build"
           }
         },
         "test": {
