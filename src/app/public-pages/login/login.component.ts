@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { translationKeys } from 'src/app/core/models/translations';
-import { AuthenticationService, LOGIN_INFO } from 'src/app/core/services/authentication.service';
 import { environment } from '../../../environments/environment';
+import { translationKeys } from '../../core/models/translations';
 import { SharedModule } from '../../core/modules/shared.module';
+import { AuthenticationService, LOGIN_INFO } from '../../core/services/authentication.service';
 import { StorageService } from '../../core/services/storage.service';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 

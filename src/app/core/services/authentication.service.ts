@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { StorageService, sessionKeys } from './storage.service';
@@ -13,7 +14,7 @@ export class AuthenticationService {
 
   loggedInStatus$ = this.loginTracker.asObservable();
 
-  constructor(private router: Router, private ss: StorageService) {}
+  constructor(private router: Router, private ss: StorageService, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   saveToken(providerName: string, user?: { identifier: string; password: string }): Promise<boolean> {
     const requestInit: RequestInit | undefined = !user
@@ -55,7 +56,11 @@ export class AuthenticationService {
   }
 
   isLoggedIn() {
-    return this.ss.getItem('jwt') !== null;
+    if (isPlatformBrowser(this.platformId)) {
+      return this.ss.getItem('jwt') !== null;
+    } else {
+      return false;
+    }
   }
 
   getPersistedToken(): string {
