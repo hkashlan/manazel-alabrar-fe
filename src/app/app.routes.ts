@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, Routes } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from './core/services/authentication.service';
+import { userRoutes } from './user-pages/user-pages-routing.module';
 
 export const routes: Routes = [
   {
@@ -32,7 +33,7 @@ export const routes: Routes = [
       },
       {
         path: 'user',
-        loadChildren: () => import('./user-pages/user-pages-routing.module'),
+        children: userRoutes,
         canMatch: [() => inject(AuthenticationService).isLoggedIn()],
       },
       {

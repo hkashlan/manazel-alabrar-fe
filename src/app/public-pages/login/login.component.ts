@@ -25,10 +25,7 @@ export class LoginComponent {
   });
   formError = false;
   constructor(private fb: FormBuilder, private ss: StorageService, private authService: AuthenticationService) {
-    const loginInformation = this.ss.getItem(LOGIN_INFO);
-    if (loginInformation) {
-      this.loginFrom.setValue(JSON.parse(loginInformation));
-    }
+    this.loadLoginInformation();
   }
 
   login() {
@@ -65,5 +62,12 @@ export class LoginComponent {
       'جزاكم الله خيرا',
       '',
     ].join('\n');
+  }
+
+  private loadLoginInformation() {
+    const loginInformation = this.ss.getItem(LOGIN_INFO);
+    if (loginInformation) {
+      this.loginFrom.setValue(JSON.parse(loginInformation));
+    }
   }
 }
