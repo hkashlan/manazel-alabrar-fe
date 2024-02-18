@@ -43,7 +43,7 @@ export class AuthenticationService {
           this.ss.setItem(LOGIN_INFO, JSON.stringify(user));
         }
         this.loginTracker.next(true);
-        window.location.href = '/ar/user';
+        this.router.navigateByUrl('/ar/user');
       })
       .then(() => true);
   }

@@ -20,7 +20,7 @@ export class QuestionComponent {
       a[this.qIndex].isCorrect = correct;
       a[this.qIndex].answered = true;
       a[this.qIndex].answeredOptions = choices;
-      return a;
+      return [...a];
     });
   }
 }

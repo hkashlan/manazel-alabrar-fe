@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { translationKeys } from 'src/app/core/models/translations';
 import { ExamComponent, ExamResult } from '../../../core/components/exam/exam.component';
+import { translationKeys } from '../../../core/models/translations';
 import { BFF } from '../../models/schema-bff';
 import { StudentService } from '../../services/student.service';
 import { getUserRouteInfo } from '../../user-pages-routing';

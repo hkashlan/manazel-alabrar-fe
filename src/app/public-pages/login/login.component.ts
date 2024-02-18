@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { translationKeys } from 'src/app/core/models/translations';
-import { AuthenticationService, LOGIN_INFO } from 'src/app/core/services/authentication.service';
 import { environment } from '../../../environments/environment';
+import { translationKeys } from '../../core/models/translations';
 import { SharedModule } from '../../core/modules/shared.module';
+import { AuthenticationService, LOGIN_INFO } from '../../core/services/authentication.service';
 import { StorageService } from '../../core/services/storage.service';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 
@@ -25,10 +25,7 @@ export class LoginComponent {
   });
   formError = false;
   constructor(private fb: FormBuilder, private ss: StorageService, private authService: AuthenticationService) {
-    const loginInformation = this.ss.getItem(LOGIN_INFO);
-    if (loginInformation) {
-      this.loginFrom.setValue(JSON.parse(loginInformation));
-    }
+    this.loadLoginInformation();
   }
 
   login() {
@@ -65,5 +62,12 @@ export class LoginComponent {
       'جزاكم الله خيرا',
       '',
     ].join('\n');
+  }
+
+  private loadLoginInformation() {
+    const loginInformation = this.ss.getItem(LOGIN_INFO);
+    if (loginInformation) {
+      this.loginFrom.setValue(JSON.parse(loginInformation));
+    }
   }
 }

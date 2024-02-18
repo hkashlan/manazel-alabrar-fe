@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { getRouteUrl } from '../core/models/route-info';
 import { UserLayoutComponent } from './components/user-layout/user-layout.component';
 import { CourseDetailComponent } from './pages/course-detail/course-detail.component';
@@ -12,7 +11,7 @@ import { QuizzesComponent } from './pages/quizzes/quizzes.component';
 import { UserHomepageComponent } from './pages/user-homepage/user-homepage.component';
 import { userPageRouting } from './user-pages-routing';
 
-const routes: Routes = [
+export const userRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -57,9 +56,3 @@ const routes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export default class UserPagesRoutingModule {}

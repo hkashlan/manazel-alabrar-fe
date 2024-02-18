@@ -1,8 +1,18 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 export const sessionKeys = {
   jwt: 'jwt',
   username: 'username',
+};
+
+const mockStorage: Storage = {
+  length: 0,
+  clear: () => {},
+  getItem: () => null,
+  key: () => null,
+  removeItem: () => {},
+  setItem: () => {},
 };
 
 @Injectable({
@@ -10,19 +20,22 @@ export const sessionKeys = {
 })
 export class StorageService {
   private namespace = 's';
+  private storage: Storage;
 
-  constructor() {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.storage = isPlatformBrowser(platformId) ? window.localStorage : mockStorage;
+  }
 
   getItem(key: string): string | null {
-    return window.localStorage.getItem(`${this.namespace}_${key}`);
+    return this.storage.getItem(`${this.namespace}_${key}`);
   }
 
   setItem(key: string, value: string) {
-    window.localStorage.setItem(`${this.namespace}_${key}`, value);
+    this.storage.setItem(`${this.namespace}_${key}`, value);
   }
 
   removeItem(key: string) {
-    window.localStorage.removeItem(`${this.namespace}_${key}`);
+    this.storage.removeItem(`${this.namespace}_${key}`);
   }
 
   clear() {

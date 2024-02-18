@@ -1,9 +1,10 @@
-import { inject, NgModule } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterModule, Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { ActivatedRouteSnapshot, Routes } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from './core/services/authentication.service';
+import { userRoutes } from './user-pages/user-pages-routing.module';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: 'ar',
@@ -32,7 +33,7 @@ const routes: Routes = [
       },
       {
         path: 'user',
-        loadChildren: () => import('./user-pages/user-pages-routing.module'),
+        children: userRoutes,
         canMatch: [() => inject(AuthenticationService).isLoggedIn()],
       },
       {
@@ -43,9 +44,3 @@ const routes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

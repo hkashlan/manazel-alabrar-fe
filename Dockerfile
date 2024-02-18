@@ -25,7 +25,7 @@ FROM nginx:1.21-alpine
 RUN mkdir -p /usr/share/nginx/html/assets
 
 # Copy the built application from the previous stage to the app directory
-COPY --from=build /app/dist/manazel-alabrar-fe /usr/share/nginx/html/
+COPY --from=build /app/dist/manazel-alabrar-fe/browser /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
