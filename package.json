@@ -1,0 +1,13 @@
+{
+  "name": "manazel-alabrar",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-fe": "cd fe && npm i && npm run build",
+    "postbuild-fe": "rm -rf be/client && mkdir be/client && cp -a fe/dist/manazel-alabrar-fe/browser/. be/client",
+    "build-be": "cd be && npm i && npm run build",
+    "build": "npm run build-fe && npm run build-be"
+  },
+  "author": "",
+  "license": "ISC"
+}
