@@ -1,7 +1,13 @@
 {
   "version": 2,
-  "buildCommand": "npm run build:fe && npm run build:be",
   "builds": [
+    {
+      "src": ".",
+      "use": "@vercel/node",
+      "config": {
+        "buildCommand": "npm run build"
+      }
+    },
     {
       "src": "be/src/main.ts",
       "use": "@vercel/node"
