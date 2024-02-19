@@ -46,3 +46,5 @@ be/client/
 dist
 fe/src/assets/i18n
 .vercel
+
+/public

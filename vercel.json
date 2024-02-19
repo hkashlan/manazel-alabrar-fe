@@ -1,18 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "be",
-      "use": "@vercel/node",
-      "config": {
-        "buildCommand": "npm i && npm run build"
-      }
-    },
-    {
-      "src": "be/src/main.ts",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",
