@@ -6,8 +6,7 @@
     "build-fe": "cd fe && npm i && npm run build",
     "postbuild-fe": "rm -rf be/client && mkdir be/client && cp -a fe/dist/manazel-alabrar-fe/browser/. be/client",
     "build-be": "cd be && npm i && npm run build",
-    "build": "npm run build-fe && npm run build-be",
-    "postbuild": "rm -rf public && mkdir public && cp be/dist/* public && cp -r be/client public"
+    "build": "npm run build-fe && npm run build-be"
   },
   "author": "",
   "license": "ISC"
