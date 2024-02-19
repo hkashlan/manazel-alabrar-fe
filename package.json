@@ -1,6 +1,6 @@
 {
-  "name": "manazel-alabrar",
   "version": "1.0.0",
+  "name": "manazel-alabrar",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-fe": "cd fe && npm i && npm run build",
