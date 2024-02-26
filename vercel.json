@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    {"source": "/api/", "destination": "https://https://lms-be.vercel.app/"},
-    {"source": "/api/:match*", "destination": "https://https://lms-be.vercel.app//:match*"}
+    {"source": "/api/", "destination": "https://lms-be-hadi-kashlans-projects.vercel.app/api/"},
+    {"source": "/api/:match*", "destination": "https://lms-be-hadi-kashlans-projects.vercel.app/api//:match*"}
   ]
 }
