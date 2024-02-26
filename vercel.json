@@ -1,6 +1,6 @@
 {
   "rewrites": [
     {"source": "/api/", "destination": "https://https://lms-be.vercel.app/"},
-    {"source": "/api/:match*", "destination": "https://https://lms-be.vercel.app//:match*"},
+    {"source": "/api/:match*", "destination": "https://https://lms-be.vercel.app//:match*"}
   ]
 }
