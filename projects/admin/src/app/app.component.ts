@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { APIService } from '../core/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,14 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'admin';
+
+  constructor(api: APIService) {
+    api.user.findAll({where: {
+      id: {
+        gte: 4
+      }
+    }});
+
+
+  }
 }
