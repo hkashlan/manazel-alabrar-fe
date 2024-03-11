@@ -1,6 +1,4 @@
 const fs = require("fs");
-const csv = require("csv-parser");
-const prettier = require("prettier");
 
 const addInterface = (translationKey, translationValue) => {
   const results = extractParams(translationValue);
@@ -93,10 +91,8 @@ function extractParams(translationValue) {
   return results;
 }
 
-function generateTranslationsTs(translationsKeys, interfaces) {
-  const fileContent = prettier.format(
-    `export const translationKeys =  ${JSON.stringify(translationsKeys)}; ${interfaces ?? ""}`
-  );
+async function generateTranslationsTs(translationsKeys, interfaces) {
+  const fileContent = `export const translationKeys =  ${JSON.stringify(translationsKeys)}; ${interfaces ?? ""}`;
   fs.writeFile(`../src/app/core/models/translations.ts`, fileContent, (err) => {
     if (err) throw err;
     console.log(`gen/translations.json has been saved!`);

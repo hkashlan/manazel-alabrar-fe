@@ -12,8 +12,6 @@ export interface RouteInfoWithId {
 }
 
 export function getRouteUrl(routeInfo: RouteInfo, base = ''): string {
-  const params = routeInfo.parameters
-    ? '/:' + Object.values(routeInfo.parameters).join('/:')
-    : '';
+  const params = routeInfo.parameters ? '/:' + Object.values(routeInfo.parameters).join('/:') : '';
   return base + routeInfo.path + params;
 }
