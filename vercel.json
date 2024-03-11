@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    {"source": "/api/", "destination": "https://lms-be-hadi-kashlans-projects.vercel.app/api/"},
+    {"source": "/api/:match*", "destination": "https://lms-be-hadi-kashlans-projects.vercel.app/api/:match*"}
+  ]
+}
