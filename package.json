@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "prebuild": "npm run translate",
+    "prebuild": "npm run translate && npm run postprebuild",
     "postprebuild": "prettier ./src/app/core/models --write && prettier ./src/assets/i18n --write ",
     "build": "ng build --configuration production ",
     "watch": "ng build --watch --configuration development",
