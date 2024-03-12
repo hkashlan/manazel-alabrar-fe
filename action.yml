@@ -2,21 +2,25 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
+    branches: ["*"]
 
 runs:
   using: "composite"
   steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      shell: bash # Added shell property
 
-    - name: Use Node.js 16
+    - name: Use Node.js 18
       uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 18
+      shell: bash # Added shell property
 
     - name: Install dependencies
       run: npm install
+      shell: bash # Added shell property
 
     - name: Build for production
       run: npm run build
+      shell: bash # Added shell property
