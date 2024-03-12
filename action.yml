@@ -17,6 +17,8 @@ runs:
 
     - name: Install dependencies
       run: npm install
+      shell: bash
 
     - name: Build for production
       run: npm run build
+      shell: bash
