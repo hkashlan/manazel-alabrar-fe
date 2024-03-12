@@ -6,12 +6,30 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
+import { RowActionsComponent } from '../core/components/table/row-actions/row-actions.component';
+import { TableColumn, componentDef } from '../core/components/table/table';
+import { ColumnDefinition, TableComponent } from '../core/components/table/table.component';
 import { APIService } from '../core/services/api.service';
+
+interface Student {
+  id: number;
+  name: string;
+  image: string;
+}
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatSidenavModule, MatButtonModule, MatToolbarModule, MatListModule, MatIconModule],
+  imports: [
+    RouterOutlet,
+    MatSidenavModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatListModule,
+    MatIconModule,
+    TableComponent,
+    ColumnDefinition,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -32,6 +50,31 @@ export class AppComponent {
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
   );
 
+  ordersTableColumns: TableColumn<Student>[] = [
+    {
+      name: 'id',
+      dataKey: 'id',
+    },
+    {
+      name: 'name',
+      dataKey: 'name',
+      isSortable: true,
+    },
+    {
+      dataKey: 'image',
+      name: 'image',
+    },
+    {
+      name: 'action12',
+      componentDef: componentDef(RowActionsComponent, {
+        editBasicUrl: '123',
+      }),
+      // componentDef: componentDef(RowActionsComponent, 'editBasicUrl'),
+    },
+  ];
+
+  data: Student[] = [];
+
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, api: APIService) {
@@ -45,6 +88,14 @@ export class AppComponent {
         },
       },
     });
+
+    for (let index = 0; index < 30; index++) {
+      this.data.push({
+        id: index,
+        name: 'name ' + index,
+        image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_92x30dp.png',
+      });
+    }
   }
 
   ngOnDestroy(): void {
