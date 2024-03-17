@@ -10,6 +10,10 @@ import { RowActionsComponent } from '../core/components/table/row-actions/row-ac
 import { TableColumn, componentDef } from '../core/components/table/table';
 import { ColumnDefinition, TableComponent } from '../core/components/table/table.component';
 import { APIService } from '../core/services/api.service';
+import { SidenavComponent } from "./layout/sidenav/sidenav.component";
+import { HeaderComponent } from './layout/header/header.component';
+
+
 
 interface Student {
   id: number;
@@ -18,20 +22,23 @@ interface Student {
 }
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    MatSidenavModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatListModule,
-    MatIconModule,
-    TableComponent,
-    ColumnDefinition,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    imports: [
+        RouterOutlet,
+        MatSidenavModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatListModule,
+        MatIconModule,
+        TableComponent,
+        ColumnDefinition,
+        SidenavComponent,
+        HeaderComponent,
+       
+    ]
 })
 export class AppComponent {
   title = 'admin';

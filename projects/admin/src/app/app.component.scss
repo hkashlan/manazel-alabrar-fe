@@ -29,3 +29,18 @@ h1.example-app-name {
      `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
 }
+
+.mat-card{
+  margin: 2%;
+  text-align: left;
+}
+
+.mat-drawer {
+  width: 200px;
+  background: #aabec5;
+}
+
+.mat-drawer-container {
+  height: 100%;
+}
+
