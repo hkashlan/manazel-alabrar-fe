@@ -28,7 +28,7 @@ import { TableColumn } from './table';
 export class ColumnDefinitionDirective {
   @Input() appColDef: string = '';
 
-  constructor(public templateRef: TemplateRef<any>) {}
+  constructor(public templateRef: TemplateRef<unknown>) {}
 }
 
 @Component({
@@ -40,15 +40,15 @@ export class ColumnDefinitionDirective {
 })
 export class TableComponent implements AfterViewInit, AfterContentChecked {
   isPageable = input(false);
-  tableColumns = input<TableColumn<any>[]>([] as any);
+  tableColumns = input<TableColumn<unknown>[]>([]);
   paginationSizes = input<number[]>([5, 10, 15]);
   defaultPageSize = input<number>(10);
-  displayedColumns = computed(() => this.tableColumns().map((tableColumn: TableColumn<any>) => tableColumn.name));
+  displayedColumns = computed(() => this.tableColumns().map((tableColumn: TableColumn<unknown>) => tableColumn.name));
 
   @Output() sort: EventEmitter<Sort> = new EventEmitter();
 
   tableDataSource = new MatTableDataSource([] as unknown[]);
-  templates: Map<any, TemplateRef<any>> = new Map();
+  templates: Map<string, TemplateRef<unknown>> = new Map();
 
   @ViewChild(MatPaginator, { static: false }) matPaginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) matSort!: MatSort;
@@ -85,7 +85,7 @@ export class TableComponent implements AfterViewInit, AfterContentChecked {
     this.sort.emit(sortParameters);
   }
 
-  getCompInputs(inputs: Record<string, unknown> | undefined, record: any): Record<string, unknown> | undefined {
+  getCompInputs(inputs: Record<string, unknown> | undefined, record: unknown): Record<string, unknown> | undefined {
     return { ...(inputs ?? {}), record: record };
   }
 }
