@@ -18,7 +18,7 @@ export interface TableColumn<T> {
   dataKey?: keyof T;
   isSortable?: boolean;
   position?: 'right' | 'left';
-  fn?: (val: any, x: T) => string;
+  fn?: (val: any, x?: T) => string;
   componentDef?: {
     component: Type<any>;
     inputs?: Record<string, unknown>;

@@ -6,10 +6,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
+import { JSONSchema7 } from 'json-schema';
 import { RowActionsComponent } from '../core/components/table/row-actions/row-actions.component';
 import { TableColumn, componentDef } from '../core/components/table/table';
 import { ColumnDefinition, TableComponent } from '../core/components/table/table.component';
 import { APIService } from '../core/services/api.service';
+import schema from './model/json-schema.json';
+import { DataTableComponent } from './shared/components/data-table/data-table.component';
 
 interface Student {
   id: number;
@@ -29,6 +32,7 @@ interface Student {
     MatIconModule,
     TableComponent,
     ColumnDefinition,
+    DataTableComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -96,6 +100,8 @@ export class AppComponent {
         image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_92x30dp.png',
       });
     }
+
+    const tt: JSONSchema7 = schema as unknown as JSONSchema7;
   }
 
   ngOnDestroy(): void {
