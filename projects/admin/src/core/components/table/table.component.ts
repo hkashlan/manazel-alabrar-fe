@@ -25,7 +25,7 @@ import { TableColumn } from './table';
   selector: '[appColDef]',
   standalone: true,
 })
-export class ColumnDefinition {
+export class ColumnDefinitionDirective {
   @Input() appColDef: string = '';
 
   constructor(public templateRef: TemplateRef<any>) {}
@@ -53,7 +53,8 @@ export class TableComponent implements AfterViewInit, AfterContentChecked {
   @ViewChild(MatPaginator, { static: false }) matPaginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) matSort!: MatSort;
 
-  @ContentChildren(ColumnDefinition, { descendants: true }) _contentRowDefs?: QueryList<ColumnDefinition>;
+  @ContentChildren(ColumnDefinitionDirective, { descendants: true })
+  _contentRowDefs?: QueryList<ColumnDefinitionDirective>;
 
   // this property needs to have a setter, to dynamically get changes from parent component
   @Input() set tableData(data: unknown[]) {

@@ -21,7 +21,7 @@
     <mat-sidenav-content>
       <app-table [isPageable]="true" [tableColumns]="ordersTableColumns" [tableData]="data">
         <ng-template [appColDef]="'image'" let-element>
-          <img style="background-color: red" [src]="element.image" />
+          <img alt="'anything'" style="background-color: red" [src]="element.image" />
         </ng-template>
       </app-table>
 
