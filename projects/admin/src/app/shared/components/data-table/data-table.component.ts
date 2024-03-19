@@ -21,7 +21,7 @@ export class DataTableComponent implements OnInit {
   apiService = inject(APIService);
 
   @Input() entityName: string = '';
-  tableColumns: TableColumn<any>[] = [];
+  tableColumns: TableColumn<unknown>[] = [];
   restApiService!: RestApiServiceUnkown;
   result: Result<unknown[]> = {
     items: [],
