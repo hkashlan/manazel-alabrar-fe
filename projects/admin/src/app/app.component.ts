@@ -1,17 +1,15 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
-import { JSONSchema7 } from 'json-schema';
 import { RowActionsComponent } from '../core/components/table/row-actions/row-actions.component';
 import { TableColumn, componentDef } from '../core/components/table/table';
-import { ColumnDefinition, TableComponent } from '../core/components/table/table.component';
+import { ColumnDefinitionDirective, TableComponent } from '../core/components/table/table.component';
 import { APIService } from '../core/services/api.service';
-import schema from './model/json-schema.json';
 import { DataTableComponent } from './shared/components/data-table/data-table.component';
 
 interface Student {
@@ -31,13 +29,13 @@ interface Student {
     MatListModule,
     MatIconModule,
     TableComponent,
-    ColumnDefinition,
+    ColumnDefinitionDirective,
     DataTableComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   title = 'admin';
 
   mobileQuery: MediaQueryList;
@@ -101,7 +99,7 @@ export class AppComponent {
       });
     }
 
-    const tt: JSONSchema7 = schema as unknown as JSONSchema7;
+    // const tt: JSONSchema7 = schema as unknown as JSONSchema7;
   }
 
   ngOnDestroy(): void {

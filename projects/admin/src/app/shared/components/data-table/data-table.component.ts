@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { JSONSchema7, JSONSchema7TypeName } from 'json-schema';
+import { JSONSchema7 } from 'json-schema';
 import { TableColumn } from '../../../../core/components/table/table';
 import { TableComponent } from '../../../../core/components/table/table.component';
 import { APIService } from '../../../../core/services/api.service';
@@ -49,14 +49,14 @@ export class DataTableComponent implements OnInit {
         this.tableColumns.push({
           name: key,
           dataKey: key,
-          fn: this.getFn(key, type!, property),
+          fn: this.getFn(key),
         });
       }
     }
     console.log(dataSchema);
   }
 
-  private getFn(key: string, type: JSONSchema7TypeName, property: JSONSchema7) {
+  private getFn(key: string) {
     if (key.toLocaleLowerCase().indexOf('date') > 0) {
       return (value: string) => this.datePipe.transform(value) ?? '';
     } else {
