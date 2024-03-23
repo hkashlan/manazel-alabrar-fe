@@ -19,6 +19,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
+      <app-dynamic-form [entityName]="'User'" />
       <app-data-table [entityName]="'User'" />
       <!-- <app-table [isPageable]="true" [tableColumns]="ordersTableColumns" [tableData]="data">
         <ng-template [appColDef]="'image'" let-element>

@@ -28,7 +28,7 @@ import { TableColumn } from './table';
 export class ColumnDefinitionDirective {
   @Input() appColDef: string = '';
 
-  constructor(public templateRef: TemplateRef<unknown>) {}
+  constructor(public templateRef: TemplateRef<never>) {}
 }
 
 @Component({
@@ -38,17 +38,17 @@ export class ColumnDefinitionDirective {
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements AfterViewInit, AfterContentChecked {
+export class TableComponent<T> implements AfterViewInit, AfterContentChecked {
   isPageable = input(false);
-  tableColumns = input<TableColumn<never>[]>([]);
+  tableColumns = input<TableColumn<T>[]>([]);
   paginationSizes = input<number[]>([5, 10, 15]);
   defaultPageSize = input<number>(10);
-  displayedColumns = computed(() => this.tableColumns().map((tableColumn: TableColumn<never>) => tableColumn.name));
+  displayedColumns = computed(() => this.tableColumns().map((tableColumn: TableColumn<T>) => tableColumn.name));
 
   @Output() sort: EventEmitter<Sort> = new EventEmitter();
 
-  tableDataSource = new MatTableDataSource([] as unknown[]);
-  templates: Map<string, TemplateRef<unknown>> = new Map();
+  tableDataSource = new MatTableDataSource([] as T[]);
+  templates: Map<string, TemplateRef<never>> = new Map();
 
   @ViewChild(MatPaginator, { static: false }) matPaginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) matSort!: MatSort;
@@ -57,7 +57,7 @@ export class TableComponent implements AfterViewInit, AfterContentChecked {
   _contentRowDefs?: QueryList<ColumnDefinitionDirective>;
 
   // this property needs to have a setter, to dynamically get changes from parent component
-  @Input() set tableData(data: unknown[]) {
+  @Input() set tableData(data: T[]) {
     this.setTableDataSource(data);
   }
 
@@ -72,16 +72,16 @@ export class TableComponent implements AfterViewInit, AfterContentChecked {
     this.tableDataSource.paginator = this.matPaginator;
   }
 
-  setTableDataSource(data: unknown[]) {
-    this.tableDataSource = new MatTableDataSource(data);
+  setTableDataSource(data: T[]) {
+    this.tableDataSource = new MatTableDataSource<T>(data);
     this.tableDataSource.paginator = this.matPaginator;
     this.tableDataSource.sort = this.matSort;
   }
 
   sortTable(sortParameters: Sort) {
     // defining name of data property, to sort by, instead of column name
-    sortParameters.active = this.tableColumns().find((column) => column.name === sortParameters.active)!
-      .dataKey as string;
+    sortParameters.active = this.tableColumns().find((column: TableColumn<T>) => column.name === sortParameters.active)!
+      .dataKey as unknown as string;
     this.sort.emit(sortParameters);
   }
 

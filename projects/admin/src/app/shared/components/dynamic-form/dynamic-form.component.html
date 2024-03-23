@@ -1,0 +1,17 @@
+<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+  <mat-form-field *ngFor="let property of schemaInfo.schema.properties | keyvalue">
+    <ng-container *ngIf="['string', 'number', 'integer'].includes(getFirstType(property.value) ?? '')">
+      <mat-label>{{ property.key }}</mat-label>
+      <input
+        matInput
+        [required]="schemaInfo.schema.required?.includes(property.key) ?? false"
+        [formControlName]="property.key"
+      />
+    </ng-container>
+    <mat-slide-toggle *ngIf="getFirstType(property.value) === 'boolean'" [formControlName]="property.key">
+      {{ property.key }}
+    </mat-slide-toggle>
+  </mat-form-field>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

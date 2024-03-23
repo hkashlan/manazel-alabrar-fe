@@ -11,6 +11,7 @@ import { TableColumn, componentDef } from '../core/components/table/table';
 import { ColumnDefinitionDirective, TableComponent } from '../core/components/table/table.component';
 import { APIService } from '../core/services/api.service';
 import { DataTableComponent } from './shared/components/data-table/data-table.component';
+import { DynamicFormComponent } from './shared/components/dynamic-form/dynamic-form.component';
 
 interface Student {
   id: number;
@@ -21,6 +22,8 @@ interface Student {
 @Component({
   selector: 'app-root',
   standalone: true,
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
   imports: [
     RouterOutlet,
     MatSidenavModule,
@@ -31,9 +34,8 @@ interface Student {
     TableComponent,
     ColumnDefinitionDirective,
     DataTableComponent,
+    DynamicFormComponent,
   ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnDestroy {
   title = 'admin';
