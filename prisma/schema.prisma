@@ -13,10 +13,6 @@ datasource db {
   url      = env("POSTGRES_URL")
 }
 
-generator typebox {
-  provider = "prisma-typebox-generator"
-}
-
 generator jsonSchema {
   provider = "prisma-json-schema-generator"
   output = "../src/app/core/models"
