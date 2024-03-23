@@ -1,12 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { JSONSchema7 } from 'json-schema';
 import { TableColumn } from '../../../../core/components/table/table';
 import { TableComponent } from '../../../../core/components/table/table.component';
 import { APIService } from '../../../../core/services/api.service';
 import { Result } from '../../../../shared/models/result';
 import { RestApiServiceUnkown } from '../../../../shared/services/rest-api.service';
-import { getJSONSchema } from '../../../model/schame';
+import { JSONSchema } from '../../model/json-schema';
+import { getJSONSchema } from '../../model/schame';
 
 @Component({
   selector: 'app-data-table',
@@ -21,7 +21,7 @@ export class DataTableComponent implements OnInit {
   apiService = inject(APIService);
 
   @Input() entityName: string = '';
-  tableColumns: TableColumn<unknown>[] = [];
+  tableColumns: TableColumn<never>[] = [];
   restApiService!: RestApiServiceUnkown;
   result: Result<unknown[]> = {
     items: [],
@@ -33,7 +33,7 @@ export class DataTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const dataSchema: JSONSchema7 = getJSONSchema(this.entityName);
+    const dataSchema: JSONSchema = getJSONSchema(this.entityName);
     const apiServiceName = this.makeFirstLetterLowerCase(this.entityName);
     this.restApiService = this.apiService[apiServiceName as keyof APIService] as RestApiServiceUnkown;
 
@@ -43,7 +43,7 @@ export class DataTableComponent implements OnInit {
 
     this.tableColumns = [];
     for (const key in dataSchema.properties) {
-      const property: JSONSchema7 = dataSchema.properties[key] as JSONSchema7;
+      const property: JSONSchema = dataSchema.properties[key] as JSONSchema;
       const type = Array.isArray(property.type) ? property.type[0] : property.type;
       if (type !== 'array') {
         this.tableColumns.push({
