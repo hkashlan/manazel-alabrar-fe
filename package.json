@@ -9,8 +9,6 @@
     "build": "ng build --configuration production ",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "tt": "./src/app/core/models/json-schema.json > foo.d.ts",
-    "type:generate": "json2ts src/app/core/models/json-schema.json -o src/app/core/models/types.d.ts",
     "prisma:generate": "npx prisma generate",
     "translate": "cd translations && node translate-generate.js ",
     "deploy": "npm run translate && ng build  --configuration production  --base-href /manazel-alabrar-fe/ && cp dist/manazel-alabrar-fe/index.html dist/manazel-alabrar-fe/404.html",

@@ -12,7 +12,6 @@ import { getJSONSchema } from '../../model/schame';
   selector: 'app-data-table',
   standalone: true,
   templateUrl: './data-table.component.html',
-  styleUrl: './data-table.component.scss',
   imports: [TableComponent],
   providers: [DatePipe],
 })
@@ -43,7 +42,7 @@ export class DataTableComponent implements OnInit {
 
     this.tableColumns = [];
     for (const key in dataSchema.properties) {
-      const property: JSONSchema = dataSchema.properties[key] as JSONSchema;
+      const property: JSONSchema = dataSchema.properties[key];
       const type = Array.isArray(property.type) ? property.type[0] : property.type;
       if (type !== 'array') {
         this.tableColumns.push({
@@ -56,7 +55,7 @@ export class DataTableComponent implements OnInit {
     console.log(dataSchema);
   }
 
-  private getFn(key: string) {
+  private getFn(key: string): ((value: string) => string) | undefined {
     if (key.toLocaleLowerCase().indexOf('date') > 0) {
       return (value: string) => this.datePipe.transform(value) ?? '';
     } else {
