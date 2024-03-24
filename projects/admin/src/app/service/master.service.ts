@@ -1,12 +1,12 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { ProductModel } from "../product.model";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ProductModel } from '../product.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class MasterService {
-  private productsUrl = "api/p";
+  private productsUrl = 'api/pr/';
   constructor(private http: HttpClient) {}
 
   getallproducts() {

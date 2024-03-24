@@ -6,22 +6,18 @@
     <h1 class="example-app-name">Responsive App</h1>
   </mat-toolbar>
 
-  
-  <mat-sidenav-container
-    class="example-sidenav-container"
-    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
-  >
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav
       #snav
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
     >
-      <app-sidenav></app-sidenav>
+      <app-sidenav />
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <app-header (toggleSidebarForMe)="snav.toggle()"></app-header>
+      <app-header (toggleSidebarForMe)="snav.toggle()" />
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
