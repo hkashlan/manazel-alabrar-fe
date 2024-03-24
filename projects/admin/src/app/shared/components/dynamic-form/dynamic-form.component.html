@@ -1,5 +1,5 @@
-<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
-  <mat-form-field *ngFor="let property of schemaInfo.schema.properties | keyvalue">
+<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" class="row">
+  <mat-form-field *ngFor="let property of schemaInfo.schema.properties | keyvalue" class="col-xs-12 col-sm-6 col-lg-4">
     <ng-container *ngIf="['string', 'number', 'integer'].includes(getFirstType(property.value) ?? '')">
       <mat-label>{{ property.key }}</mat-label>
       <input

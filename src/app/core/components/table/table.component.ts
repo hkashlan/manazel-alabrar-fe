@@ -35,7 +35,7 @@ export class ColumnDefinitionDirective {
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit, AfterViewInit, AfterContentChecked {
+export class TableComponent<T> implements OnInit, AfterViewInit, AfterContentChecked {
   public tableDataSource = new MatTableDataSource([]);
   public displayedColumns: string[] = [];
   @ViewChild(MatPaginator, { static: false }) matPaginator!: MatPaginator;
@@ -44,7 +44,7 @@ export class TableComponent implements OnInit, AfterViewInit, AfterContentChecke
   @Input() isPageable = false;
   @Input() isSortable = false;
   @Input() isFilterable = false;
-  @Input() tableColumns: TableColumn[] = [];
+  @Input() tableColumns: TableColumn<T>[] = [];
   @Input() rowActionIcon?: string;
   @Input() paginationSizes: number[] = [5, 10, 15];
   @Input() defaultPageSize = this.paginationSizes[1];
