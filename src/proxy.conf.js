@@ -9,8 +9,8 @@ function logProxyResponse(proxyRes, req, res) {
 
 // Export the proxy configuration with the logging functions
 module.exports = {
-  "/api": {
-    target: "http://127.0.0.1:3000",
+  "/api/": {
+    target: "http://127.0.0.1:3000/",
     // target: "https://lms-be.manazel-alabrar.com/",
     secure: false,
     changeOrigin: true,

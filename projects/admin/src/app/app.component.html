@@ -1,6 +1,8 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <h1 class="example-app-name">Responsive App</h1>
   </mat-toolbar>
 
@@ -11,23 +13,12 @@
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
     >
-      <mat-nav-list>
-        @for (nav of fillerNav; track nav) {
-          <a mat-list-item routerLink=".">{{ nav }}</a>
-        }
-      </mat-nav-list>
+      <app-sidenav />
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <app-table [isPageable]="true" [tableColumns]="ordersTableColumns" [tableData]="data">
-        <ng-template [appColDef]="'image'" let-element>
-          <img alt="'anything'" style="background-color: red" [src]="element.image" />
-        </ng-template>
-      </app-table>
-
-      @for (content of fillerContent; track content) {
-        <p>{{ content }}</p>
-      }
+      <app-header (toggleSidebarForMe)="snav.toggle()" />
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

@@ -1,0 +1,13 @@
+.mat-card {
+  margin: 2%;
+  text-align: left;
+  width: 80%;
+}
+
+button {
+  margin: 2px;
+}
+
+.mat-card-ed {
+  width: 30%;
+}
