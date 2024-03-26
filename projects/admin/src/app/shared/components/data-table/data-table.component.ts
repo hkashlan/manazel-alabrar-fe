@@ -4,6 +4,7 @@ import { TableColumn } from '../../../../core/components/table/table';
 import { TableComponent } from '../../../../core/components/table/table.component';
 import { APIService } from '../../../../core/services/api.service';
 import { Result } from '../../../../shared/models/result';
+import { RestApiServiceUnkown } from '../../../../shared/services/rest-api.service';
 import { JSONSchema, SchemaInfo } from '../../model/json-schema';
 import { schemaInfo } from '../../model/schame';
 
@@ -21,6 +22,7 @@ export class DataTableComponent<T> implements OnInit {
   @Input() entityName: string = '';
   tableColumns: TableColumn<T>[] = [];
   schemaInfo!: SchemaInfo;
+  restApiService!: RestApiServiceUnkown;
   result: Result<T> = {
     items: [],
     pages: 0,
