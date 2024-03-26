@@ -10,6 +10,7 @@ import { TableColumn, componentDef } from '../core/components/table/table';
 import { APIService } from '../core/services/api.service';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
+import { DynamicFormComponent } from './shared/components/dynamic-form/dynamic-form.component';
 
 interface Student {
   id: number;
@@ -30,6 +31,7 @@ interface Student {
     MatIconModule,
     SidenavComponent,
     HeaderComponent,
+    DynamicFormComponent,
   ],
 })
 export class AppComponent implements OnDestroy {

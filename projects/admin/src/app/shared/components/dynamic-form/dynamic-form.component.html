@@ -1,17 +1,33 @@
-<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" class="row">
-  <mat-form-field *ngFor="let property of schemaInfo.schema.properties | keyvalue" class="col-xs-12 col-sm-6 col-lg-4">
-    <ng-container *ngIf="['string', 'number', 'integer'].includes(getFirstType(property.value) ?? '')">
-      <mat-label>{{ property.key }}</mat-label>
-      <input
-        matInput
-        [required]="schemaInfo.schema.required?.includes(property.key) ?? false"
+<form [formGroup]="dynamicForm">
+  <div class="row">
+    <ng-container *ngFor="let property of schemaInfo.schema.properties | keyvalue">
+      <mat-form-field
+        *ngIf="['string', 'number', 'integer'].includes(getFirstType(property.value) ?? '')"
+        class="col-xs-12 col-sm-6 col-lg-4"
+      >
+        <mat-label>{{ property.key }}</mat-label>
+        <input
+          matInput
+          [type]="getFirstType(property.value) ?? ''"
+          [required]="schemaInfo.schema.required?.includes(property.key) ?? false"
+          [formControlName]="property.key"
+        />
+        <!--  -->
+      </mat-form-field>
+      <mat-form-field
+        *ngIf="getFirstType(property.value) === 'boolean'"
         [formControlName]="property.key"
-      />
+        class="col-xs-12 col-sm-6 col-lg-4"
+      >
+        <mat-slide-toggle>
+          {{ property.key }}
+        </mat-slide-toggle>
+      </mat-form-field>
     </ng-container>
-    <mat-slide-toggle *ngIf="getFirstType(property.value) === 'boolean'" [formControlName]="property.key">
-      {{ property.key }}
-    </mat-slide-toggle>
-  </mat-form-field>
+  </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <div>
+    <button mat-raised-button color="primary" (click)="save()">Submit</button>
+    <button mat-raised-button (click)="cancel()">cancel</button>
+  </div>
 </form>
