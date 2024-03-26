@@ -1,0 +1,16 @@
+.mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #2a4b5e;
+}
+
+button {
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+
+.edit-text {
+  color: #f1ebf0;
+}

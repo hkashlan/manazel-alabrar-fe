@@ -1,0 +1,29 @@
+.logo {
+  text-align: center;
+  padding: 2.6rem 1rem;
+
+  img {
+    width: 100px;
+  }
+}
+
+.mat-divider {
+  border-top-width: 2px;
+  border-color: #e9d9a3;
+}
+
+.mat-list-item {
+  font-size: 0.8rem;
+  color: #d1d2db;
+  margin-bottom: 10px;
+
+}
+
+.edit-text {
+  color: #2a4b5e;
+
+}
+
+.edit-icon {
+  color: #c9b163;
+}
