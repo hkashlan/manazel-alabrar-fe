@@ -35,7 +35,7 @@ export class DashboardComponent {
   productlist?: ProductModel[];
   editdata?: ProductModel;
   displayedColums: string[] = ['id', 'name', 'description', 'price', 'action'];
-  datasource: any;
+  datasource = new MatTableDataSource<ProductModel>([]);
 
   constructor(
     private service: MasterService,
@@ -101,7 +101,7 @@ export class DashboardComponent {
   }
 
   removeproduct(id: number): void {
-    this.service.deleteproduct(id).subscribe((item) => {
+    this.service.deleteproduct(id).subscribe(() => {
       this.loadproductlist();
     });
   }

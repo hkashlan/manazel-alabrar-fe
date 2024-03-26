@@ -1,5 +1,5 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -32,7 +32,7 @@ interface Student {
     HeaderComponent,
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   title = 'admin';
 
   mobileQuery: MediaQueryList;
