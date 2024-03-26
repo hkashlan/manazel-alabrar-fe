@@ -40,10 +40,10 @@ export class ColumnDefinitionDirective {
 })
 export class TableComponent implements AfterViewInit, AfterContentChecked {
   isPageable = input(false);
-  tableColumns = input<TableColumn<unknown>[]>([]);
+  tableColumns = input<TableColumn<never>[]>([]);
   paginationSizes = input<number[]>([5, 10, 15]);
   defaultPageSize = input<number>(10);
-  displayedColumns = computed(() => this.tableColumns().map((tableColumn: TableColumn<unknown>) => tableColumn.name));
+  displayedColumns = computed(() => this.tableColumns().map((tableColumn: TableColumn<never>) => tableColumn.name));
 
   @Output() sort: EventEmitter<Sort> = new EventEmitter();
 
