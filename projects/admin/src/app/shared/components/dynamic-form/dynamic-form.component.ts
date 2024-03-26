@@ -8,6 +8,11 @@ import { APIService } from '../../../../core/services/api.service';
 import { JSONSchema, SchemaInfo } from '../../model/json-schema';
 import { getFirstType, schemaInfo } from '../../model/schame';
 
+interface PropertyInformation {
+  name: string;
+  property: JSONSchema;
+}
+
 @Component({
   standalone: true,
   selector: 'app-dynamic-form',
@@ -22,13 +27,18 @@ export class DynamicFormComponent implements OnInit {
 
   dynamicForm: FormGroup = new FormGroup({});
   schemaInfo!: SchemaInfo;
+  propertiesInfo: PropertyInformation[] = [];
 
   getFirstType = getFirstType;
   createFormGroup() {
     const formGroup = new FormGroup({});
     for (const [propertyName, property] of Object.entries(this.schemaInfo.schema.properties)) {
       const type = Array.isArray(property.type) ? property.type[0] : property.type;
-      if (type !== 'array') {
+      if (propertyName !== 'id' && type !== 'array') {
+        this.propertiesInfo.push({
+          name: propertyName,
+          property: property,
+        });
         const control = new FormControl(property.default, this.collectValidators(propertyName, property));
         formGroup.addControl(propertyName, control);
       }
@@ -40,8 +50,10 @@ export class DynamicFormComponent implements OnInit {
   ngOnInit(): void {
     this.schemaInfo = schemaInfo(this.entityName, this.apiService);
     this.createFormGroup();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    this.dynamicForm.setValue(this.value as any);
+    if (this.value) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.dynamicForm.setValue(this.value as any);
+    }
   }
 
   save() {
@@ -49,6 +61,10 @@ export class DynamicFormComponent implements OnInit {
       this.dynamicForm.markAllAsTouched();
       return;
     }
+
+    this.schemaInfo.api.create(this.dynamicForm.value as never).subscribe((t) => {
+      console.log(t);
+    });
   }
 
   cancel() {}
