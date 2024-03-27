@@ -52,7 +52,7 @@ export class DynamicFormComponent implements OnInit {
     this.createFormGroup();
     if (this.value) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      this.dynamicForm.setValue(this.value as any);
+      this.dynamicForm.patchValue(this.value as any);
     }
   }
 
@@ -62,7 +62,11 @@ export class DynamicFormComponent implements OnInit {
       return;
     }
 
-    this.schemaInfo.api.create(this.dynamicForm.value as never).subscribe((t) => {
+    const obs = this.value
+      ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this.schemaInfo.api.update((this.value as unknown as any).id, this.dynamicForm.value as never)
+      : this.schemaInfo.api.create(this.dynamicForm.value as never);
+    obs.subscribe((t) => {
       console.log(t);
     });
   }

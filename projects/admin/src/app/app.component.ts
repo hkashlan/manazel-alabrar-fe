@@ -5,8 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
-import { RowActionsComponent } from '../core/components/table/row-actions/row-actions.component';
-import { TableColumn, componentDef } from '../core/components/table/table';
+import { TableColumn } from '../core/components/table/table';
 import { APIService } from '../core/services/api.service';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
@@ -67,9 +66,9 @@ export class AppComponent implements OnDestroy {
     },
     {
       name: 'action12',
-      componentDef: componentDef(RowActionsComponent, {
-        editBasicUrl: '123',
-      }),
+      // componentDef: componentDef(RowActionsComponent, {
+      //   editBasicUrl: '123',
+      // }),
       // componentDef: componentDef(RowActionsComponent, 'editBasicUrl'),
     },
   ];

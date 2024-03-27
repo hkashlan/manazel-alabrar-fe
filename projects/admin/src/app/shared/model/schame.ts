@@ -6,17 +6,23 @@ import { JSONSchema, SchemaInfo } from './json-schema';
 const schemaJson: JSONSchema = schema as unknown as JSONSchema;
 
 export function getJSONSchema(entityName: string): JSONSchema {
-  return schemaJson.definitions[entityName];
+  return getCaseInsensitiveProperty(schemaJson.definitions, entityName);
 }
 
-function makeFirstLetterLowerCase(text: string): string {
-  return text.charAt(0).toLowerCase() + text.slice(1);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getCaseInsensitiveProperty(obj: object, prop: string): any {
+  const propLower = prop.toLowerCase();
+  for (const key in obj) {
+    if (key.toLowerCase() === propLower) {
+      return obj[key as keyof typeof obj];
+    }
+  }
+  return undefined; // Or throw an error if the property is not found
 }
 
 export function schemaInfo(entityName: string, apiService: APIService): SchemaInfo {
   const dataSchema: JSONSchema = getJSONSchema(entityName);
-  const apiServiceName = makeFirstLetterLowerCase(entityName);
-  const restApiService = apiService[apiServiceName as keyof APIService] as RestApiServiceUnkown;
+  const restApiService: RestApiServiceUnkown = getCaseInsensitiveProperty(apiService, entityName);
   return { schema: dataSchema, api: restApiService };
 }
 

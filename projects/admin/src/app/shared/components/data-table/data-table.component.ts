@@ -1,12 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { TableColumn } from '../../../../core/components/table/table';
+import { BasicRecord, TableColumn } from '../../../../core/components/table/table';
 import { TableComponent } from '../../../../core/components/table/table.component';
 import { APIService } from '../../../../core/services/api.service';
 import { Result } from '../../../../shared/models/result';
-import { RestApiServiceUnkown } from '../../../../shared/services/rest-api.service';
 import { JSONSchema, SchemaInfo } from '../../model/json-schema';
 import { schemaInfo } from '../../model/schame';
+import { ActionsDataTableComponent } from './actions-data-table/actions-data-table.component';
 
 @Component({
   selector: 'app-data-table',
@@ -15,14 +15,13 @@ import { schemaInfo } from '../../model/schame';
   imports: [TableComponent],
   providers: [DatePipe],
 })
-export class DataTableComponent<T> implements OnInit {
+export class DataTableComponent<T extends BasicRecord> implements OnInit {
   datePipe = inject(DatePipe);
   apiService = inject(APIService);
 
   @Input() entityName: string = '';
   tableColumns: TableColumn<T>[] = [];
   schemaInfo!: SchemaInfo;
-  restApiService!: RestApiServiceUnkown;
   result: Result<T> = {
     items: [],
     pages: 0,
@@ -48,6 +47,13 @@ export class DataTableComponent<T> implements OnInit {
         this.tableColumns.push(tableColumn);
       }
     }
+    this.tableColumns.push({
+      name: 'action',
+      componentDef: {
+        component: ActionsDataTableComponent<T>,
+        inputs: { entityName: this.entityName },
+      },
+    });
   }
 
   private getFn(key: string): ((value: T[keyof T] | undefined) => string) | undefined {
