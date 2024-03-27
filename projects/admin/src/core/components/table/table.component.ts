@@ -25,10 +25,10 @@ import { TableColumn } from './table';
   selector: '[appColDef]',
   standalone: true,
 })
-export class ColumnDefinitionDirective {
+export class ColumnDefinition {
   @Input() appColDef: string = '';
 
-  constructor(public templateRef: TemplateRef<unknown>) {}
+  constructor(public templateRef: TemplateRef<any>) {}
 }
 
 @Component({
@@ -40,21 +40,20 @@ export class ColumnDefinitionDirective {
 })
 export class TableComponent implements AfterViewInit, AfterContentChecked {
   isPageable = input(false);
-  tableColumns = input<TableColumn<never>[]>([]);
+  tableColumns = input<TableColumn<any>[]>([] as any);
   paginationSizes = input<number[]>([5, 10, 15]);
   defaultPageSize = input<number>(10);
-  displayedColumns = computed(() => this.tableColumns().map((tableColumn: TableColumn<never>) => tableColumn.name));
+  displayedColumns = computed(() => this.tableColumns().map((tableColumn: TableColumn<any>) => tableColumn.name));
 
   @Output() sort: EventEmitter<Sort> = new EventEmitter();
 
   tableDataSource = new MatTableDataSource([] as unknown[]);
-  templates: Map<string, TemplateRef<unknown>> = new Map();
+  templates: Map<any, TemplateRef<any>> = new Map();
 
   @ViewChild(MatPaginator, { static: false }) matPaginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) matSort!: MatSort;
 
-  @ContentChildren(ColumnDefinitionDirective, { descendants: true })
-  _contentRowDefs?: QueryList<ColumnDefinitionDirective>;
+  @ContentChildren(ColumnDefinition, { descendants: true }) _contentRowDefs?: QueryList<ColumnDefinition>;
 
   // this property needs to have a setter, to dynamically get changes from parent component
   @Input() set tableData(data: unknown[]) {
@@ -85,7 +84,7 @@ export class TableComponent implements AfterViewInit, AfterContentChecked {
     this.sort.emit(sortParameters);
   }
 
-  getCompInputs(inputs: Record<string, unknown> | undefined, record: unknown): Record<string, unknown> | undefined {
+  getCompInputs(inputs: Record<string, unknown> | undefined, record: any): Record<string, unknown> | undefined {
     return { ...(inputs ?? {}), record: record };
   }
 }
