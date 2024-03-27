@@ -8,16 +8,6 @@ button {
   margin: 2px;
 }
 
-.custom-button-color {
-  background-color: #a54653 !important;
-  color: white !important;
-}
-
-.custom-save-color {
-  background-color: #4a747a !important;
-  color: white !important;
-}
-
 .mat-card-ed {
   width: 30%;
 }

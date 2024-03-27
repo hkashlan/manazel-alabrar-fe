@@ -8,7 +8,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
 import { RowActionsComponent } from '../core/components/table/row-actions/row-actions.component';
 import { TableColumn, componentDef } from '../core/components/table/table';
-import { ColumnDefinition, TableComponent } from '../core/components/table/table.component';
 import { APIService } from '../core/services/api.service';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
@@ -31,8 +30,6 @@ interface Student {
     MatToolbarModule,
     MatListModule,
     MatIconModule,
-    TableComponent,
-    ColumnDefinition,
     SidenavComponent,
     HeaderComponent,
   ],

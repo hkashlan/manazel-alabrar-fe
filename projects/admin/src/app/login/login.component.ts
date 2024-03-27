@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -24,7 +26,12 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class LoginComponent {
   loginForm: any;
-  constructor(private builder: FormBuilder, private snackBar: MatSnackBar) {}
+
+  constructor(
+    private builder: FormBuilder,
+    private snackBar: MatSnackBar,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.builder.group({

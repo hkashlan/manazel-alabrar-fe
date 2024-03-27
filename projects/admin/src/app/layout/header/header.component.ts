@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -11,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [MatIconModule, CommonModule, MatToolbarModule],
 })
 export class HeaderComponent {
-  @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
+  @Output() toggleSidebarForMe: EventEmitter<unknown> = new EventEmitter();
 
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
