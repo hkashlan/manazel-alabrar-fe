@@ -24,7 +24,7 @@ export class DynamicFormComponent implements OnInit {
   apiService = inject(APIService);
   @Input() entityName: string = '';
   @Input() value: unknown;
-  @Output() result = new EventEmitter<typeof this.value | null>();
+  @Output() formResult = new EventEmitter<typeof this.value | null>();
 
   dynamicForm: FormGroup = new FormGroup({});
   schemaInfo!: SchemaInfo;
@@ -68,12 +68,12 @@ export class DynamicFormComponent implements OnInit {
         this.schemaInfo.api.update((this.value as unknown as any).id, this.dynamicForm.value as never)
       : this.schemaInfo.api.create(this.dynamicForm.value as never);
     obs.subscribe((t) => {
-      this.result.emit(t);
+      this.formResult.emit(t);
     });
   }
 
   cancel() {
-    this.result.emit(null);
+    this.formResult.emit(null);
   }
 
   private collectValidators(propertyName: string, property: JSONSchema): ValidatorFn[] {
