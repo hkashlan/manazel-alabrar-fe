@@ -22,8 +22,6 @@ export class ActionsDataTableComponent<T extends BasicRecord> extends TableColum
   }
 
   removeRecord(): void {
-    this.schemaInfo.api.delete(this.record.id).subscribe(() => {
-      this.onChange.emit();
-    });
+    this.schemaInfo.api.delete(this.record.id).subscribe(() => this.onChange.next());
   }
 }

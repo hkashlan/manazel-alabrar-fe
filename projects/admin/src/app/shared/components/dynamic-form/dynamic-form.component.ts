@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -24,6 +24,7 @@ export class DynamicFormComponent implements OnInit {
   apiService = inject(APIService);
   @Input() entityName: string = '';
   @Input() value: unknown;
+  @Output() result = new EventEmitter<typeof this.value | null>();
 
   dynamicForm: FormGroup = new FormGroup({});
   schemaInfo!: SchemaInfo;
@@ -67,11 +68,13 @@ export class DynamicFormComponent implements OnInit {
         this.schemaInfo.api.update((this.value as unknown as any).id, this.dynamicForm.value as never)
       : this.schemaInfo.api.create(this.dynamicForm.value as never);
     obs.subscribe((t) => {
-      console.log(t);
+      this.result.emit(t);
     });
   }
 
-  cancel() {}
+  cancel() {
+    this.result.emit(null);
+  }
 
   private collectValidators(propertyName: string, property: JSONSchema): ValidatorFn[] {
     const validators: ValidatorFn[] = [];

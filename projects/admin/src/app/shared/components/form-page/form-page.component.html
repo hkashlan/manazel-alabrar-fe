@@ -1,3 +1,3 @@
 @if (!id || value) {
-  <app-dynamic-form [entityName]="entityName" [value]="value" />
+  <app-dynamic-form [entityName]="entityName" [value]="value" (result)="goToListing()" />
 }

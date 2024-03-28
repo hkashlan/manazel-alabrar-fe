@@ -1,5 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 import { BasicRecord, TableColumn } from '../../../../core/components/table/table';
 import { TableComponent } from '../../../../core/components/table/table.component';
 import { APIService } from '../../../../core/services/api.service';
@@ -12,7 +14,7 @@ import { ActionsDataTableComponent } from './actions-data-table/actions-data-tab
   selector: 'app-data-table',
   standalone: true,
   templateUrl: './data-table.component.html',
-  imports: [TableComponent],
+  imports: [TableComponent, MatButtonModule, RouterModule],
   providers: [DatePipe],
 })
 export class DataTableComponent<T extends BasicRecord> implements OnInit {
@@ -30,9 +32,7 @@ export class DataTableComponent<T extends BasicRecord> implements OnInit {
   ngOnInit(): void {
     this.schemaInfo = schemaInfo(this.entityName, this.apiService);
 
-    this.schemaInfo.api.findAll().subscribe((result) => {
-      this.result = result;
-    });
+    this.fetchData();
 
     this.tableColumns = [];
     for (const key in this.schemaInfo.schema.properties) {
@@ -53,6 +53,12 @@ export class DataTableComponent<T extends BasicRecord> implements OnInit {
         component: ActionsDataTableComponent<T>,
         inputs: { entityName: this.entityName },
       },
+    });
+  }
+
+  fetchData() {
+    this.schemaInfo.api.findAll().subscribe((result) => {
+      this.result = result;
     });
   }
 

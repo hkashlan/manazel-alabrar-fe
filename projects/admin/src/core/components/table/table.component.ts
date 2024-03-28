@@ -14,11 +14,13 @@ import {
   computed,
   input,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
+import { Subject } from 'rxjs';
 import { BasicRecord, TableColumn } from './table';
 
 @Directive({
@@ -46,6 +48,7 @@ export class TableComponent<T extends BasicRecord> implements AfterViewInit, Aft
   displayedColumns = computed(() => this.tableColumns().map((tableColumn: TableColumn<T>) => tableColumn.name));
 
   @Output() sort: EventEmitter<Sort> = new EventEmitter();
+  @Output() fetchData = new EventEmitter<void>();
 
   tableDataSource = new MatTableDataSource([] as T[]);
   templates: Map<string, TemplateRef<never>> = new Map();
@@ -55,10 +58,15 @@ export class TableComponent<T extends BasicRecord> implements AfterViewInit, Aft
 
   @ContentChildren(ColumnDefinitionDirective, { descendants: true })
   _contentRowDefs?: QueryList<ColumnDefinitionDirective>;
+  triggerChagnes = new Subject<void>();
 
   // this property needs to have a setter, to dynamically get changes from parent component
   @Input() set tableData(data: T[]) {
     this.setTableDataSource(data);
+  }
+
+  constructor() {
+    this.triggerChagnes.pipe(takeUntilDestroyed()).subscribe(() => this.triggerFetchData());
   }
 
   ngAfterContentChecked(): void {
@@ -86,6 +94,10 @@ export class TableComponent<T extends BasicRecord> implements AfterViewInit, Aft
   }
 
   getCompInputs(inputs: Record<string, unknown> | undefined, record: unknown): Record<string, unknown> | undefined {
-    return { ...(inputs ?? {}), record: record };
+    return { ...(inputs ?? {}), record: record, onChange: this.triggerChagnes };
+  }
+
+  private triggerFetchData(): void {
+    return this.fetchData.emit();
   }
 }

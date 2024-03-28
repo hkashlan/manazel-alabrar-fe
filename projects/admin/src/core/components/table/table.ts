@@ -1,4 +1,5 @@
-import { Directive, EventEmitter, Input, Type } from '@angular/core';
+import { Directive, Input, Type } from '@angular/core';
+import { Subject } from 'rxjs';
 
 export interface BasicRecord {
   id: number;
@@ -9,7 +10,7 @@ export interface BasicRecord {
 export class TableColumnComponent<T extends BasicRecord> {
   @Input() record!: T;
   @Input() entityName!: string;
-  @Input() onChange = new EventEmitter();
+  @Input() onChange: Subject<void>;
 }
 
 export function componentDef<T>(component: new () => T, inputs: { [P in keyof T as Exclude<P, 'record'>]: T[P] }) {
